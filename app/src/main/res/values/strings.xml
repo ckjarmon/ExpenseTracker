@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Expense Tracker</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="test_button">Test</string>
+    <string name="TextView">TextView</string>
 </resources>
