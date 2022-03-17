@@ -1,5 +1,11 @@
 Christian Jarmon
 Diego Franco
 Abraham Mendoza 
+<<<<<<< HEAD
 Juan Espinoza
 Michael Balian
+=======
+Juan Espinoza 
+Michael Bal
+>>>>>>> 6d23e531781ac0974c2d16c72710509c14d11a55
+Erik Aguilar
