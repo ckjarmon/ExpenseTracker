@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLCell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLCellIterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLCellRange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLCellReference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLCellValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLColumn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLContentTypes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLDateTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLFormula.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLProperties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLRelationships.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLRow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLRowData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLSharedStrings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLWorkbook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLXmlData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLXmlFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\sources\XLZipArchive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\kyeou\Dropbox\PC (2)\Desktop\Stuff On Github\Kyeou-C\using openxlsx\OpenXLSX-master\OpenXLSX\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{392772AC-6A38-3C70-95A5-736D6A6A68B4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
