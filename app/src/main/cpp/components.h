@@ -9,7 +9,7 @@
 //A_O_T Cell = O1 =
 //Score Cell = Q1 -> (K1 - SUM(D2:D)) / K1)
 
-
+//random change
 
 #ifndef EXPENSE_TRACKER_COMPONENTS_H
 #define EXPENSE_TRACKER_COMPONENTS_H
