@@ -20,8 +20,8 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include <sstream>
-#include <fstream>
-#include <assert.h>
+#include <OpenXLSX.hpp>
+
 
 std::string months[]  = {"January", "February", "March", "April", "May", "June", \
 "August", "September", "October", "November", "December"};
@@ -112,6 +112,13 @@ public:
         this->date = *date;
     }
 
+    void setRecord( bool q) {
+        this->recorded = q;
+    }
+
+    void setCorD(std::string s) {
+        this->creditORdebit = (s.compare("Debit")) ? 0 : 1;
+    }
 
 
 ~Transaction() {}
@@ -119,6 +126,9 @@ private:
     std::string name;
     Date date;
     float amount;
+    bool recorded;
+    //1 for credit, 0 for debit
+    bool creditORdebit;
 
 
 };//end class
@@ -177,17 +187,35 @@ class Report {};
 
 
 
+//class to manage spreadsheet
+//Name Date Credit Debt   Recorded Bool
+//A1    B1   C1      D1       F1
+
+//Income Budget Saving A_o_T Score
+//H        J       L     N     P
+class spreadsheet_et {
+public:
+    SpreadSheet(bool con) {
+        if (con == 0) {
+            WorkBook.create("./UserDate.xlsx");
+            worksheet = WorkBook.workbook().worksheet("Sheet1");
+            worksheet.cell("A1").value() = "Name";
+            worksheet.cell("B1").value() = "Date";
+            worksheet.cell("C1").value() = "Credit";
+            worksheet.cell("D1").value() = "Debit";
+            worksheet.cell("F1").value() =
+
+        }
 
 
-__attribute__((unused)) void recordTransactionTest(Database d, Transaction t, Transaction y) {
-    if (d.compareTrans(t, y)) {
-        printf("Result: True\n\n"); } else {
-        printf("Result: False\n\n");
+
     }
-}//end func
 
+private:
+    XLDocument WorkBook;
+    auto worksheet;
 
-
+};
 
 
 
