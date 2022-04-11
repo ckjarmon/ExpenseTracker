@@ -203,7 +203,9 @@ public:
             worksheet.cell("B1").value() = "Date";
             worksheet.cell("C1").value() = "Credit";
             worksheet.cell("D1").value() = "Debit";
-            worksheet.cell("F1").value() = "Recording Bool"
+            worksheet.cell("F1").value() = "Recording Bool";
+        } else {
+            worksheet = WorkBook.workbook().worksheet("Sheet1");
 
         }
 
