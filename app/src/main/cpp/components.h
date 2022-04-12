@@ -11,7 +11,7 @@
 
 //random change
 
-#ifndef EXPENSE_TRACKER_COMPONENTS_H
+#ifndef EXPENSE_TRACKER_COMPOENTS_H
 #define EXPENSE_TRACKER_COMPONENTS_H
 
 #endif //EXPENSE_TRACKER_COMPONENTS_H
@@ -52,9 +52,12 @@ Date() {
         this->year = year;
     }
 
-    int getMonth() {return month;}
-    int getDay() {return day;}
-    int getYear() {return year;}
+    int getMonth() {return this->month;}
+    int getDay() {return this->day;}
+    int getYear() {return this->year;}
+
+    Date getDate() {return this;}
+
 
     std::string getDateString() {
         // printf("Print Date Test: %s, %d, %d", months[date.getMonth()].substr(0, 3), date.getDay(),date.getYear());
@@ -120,8 +123,18 @@ public:
         this->creditORdebit = (s.compare("Debit")) ? 0 : 1;
     }
 
+    Date getDate() {return date.getDate();}
 
-~Transaction() {}
+bool getCorD() {return this->creditORdebit;}
+
+    std::string getName() {return this->name;}
+    float getAmount() {return this->amount;}
+
+
+~Transaction() {
+        free(date);
+
+    }
 private:
     std::string name;
     Date date;
@@ -137,13 +150,13 @@ private:
 class Database {
 
 public:
-    Database() {
+    Database(SpreadSheet) {
         list = (Transaction*)malloc(count*sizeof(Transaction));
         count = 0;
     }
 
     __attribute__((unused)) void recordTrans(Transaction t) {
-        count++;
+        A_O_T++;
         list = (Transaction*)realloc(list, count*sizeof(Transaction));
         list[count - 1] = t;
     }
@@ -158,7 +171,7 @@ public:
 
 private:
     Transaction *list;
-    int count;
+    int A_O_T;
 }; //end database class
 
 
@@ -182,10 +195,6 @@ private:
     int numOfBudgets;
 };
 
-class Report {};
-
-
-
 
 //class to manage spreadsheet
 //Name Date Credit Debt   Recorded Bool
@@ -193,11 +202,13 @@ class Report {};
 
 //Income Budget Saving A_o_T Score
 //H        J       L     N     P
-class spreadsheet_et {
+class SpreadSheet {
 public:
     SpreadSheet(bool con) {
+        WorkBook.open("./UserData.xlsx");
+        con = (WorkBook) ? 0 : 1;
         if (con == 0) {
-            WorkBook.create("./UserDate.xlsx");
+            WorkBook.create("./UserData.xlsx");
             worksheet = WorkBook.workbook().worksheet("Sheet1");
             worksheet.cell("A1").value() = "Name";
             worksheet.cell("B1").value() = "Date";
@@ -205,13 +216,36 @@ public:
             worksheet.cell("D1").value() = "Debit";
             worksheet.cell("F1").value() = "Recording Bool";
         } else {
+            //WorkBook.open("./UserData.xlsx");
             worksheet = WorkBook.workbook().worksheet("Sheet1");
-
         }
+    }// end con struct
+
+
+void recordTransaction(Transaction *t, int i) {
+    std::ostringstream cellString;
+        char [] cs = {'A', 'B', 'Z', 'F'};
+        std::string [4] ttr;
+            ttr[0] = t->getName();
+            ttr[1] = t->getDate();
+            cs[2] = (t->getCorD()) ? "C" : "D";
+    ttr[2] = t->getAmount();
+    ttr[3] = "0";
+for (int i = 0; i < 4; i++) {
+   cellString << cs[i] << i;
+    worksheet.cell(cellString).value() = ttr[i];
+}//end for
 
 
 
-    }
+    }//end func
+
+
+
+
+
+
+
 
 private:
     XLDocument WorkBook;
