@@ -58,7 +58,7 @@ public:
     int getDay() { return this->day; }
     int getYear() { return this->year; }
 
-    Date getDate() { return this; }
+    Date getDate() { return *(this); }
 
     std::string getDateString()
     {
@@ -143,7 +143,7 @@ public:
 
     ~Transaction()
     {
-        free(date);
+       // free(date);
     }
 
 private:
@@ -156,37 +156,7 @@ private:
 
 }; // end class
 
-class Database
-{
 
-public:
-    Database(SpreadSheet)
-    {
-        list = (Transaction *)malloc(count * sizeof(Transaction));
-        count = 0;
-    }
-
-    __attribute__((unused)) void recordTrans(Transaction t)
-    {
-        A_O_T++;
-        list = (Transaction *)realloc(list, count * sizeof(Transaction));
-        list[count - 1] = t;
-    }
-
-    __attribute__((unused)) Transaction getTrans(int i)
-    {
-        return list[i];
-    }
-
-    bool compareTrans(Transaction t, Transaction y)
-    {
-        return (t.getTransString() == y.getTransString());
-    }
-
-private:
-    Transaction *list;
-    int A_O_T;
-}; // end database class
 
 class Budget
 {
@@ -224,48 +194,88 @@ public:
         if (con == 0)
         {
             WorkBook.create("./UserData.xlsx");
-            worksheet = WorkBook.workbook().worksheet("Sheet1");
-            worksheet.cell("A1").value() = "Name";
-            worksheet.cell("B1").value() = "Date";
-            worksheet.cell("C1").value() = "Credit";
-            worksheet.cell("D1").value() = "Debit";
-            worksheet.cell("F1").value() = "Recording Bool";
-            worksheet.cell("H1").value() = "Income";
-            worksheet.cell("J1").value() = "Budget";
-            worksheet.cell("L1").value() = "Savings";
-            worksheet.cell("N1").value() = "A_O_T";
-            worksheet.cell("P1").value() = "Score";
+            //worksheet = WorkBook.workbook().worksheet("Sheet1");
+            WorkBook.workbook().worksheet("Sheet1").cell("A1").value() = "Name";
+            WorkBook.workbook().worksheet("Sheet1").cell("B1").value() = "Date";
+            WorkBook.workbook().worksheet("Sheet1").cell("C1").value() = "Credit";
+            WorkBook.workbook().worksheet("Sheet1").cell("D1").value() = "Debit";
+            WorkBook.workbook().worksheet("Sheet1").cell("F1").value() = "Recording Bool";
+            WorkBook.workbook().worksheet("Sheet1").cell("H1").value() = "Income";
+            WorkBook.workbook().worksheet("Sheet1").cell("J1").value() = "Budget";
+            WorkBook.workbook().worksheet("Sheet1").cell("L1").value() = "Savings";
+            WorkBook.workbook().worksheet("Sheet1").cell("N1").value() = "A_O_T";
+            WorkBook.workbook().worksheet("Sheet1").cell("P1").value() = "Score";
 
             // after this, the user must be prompted for monthly income and desired budget
         }
-        else
-        {
+        //else
+        //{
             // WorkBook.open("./UserData.xlsx");
-            worksheet = WorkBook.workbook().worksheet("Sheet1");
-        }
+            // = WorkBook.workbook().worksheet("Sheet1");
+        //}
     } // end con struct
 
     void recordTransaction(Transaction *t, int i)
     {
         std::ostringstream cellString;
-        char[] cs = {'A', 'B', 'Z', 'F'};
-        std::string[4] ttr;
+        char cs [] = {'A', 'B', 'Z', 'F'};
+        std::string  ttr [4];
         ttr[0] = t->getName();
-        ttr[1] = t->getDate();
+        ttr[1] = t->getDate().getDateString();
         cs[2] = (t->getCorD()) ? 'C' : 'D';
         ttr[2] = t->getAmount();
         ttr[3] = "0";
         for (int i = 0; i < 4; i++)
         {
             cellString << cs[i] << i;
-            worksheet.cell(cellString.str()).value() = ttr[i];
+            WorkBook.workbook().worksheet("Sheet1").cell(cellString.str()).value() = ttr[i];
         } // end for
     }     // end func
 
+    ~SpreadSheet() {
+
+        WorkBook.save();
+    }
+
+
 private:
-    XLDocument WorkBook;
-    auto worksheet;
+    OpenXLSX::XLDocument WorkBook;
+    //auto worksheet;
 };
+
+
+class Database
+{
+
+public:
+    Database(SpreadSheet s)
+    {
+        A_O_T = 0;
+        list = (Transaction *)malloc(A_O_T * sizeof(Transaction));
+
+    }
+
+    __attribute__((unused)) void recordTrans(Transaction t)
+    {
+        A_O_T++;
+        list = (Transaction *)realloc(list, A_O_T * sizeof(Transaction));
+        list[A_O_T - 1] = t;
+    }
+
+    __attribute__((unused)) Transaction getTrans(int i)
+    {
+        return list[i];
+    }
+
+    bool compareTrans(Transaction t, Transaction y)
+    {
+        return (t.getTransString() == y.getTransString());
+    }
+
+private:
+    Transaction *list;
+    int A_O_T;
+}; // end database class
 
 // adding transaction to database will require a function call to setDate
 

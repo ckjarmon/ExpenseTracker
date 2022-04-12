@@ -7,4 +7,7 @@
 
 int main() {
 
+    SpreadSheet(0);
+
+
 }
