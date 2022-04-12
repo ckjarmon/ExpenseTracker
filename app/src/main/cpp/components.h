@@ -241,7 +241,7 @@ void recordTransaction(Transaction *t, int i) {
     ttr[3] = "0";
 for (int i = 0; i < 4; i++) {
    cellString << cs[i] << i;
-    worksheet.cell(cellString).value() = ttr[i];
+    worksheet.cell(cellString.str()).value() = ttr[i];
 }//end for
     }//end func
 
