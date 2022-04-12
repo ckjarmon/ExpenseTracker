@@ -22,6 +22,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+add_subdirectory(OpenXLSX)
+
+
+
 add_library( # Sets the name of the library.
         native-lib
 
@@ -31,10 +35,10 @@ add_library( # Sets the name of the library.
         # Provides a relative path to your source file(s).
         native-lib.cpp)
 
-#add_library(components SHARED components.h)
 
 
-add_subdirectory(OpenXLSX)
+
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -51,14 +55,18 @@ find_library( # Sets the name of the path variable.
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
-add_executable(expensetrackerEXE native-lib.cpp)
+#add_executable(expensetrackerEXE native-lib.cpp)
+target_link_libraries(native-lib  OpenXLSX::OpenXLSX)
+#this line causes -> C/C++: clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+
+
 target_link_libraries( # Specifies the target library.
         # expensetracker
         # OpenXLSX::OpenXLSX
         # Links the target library to the log library
         # included in the NDK.
         native-lib
-        #components
-        OpenXLSX::OpenXLSX
         ${log-lib})
 

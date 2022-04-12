@@ -1,6 +1,6 @@
 #include <jni.h>
 #include <string>
-#include "components.h"
+#include "components.hpp"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
