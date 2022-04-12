@@ -215,6 +215,14 @@ public:
             worksheet.cell("C1").value() = "Credit";
             worksheet.cell("D1").value() = "Debit";
             worksheet.cell("F1").value() = "Recording Bool";
+            worksheet.cell("H1").value() = "Income";
+            worksheet.cell("J1").value() = "Budget";
+            worksheet.cell("L1").value() = "Savings";
+            worksheet.cell("N1").value() = "A_O_T";
+            worksheet.cell("P1").value() = "Score";
+
+            //after this, the user must be prompted for monthly income and desired budget
+
         } else {
             //WorkBook.open("./UserData.xlsx");
             worksheet = WorkBook.workbook().worksheet("Sheet1");
@@ -228,16 +236,13 @@ void recordTransaction(Transaction *t, int i) {
         std::string [4] ttr;
             ttr[0] = t->getName();
             ttr[1] = t->getDate();
-            cs[2] = (t->getCorD()) ? "C" : "D";
+            cs[2] = (t->getCorD()) ? 'C' : 'D';
     ttr[2] = t->getAmount();
     ttr[3] = "0";
 for (int i = 0; i < 4; i++) {
    cellString << cs[i] << i;
     worksheet.cell(cellString).value() = ttr[i];
 }//end for
-
-
-
     }//end func
 
 
