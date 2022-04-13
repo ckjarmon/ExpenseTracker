@@ -246,38 +246,7 @@ private:
 };
 */
 
-class Database
-{
 
-public:
-    Database(SpreadSheet s)
-    {
-        A_O_T = 0;
-        list = (Transaction *)malloc(A_O_T * sizeof(Transaction));
-
-    }
-
-    __attribute__((unused)) void recordTrans(Transaction t)
-    {
-        A_O_T++;
-        list = (Transaction *)realloc(list, A_O_T * sizeof(Transaction));
-        list[A_O_T - 1] = t;
-    }
-
-    __attribute__((unused)) Transaction getTrans(int i)
-    {
-        return list[i];
-    }
-
-    bool compareTrans(Transaction t, Transaction y)
-    {
-        return (t.getTransString() == y.getTransString());
-    }
-
-private:
-    Transaction *list;
-    int A_O_T;
-}; // end database class
 
 // adding transaction to database will require a function call to setDate
 
