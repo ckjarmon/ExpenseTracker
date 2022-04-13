@@ -16,11 +16,15 @@
 
 #endif // EXPENSE_TRACKER_COMPONENTS_H
 
-#include <iostream>
-#include "stdio.h"
-#include "stdlib.h"
-#include <sstream>
+#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/iostream"
+#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/sstream"
+#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/fstream"
+#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string"
+#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/stdio.h"
+#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/stdlib.h"
 #include "json.hpp"
+
+using json = nlohmann::json;
 
 std::string months[] = {"January", "February", "March", "April", "May", "June",
                         "August", "September", "October", "November", "December"};
@@ -176,6 +180,31 @@ private:
     int ID;
     float amount;
     int numOfBudgets;
+};
+
+//this class handles all user data, this created a user.json file that holds
+//Income Budget Saving A_o_T Score
+class USER {
+public:
+    USER(bool b) {
+        if (b == false) {
+            std::fstream file;
+            file.open("user.json", std::ios_base::out);
+            json user;
+            user["Income"] = 100;
+            user["Budget"] = 50;
+            user["Saving"] = 50;
+            user["Amount_Of_Transaction"] = 0;
+            user["Score"] = 10;
+            file << std::setw(4) << user << std::endl;
+        }
+    }
+    ~USER() {
+        file.close();
+    }
+private:
+    std::fstream file;
+    json user;
 };
 
 
