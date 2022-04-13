@@ -20,7 +20,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include <sstream>
-#include <OpenXLSX.hpp>
+#include "json.hpp"
 
 std::string months[] = {"January", "February", "March", "April", "May", "June",
                         "August", "September", "October", "November", "December"};
@@ -178,6 +178,8 @@ private:
     int numOfBudgets;
 };
 
+
+/*
 // class to manage spreadsheet
 // Name Date Credit Debt   Recorded Bool
 // A1    B1   C1      D1       F1
@@ -242,7 +244,7 @@ private:
     OpenXLSX::XLDocument WorkBook;
     //auto worksheet;
 };
-
+*/
 
 class Database
 {
