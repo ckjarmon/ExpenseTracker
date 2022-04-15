@@ -16,12 +16,12 @@
 
 #endif // EXPENSE_TRACKER_COMPONENTS_H
 
-#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/iostream"
-#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/sstream"
-#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/fstream"
-#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string"
-#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/stdio.h"
-#include "../../../../../../../AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/stdlib.h"
+#include "iostream"
+#include "sstream"
+#include "fstream"
+#include "string"
+#include "stdio.h"
+#include "stdlib.h"
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -69,7 +69,7 @@ public:
         // printf("Print Date Test: %s, %d, %d", months[date.getMonth()].substr(0, 3), date.getDay(),date.getYear());
         std::ostringstream os;
         // os << "Print Date Test: ";
-        os << months[this->getMonth()].substr(0, 3);
+        os << months[this->getMonth() - 1].substr(0, 3);
         os << " ";
         os << this->getDay();
         os << ", ";
@@ -90,14 +90,19 @@ public:
     __attribute__((unused)) Transaction(std::string name, Date *date, float amount)
     {
         this->name = name;
-        this->date = *date;
+        this->date = date;
         this->amount = amount;
+        this->recorded = false;
+        transFile.open("transactionsJSON.json", std::ios_base::out ); //| std::ios_base::app);
     }
 
-    void setAll(std::string name, Date date, float amount)
+    //need a boolean check to know when create new and and when to append
+    //by default it can just be opened to append mode as open creates the file if doesnt exist, wont terminate if it does
+
+    void setAll(std::string name, Date *date, float amount)
     {
         this->name = name;
-        this->date.setDate(date.getMonth(), date.getDay(), date.getYear());
+        this->date->setDate(date->getMonth(), date->getDay(), date->getYear());
     }
 
     std::string getTransString()
@@ -106,61 +111,75 @@ public:
         os << "Name: ";
         os << name;
         os << " | Date: ";
-        os << this->date.getDateString();
+        os << this->date->getDateString();
         os << " | Amount: ";
         os << amount;
 
         return os.str();
     }
 
-    void setAmount(float amount)
-    {
-        this->amount = amount;
-    }
+    void setAmount(float amount) { this->amount = amount; }
 
-    void setName(std::string name)
-    {
-        this->name = name;
-    }
+    void setName(std::string name) { this->name = name; }
 
-    void setDate(Date *date)
-    {
-        this->date = *date;
-    }
+    void setDate(Date *date) { this->date = date; }
 
-    void setRecord(bool q)
-    {
-        this->recorded = q;
-    }
+    void setRecord(bool q) { this->recorded = q; }
 
-    void setCorD(std::string s)
-    {
-        this->creditORdebit = (s.compare("Debit")) ? 0 : 1;
-    }
+    void setCorD(std::string s) { this->creditORdebit = (s.compare("Debit")) ? 0 : 1; }
 
-    Date getDate() { return date.getDate(); }
+    Date getDate() { return date->getDate(); }
 
     bool getCorD() { return this->creditORdebit; }
 
     std::string getName() { return this->name; }
+
     float getAmount() { return this->amount; }
+
+    void countTrans()
+    {
+        A_O_T = 0;
+        for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
+        {
+            A_O_T++;
+        }
+    }
+
+    void addTrans()
+    {
+        countTrans();
+        transactionsJSON[A_O_T]["Name: "] = this->name;
+        transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
+        transactionsJSON[A_O_T]["Amount: "] = this->amount;
+        transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
+        transFile << std::setw(5) << transactionsJSON;
+    }
+
+json getJSON() {
+    return this->transactionsJSON;
+}
+
 
     ~Transaction()
     {
-       // free(date);
+        transFile.close();
+        free(date);
     }
 
 private:
     std::string name;
-    Date date;
+    Date *date;
+    // ID int may not be used, but here just in case
+    int id;
+    int A_O_T;
     float amount;
     bool recorded;
     // 1 for credit, 0 for debit
     bool creditORdebit;
+    json transactionsJSON;
+    std::fstream transFile;
 
 }; // end class
-
-
 
 class Budget
 {
@@ -178,34 +197,33 @@ public:
 
 private:
     int ID;
-    float amount;
+    double amount;
     int numOfBudgets;
 };
 
-//this class handles all user data, this created a user.json file that holds
-//Income Budget Saving A_o_T Score
-class USER {
+// this class handles all user data, this created a user.json file that holds
+// Income Budget Saving A_o_T Score
+class USER
+{
 public:
-    USER(bool b) {
-        //file will need to be gathered through the access token granted from Google Drive API
-            file.open("user.json", std::ios_base::out);
-            user = (b == false) ? -1 : 0;
-            file << std::setw(4) << user << std::endl;
+    USER(bool b)
+    {
+        // file will need to be gathered through the access token granted from Google Drive API
+        file.open("user.json", std::ios_base::out);
+        user = (b == false) ? -1 : 0;
+        file << std::setw(4) << user << std::endl;
     }
-    //need a parse procedure for fields that are integer values
+    // need a parse procedure for fields that are integer values
 
-    void setFields(std::string s, std::string value) {
-        user[s] = value;
-    }
-
-    ~USER() {
+    ~USER()
+    {
         file.close();
     }
+
 private:
     std::fstream file;
     json user;
 };
-
 
 /*
 // class to manage spreadsheet
@@ -273,8 +291,6 @@ private:
     //auto worksheet;
 };
 */
-
-
 
 // adding transaction to database will require a function call to setDate
 
