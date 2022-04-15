@@ -187,18 +187,17 @@ private:
 class USER {
 public:
     USER(bool b) {
-        if (b == false) {
-            std::fstream file;
+        //file will need to be gathered through the access token granted from Google Drive API
             file.open("user.json", std::ios_base::out);
-            json user;
-            user["Income"] = 100;
-            user["Budget"] = 50;
-            user["Saving"] = 50;
-            user["Amount_Of_Transaction"] = 0;
-            user["Score"] = 10;
+            user = (b == false) ? -1 : 0;
             file << std::setw(4) << user << std::endl;
-        }
     }
+    //need a parse procedure for fields that are integer values
+
+    void setFields(std::string s, std::string value) {
+        user[s] = value;
+    }
+
     ~USER() {
         file.close();
     }
