@@ -243,29 +243,37 @@ public:
         {
             userRead.close();
             userWrite.open("user.json", std::ios_base::out);
-            
-                user = {
-                    {"Name", "FirstName LastName"},
-                    {"A_O_T", 0},
-                    {"Budgets", {0}},
-                    {"Scores", {0}},
-                    {"SumDebits", {0}}
-
-                };
-            
+            user = {
+                {"Name", "FirstName LastName"},
+                {"A_O_T", 0},
+                {"Budgets", {0}},
+                {"Scores", {0}},
+                {"SumDebits", {0}}};
         }
         else
         {
             // read file and gather data -> A_O_T
             userRead >> user;
             // need to read A_O_T value from JSON
+            A_O_T = user[A_O_T];
         }
         userWrite << std::setw(4) << user << std::endl;
     }
     // need a parse procedure for fields that are integer values
 
+    void setUserValue(std::string, int iValue, float dValue)
+    {
+        // when this function is called, if you want to set user["A_O_T"] -
+        // call setUserValue("A_O_T", value, 0)
+        // if you want set budget scores or sum debits
+        //->setUserValue("A_O_T", 0, value)
+
+        user[string] = (iValue != 0) iValue : dValue;
+    }
+
     ~USER()
     {
+        user["A_O_T"] = A_O_T;
         userWrite.close();
     }
 
