@@ -276,7 +276,16 @@ public:
 
         int iOS = user["Budgets"].size();
         float currBud = user["Budgets"][iOS - 1];
-        user["Scores"][iOS - 1] = (((currBud - temp) / currBud) * 10 < 0) ? 0 :  ((currBud - temp) / currBud) * 10;
+        if (((currBud - temp) / currBud) * 10 < 0)
+        {
+            user["Scores"][iOS - 1] = 0;
+        }
+        else
+        {
+            user["Scores"][iOS - 1] = ((currBud - temp) / currBud) * 10;
+        }
+
+user["Scores"][iOS - 1] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : 
 
 
 
