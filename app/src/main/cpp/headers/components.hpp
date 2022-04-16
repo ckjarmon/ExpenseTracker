@@ -216,7 +216,7 @@ public:
     }
 
     // calculate score
-    // if 2nd or more budget, push back to array of bugets in user, along with the score for that budget as well
+    // if 2nd or more budget, push back to array of budgets in user, along with the score for that budget as well
 
 private:
     int ID;
