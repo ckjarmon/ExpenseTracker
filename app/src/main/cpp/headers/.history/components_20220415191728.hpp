@@ -242,7 +242,7 @@ public:
         if (is_empty(userRead))
         {
             userRead.close();
-            userWrite.open("user.json", std::ios_base::out);
+            userWrite.open("user.json", std::ios_base::out)
             
                 user = {
                     {"Name", "FirstName LastName"},
@@ -260,7 +260,7 @@ public:
             userRead >> user;
             // need to read A_O_T value from JSON
         }
-        userWrite << std::setw(4) << user << std::endl;
+        user << std::setw(4) << user << std::endl;
     }
     // need a parse procedure for fields that are integer values
 

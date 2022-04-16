@@ -242,7 +242,7 @@ public:
         if (is_empty(userRead))
         {
             userRead.close();
-            userWrite.open("user.json", std::ios_base::out);
+            userWrite.open("user.json", std::ios_base::out)
             
                 user = {
                     {"Name", "FirstName LastName"},
