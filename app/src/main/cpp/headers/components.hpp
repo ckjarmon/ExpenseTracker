@@ -217,7 +217,7 @@ public:
             user = {
                 {"Name", "FirstName LastName"},
                 {"A_O_T", 0},
-                {"Budgets", {500}},
+                {"Budgets", {0}},
                 {"Income", 0},
                 {"Scores", {}},
                 {"SumDebits", 0}};
@@ -276,7 +276,14 @@ public:
 
         int iOS = user["Budgets"].size();
         float currBud = user["Budgets"][iOS - 1];
-        user["Scores"][iOS - 1] = ((currBud - temp) / currBud) * 10;
+        if (((currBud - temp) / currBud) * 10 < 0)
+        {
+            user["Scores"][iOS - 1] = 0;
+        }
+        else
+        {
+            user["Scores"][iOS - 1] = ((currBud - temp) / currBud) * 10;
+        }
     }
 
     void USER_CLOSE()
@@ -300,9 +307,6 @@ private:
     std::ofstream userWrite;
     json user;
 };
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
