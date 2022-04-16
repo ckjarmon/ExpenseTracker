@@ -29,20 +29,6 @@ using json = nlohmann::json;
 std::string months[] = {"January", "February", "March", "April", "May", "June",
                         "August", "September", "October", "November", "December"};
 
-namespace ETglobal
-{
-    bool is_empty(std::ifstream &pFile)
-    {
-        return pFile.peek() == std::ifstream::traits_type::eof();
-    }
-
-    // things that needs to be global
-    // A_O_T;
-    int A_O_T;
-}
-
-using namespace ETglobal;
-
 class Date
 {
 public:
@@ -107,11 +93,11 @@ public:
         this->date = date;
         this->amount = amount;
         this->recorded = false;
-        // transFile.open("transactionsJSON.json", std::ios_base::out ); //| std::ios_base::app);
+        transFile.open("transactionsJSON.json", std::ios_base::out ); //| std::ios_base::app);
     }
 
-    // need a boolean check to know when create new and and when to append
-    // by default it can just be opened to append mode as open creates the file if doesnt exist, wont terminate if it does
+    //need a boolean check to know when create new and and when to append
+    //by default it can just be opened to append mode as open creates the file if doesnt exist, wont terminate if it does
 
     void setAll(std::string name, Date *date, float amount)
     {
@@ -152,46 +138,49 @@ public:
 
     void setA_O_T(int a) { this->A_O_T = a; }
 
-    void getA_O_T(int a) { return this->A_O_T; }
 
-    // write to the JSON variable
-    void writeTrans()
+//this function might be redundant, the amount of transactions is stores persistently
+    void countTrans()
     {
-        transFileRead.open("transactionsJSON.json");
-        if (!(is_empty(transFileRead)))
-        {
-            transFileRead.close();
-            std::ifstream i("transactionsJSON.json");
-            i >> transactionsJSON;
-            i.close();
-        }
-        else
-        {
-            A_O_T = 0;
-        }
 
-    } // end of function
+        //if the file is empty, A_O_T should just end up as 0;
+
+        A_O_T = 0;
+if (!(is_empty(transFileRead)))
+        for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
+        {
+            A_O_T++;
+        }
+    }
+
+
+bool is_empty(std::ifstream& pFile)
+{
+    return pFile.peek() == std::ifstream::traits_type::eof();
+}
+
+
+
+
 
     void addTrans()
     {
-
+        countTrans();
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
         transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
-        A_O_T++;
-
-        transFileWrite << std::setw(5) << transactionsJSON;
+        transFile << std::setw(5) << transactionsJSON;
     }
 
-    json getJSON()
-    {
-        return this->transactionsJSON;
-    }
+json getJSON() {
+    return this->transactionsJSON;
+}
+
 
     ~Transaction()
     {
-        transFileWrite.close();
+        transFile.close();
         free(date);
     }
 
@@ -200,13 +189,13 @@ private:
     Date *date;
     // ID int may not be used, but here just in case
     int id;
-    // int A_O_T;
+    int A_O_T;
     float amount;
     bool recorded;
     // 1 for credit, 0 for debit
     bool creditORdebit;
     json transactionsJSON;
-    std::ofstream transFileWrite;
+    std::fstream transFile;
     std::ifstream transFileRead;
 
 }; // end class
@@ -225,9 +214,6 @@ public:
         return Budget(numOfBudgets, newAmount);
     }
 
-    // calculate score
-    // if 2nd or more budget, push back to array of bugets in user, along with the score for that budget as well
-
 private:
     int ID;
     double amount;
@@ -243,26 +229,22 @@ public:
     {
         // file will need to be gathered through the access token granted from Google Drive API
         userRead.open("user.json");
-        if (is_empty(userRead))
-        {
+        if (Transaction::is_empty(userRead)) {
             userRead.close();
-            userWrite.open("user.json", std::ios_base::out)
-            {
-                user = {
-                    {"Name", "FirstName LastName"},
-                    {"A_O_T", 0},
-                    {"Budgets", {0}},
-                    {"Scores", {0}},
-                    {"SumDebits", {0}}
+            userWrite.open("user.json", std::ios_base::out) {
+                json defaultUSER = {
+                        {"Name": ""},
+                        {"A_O": ""},
+                        {"Name": ""},
+                        {"Name": ""},
+
+
+
 
                 };
             }
-        }
-        else
-        {
-            // read file and gather data -> A_O_T
-            userRead >> user;
-            // need to read A_O_T value from JSON
+        } else {
+            //read file and gather data -> A_O_T
         }
         file << std::setw(4) << user << std::endl;
     }

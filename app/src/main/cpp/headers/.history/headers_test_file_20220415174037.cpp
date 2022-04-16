@@ -7,10 +7,6 @@ bool is_empty(std::ifstream& pFile)
 
 
 int main() {
-
-
-
-  
     Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34);
     std::cout << test1.getTransString() << "\n";
     test1.addTrans();
