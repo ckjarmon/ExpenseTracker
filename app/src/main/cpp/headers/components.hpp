@@ -37,7 +37,7 @@ namespace ETglobal
 
     void Transaction_CLOSE()
     {
-       // transFileWrite.close();
+        // transFileWrite.close();
         transFileWrite.open("transactionsJSON.json");
         transFileWrite << std::setw(5) << transactionsJSON;
         transFileWrite.close();
@@ -181,7 +181,7 @@ public:
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
         transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         A_O_T++;
-        //transFileWrite.open("transactionsJSON.json");
+        // transFileWrite.open("transactionsJSON.json");
         transFileWrite << std::setw(5) << transactionsJSON;
         transFileWrite.close();
     }
@@ -258,7 +258,7 @@ public:
     {
         float temp = 0.0;
         int c = 0;
-       // int itCount = 0;
+        // int itCount = 0;
         for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
         {
 
@@ -267,13 +267,12 @@ public:
                 // std::cout << (*it)["Amount: "] << std::endl;
                 float as = (*it)["Amount: "];
                 temp += as;
-               (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
-                //itCount++;
-            }//end if
+                (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
+                // itCount++;
+            } // end if
         }
         user["SumDebits"].clear();
         user["SumDebits"] = temp;
-        
 
         int iOS = user["Budgets"].size();
         float currBud = user["Budgets"][iOS - 1];
@@ -302,6 +301,10 @@ private:
     json user;
 };
 
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 // class to manage spreadsheet
 // Name Date Credit Debt   Recorded Bool
