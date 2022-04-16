@@ -2,7 +2,6 @@
 // Created by kyeou on 08/April/22.
 //
 
-
 // random change
 
 #ifndef EXPENSE_TRACKER_COMPOENTS_H
@@ -32,8 +31,18 @@ namespace ETglobal
 
     // things that needs to be global
     // A_O_T;
-    int A_O_T;
+    int A_O_T, numOfBudgets;
     json transactionsJSON;
+    std::ofstream transFileWrite;
+
+    void Transaction_CLOSE()
+    {
+       // transFileWrite.close();
+        transFileWrite.open("transactionsJSON.json");
+        transFileWrite << std::setw(5) << transactionsJSON;
+        transFileWrite.close();
+        // free(date);
+    }
 }
 
 using namespace ETglobal;
@@ -172,18 +181,9 @@ public:
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
         transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         A_O_T++;
-
+        //transFileWrite.open("transactionsJSON.json");
         transFileWrite << std::setw(5) << transactionsJSON;
         transFileWrite.close();
-    }
-
- 
-
-
-    ~Transaction()
-    {
-       // transFileWrite.close();
-        free(date);
     }
 
 private:
@@ -196,33 +196,10 @@ private:
     bool recorded;
     // 1 for credit, 0 for debit
     bool creditORdebit;
-    std::ofstream transFileWrite;
+
     std::ifstream transFileRead;
 
 }; // end class
-
-class Budget
-{
-public:
-    Budget(int ID, float amount)
-    {
-        this->ID = ID;
-        this->amount = amount;
-    }
-
-    Budget changeBudget(float newAmount)
-    {
-        return Budget(numOfBudgets, newAmount);
-    }
-
-    // calculate score
-    // if 2nd or more budget, push back to array of budgets in user, along with the score for that budget as well
-
-private:
-    int ID;
-    double amount;
-    int numOfBudgets;
-};
 
 // this class handles all user data, this created a user.json file that holds
 // Income Budget Saving A_o_T Score
@@ -240,20 +217,24 @@ public:
             user = {
                 {"Name", "FirstName LastName"},
                 {"A_O_T", 0},
-                {"Budgets", {0}},
-                {"Scores", {0}},
-                {"SumDebits", {0}}};
-                //userWrite << std::setw(4) << user << std::endl;
-                //userWrite.close();
+                {"Budgets", {500}},
+                {"Income", 0},
+                {"Scores", {}},
+                {"SumDebits", 0}};
+            // userWrite << std::setw(4) << user << std::endl;
+            // userWrite.close();
         }
         else
         {
             // read file and gather data -> A_O_T
-            userRead >> user;
+            userRead.close();
+            std::ifstream i("user.json");
+            i >> user;
+            i.close();
+            userWrite.open("user.json", std::ios_base::out);
             // need to read A_O_T value from JSON
             A_O_T = user["A_O_T"];
         }
-        
     }
     // need a parse procedure for fields that are integer values
 
@@ -266,34 +247,55 @@ public:
         user[s] = (iValue != 0) ? iValue : dValue;
     }
 
-void recordDebits() {
-     float temp = 0.0;
-     int c = 0;
-     for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
+    void addBudget(float amount)
+    {
+        int currAMT = user["Budgets"].size();
+        // currAMT++;
+        user["Budgets"][currAMT] = amount;
+    }
+
+    void recordDebits()
+    {
+        float temp = 0.0;
+        int c = 0;
+       // int itCount = 0;
+        for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
         {
-          std::cout << (*it).get<float>() << std::endl;
+
+            if ((*it)["ATTRIBUTE->RECORDED_BOOL: "] == false)
+            {
+                // std::cout << (*it)["Amount: "] << std::endl;
+                float as = (*it)["Amount: "];
+                temp += as;
+               (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
+                //itCount++;
+            }//end if
         }
-       // user["SumDebits"] = temp;
- }
+        user["SumDebits"].clear();
+        user["SumDebits"] = temp;
+        
 
-
+        int iOS = user["Budgets"].size();
+        float currBud = user["Budgets"][iOS - 1];
+        user["Scores"][iOS - 1] = ((currBud - temp) / currBud) * 10;
+    }
 
     void USER_CLOSE()
     {
-        //printf("IN USER DESTRCUTOR\n");
-       // userRead >> user;
-        int safetyCount;
+        /*
         A_O_T = 0;
         for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
         {
-           A_O_T++;
-        }
+            A_O_T++;
+        } */
+        Transaction_CLOSE();
         setUserValue("A_O_T", A_O_T, 0);
         userWrite << std::setw(4) << user << std::endl;
         userWrite.close();
     }
 
-~USER() {}
+    ~USER() {}
+
 private:
     std::ifstream userRead;
     std::ofstream userWrite;

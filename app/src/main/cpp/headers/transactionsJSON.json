@@ -1,74 +1,44 @@
 [
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
           "Amount: ": 12.34000015258789,
           "Date: ": "Jan 1, 2000",
           "Name: ": "Ralphs 1"
      },
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
           "Amount: ": 12.34000015258789,
           "Date: ": "Jan 1, 2000",
           "Name: ": "Ralphs 2"
      },
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
           "Amount: ": 12.34000015258789,
           "Date: ": "Jan 1, 2000",
           "Name: ": "Ralphs 3"
      },
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
           "Amount: ": 56.779998779296875,
           "Date: ": "Feb 2, 2000",
           "Name: ": "Ralphs 4"
      },
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
           "Amount: ": 56.779998779296875,
           "Date: ": "Feb 2, 2000",
           "Name: ": "Ralphs 5"
      },
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
           "Amount: ": 56.779998779296875,
           "Date: ": "Feb 2, 2000",
           "Name: ": "Ralphs 6"
      },
      {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
-          "Amount: ": 12.34000015258789,
-          "Date: ": "Jan 1, 2000",
-          "Name: ": "Ralphs 1"
-     },
-     {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
-          "Amount: ": 12.34000015258789,
-          "Date: ": "Jan 1, 2000",
-          "Name: ": "Ralphs 2"
-     },
-     {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
-          "Amount: ": 12.34000015258789,
-          "Date: ": "Jan 1, 2000",
-          "Name: ": "Ralphs 3"
-     },
-     {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
-          "Amount: ": 56.779998779296875,
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 200.0,
           "Date: ": "Feb 2, 2000",
-          "Name: ": "Ralphs 4"
-     },
-     {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
-          "Amount: ": 56.779998779296875,
-          "Date: ": "Feb 2, 2000",
-          "Name: ": "Ralphs 5"
-     },
-     {
-          "ATTRIBUTE->RECORDED_BOOL: ": false,
-          "Amount: ": 56.779998779296875,
-          "Date: ": "Feb 2, 2000",
-          "Name: ": "Ralphs 6"
+          "Name: ": "Ralphs 7"
      }
 ]

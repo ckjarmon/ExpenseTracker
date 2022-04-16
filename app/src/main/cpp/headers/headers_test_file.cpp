@@ -35,6 +35,13 @@ USER *user = new USER();
     std::cout << test6.getTransString() << "\n";
     test6.addTrans();
 
+    
+    Transaction test7("Ralphs 7", new Date(2, 2, 2000), 200.00);
+    std::cout << test7.getTransString() << "\n";
+    test7.addTrans();
+
+
+
 user->recordDebits();
 
 /*
