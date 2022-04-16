@@ -35,6 +35,7 @@ USER *user = new USER();
     std::cout << test6.getTransString() << "\n";
     test6.addTrans();
 
+user->recordDebits();
 
 /*
 for (json::iterator it = test3.getJSON().begin(); it != test3.getJSON().end(); ++it) {

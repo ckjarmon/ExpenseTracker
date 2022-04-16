@@ -179,6 +179,7 @@ public:
 
  
 
+
     ~Transaction()
     {
        // transFileWrite.close();
@@ -264,6 +265,18 @@ public:
         //->setUserValue("A_O_T", 0, value)
         user[s] = (iValue != 0) ? iValue : dValue;
     }
+
+void recordDebits() {
+     float temp = 0.0;
+     int c = 0;
+     for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
+        {
+          std::cout << (*it).get<float>() << std::endl;
+        }
+       // user["SumDebits"] = temp;
+ }
+
+
 
     void USER_CLOSE()
     {
