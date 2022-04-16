@@ -8,7 +8,7 @@ bool is_empty(std::ifstream& pFile)
 
 int main() {
 
-
+USER *user = new USER();
 
   
     Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34);
@@ -23,6 +23,19 @@ int main() {
     std::cout << test3.getTransString() << "\n";
     test3.addTrans();
 
+    Transaction test4("Ralphs 4", new Date(2, 2, 2000), 56.78);
+    std::cout << test4.getTransString() << "\n";
+    test4.addTrans();
+
+    Transaction test5("Ralphs 5", new Date(2, 2, 2000), 56.78);
+    std::cout << test5.getTransString() << "\n";
+    test5.addTrans();
+
+    Transaction test6("Ralphs 6", new Date(2, 2, 2000), 56.78);
+    std::cout << test6.getTransString() << "\n";
+    test6.addTrans();
+
+
 /*
 for (json::iterator it = test3.getJSON().begin(); it != test3.getJSON().end(); ++it) {
   std::cout << (*it)["Name"] << '\n';
@@ -31,7 +44,7 @@ for (json::iterator it = test3.getJSON().begin(); it != test3.getJSON().end(); +
 
 
 
-
+user->USER_CLOSE();
 
 
 

@@ -2,12 +2,6 @@
 // Created by kyeou on 08/April/22.
 //
 
-// Initial Cells
-// Income Cell = I1
-// Budget Cell = K1
-// Savings Cell = M1
-// A_O_T Cell = O1 =
-// Score Cell = Q1 -> (K1 - SUM(D2:D)) / K1)
 
 // random change
 
@@ -39,6 +33,7 @@ namespace ETglobal
     // things that needs to be global
     // A_O_T;
     int A_O_T;
+    json transactionsJSON;
 }
 
 using namespace ETglobal;
@@ -170,7 +165,8 @@ public:
 
     void addTrans()
     {
-
+        writeTrans();
+        transFileWrite.open("transactionsJSON.json", std::ios_base::out);
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
@@ -178,16 +174,14 @@ public:
         A_O_T++;
 
         transFileWrite << std::setw(5) << transactionsJSON;
+        transFileWrite.close();
     }
 
-    json getJSON()
-    {
-        return this->transactionsJSON;
-    }
+ 
 
     ~Transaction()
     {
-        transFileWrite.close();
+       // transFileWrite.close();
         free(date);
     }
 
@@ -201,7 +195,6 @@ private:
     bool recorded;
     // 1 for credit, 0 for debit
     bool creditORdebit;
-    json transactionsJSON;
     std::ofstream transFileWrite;
     std::ifstream transFileRead;
 
@@ -249,34 +242,45 @@ public:
                 {"Budgets", {0}},
                 {"Scores", {0}},
                 {"SumDebits", {0}}};
+                //userWrite << std::setw(4) << user << std::endl;
+                //userWrite.close();
         }
         else
         {
             // read file and gather data -> A_O_T
             userRead >> user;
             // need to read A_O_T value from JSON
-            A_O_T = user[A_O_T];
+            A_O_T = user["A_O_T"];
         }
-        userWrite << std::setw(4) << user << std::endl;
+        
     }
     // need a parse procedure for fields that are integer values
 
-    void setUserValue(std::string, int iValue, float dValue)
+    void setUserValue(std::string s, int iValue, float dValue)
     {
         // when this function is called, if you want to set user["A_O_T"] -
         // call setUserValue("A_O_T", value, 0)
         // if you want set budget scores or sum debits
         //->setUserValue("A_O_T", 0, value)
-
-        user[string] = (iValue != 0) iValue : dValue;
+        user[s] = (iValue != 0) ? iValue : dValue;
     }
 
-    ~USER()
+    void USER_CLOSE()
     {
-        user["A_O_T"] = A_O_T;
+        //printf("IN USER DESTRCUTOR\n");
+       // userRead >> user;
+        int safetyCount;
+        A_O_T = 0;
+        for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
+        {
+           A_O_T++;
+        }
+        setUserValue("A_O_T", A_O_T, 0);
+        userWrite << std::setw(4) << user << std::endl;
         userWrite.close();
     }
 
+~USER() {}
 private:
     std::ifstream userRead;
     std::ofstream userWrite;
