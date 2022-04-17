@@ -17,16 +17,3 @@ extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
 
 
 
-jint Jniint() {
-    srand((unsigned int) time(0));
-    int intrandom = (rand() % (990 - 101)) + 101;
-    return intrandom;
-}
-
-
-
-extern "C"
-JNIEXPORT jint JNICALL
-Java_com_kyeou_expensetracker_MainActivity_Jniint(JNIEnv *env, jobject thiz) {
-    return (jint) Jniint();
-}
