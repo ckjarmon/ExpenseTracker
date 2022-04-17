@@ -1,34 +1,30 @@
 #include "components.hpp"
-
+#include <time.h>
+#include <iomanip>
+#define randK(x)  (1 + (rand() % x) * rand())
 
 
 int main() {
+srand((unsigned int)time(NULL));
 
-std::fstream file;
-file.open("transactionsJSON.json", std::ios_base::out);
-file << "";
-file.close();
-file.open("user.json", std::ios_base::out);
-file << "";
-file.close();
 
 
 USER *user = new USER();
 
   
-    Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34);
+    Transaction test1("Ralphs 1", new Date(1, 1, 2000), randK(50));
     std::cout << test1.getTransString() << "\n";
     test1.addTrans();
 
-    Transaction test2("Ralphs 2", new Date(1, 1, 2000), 12.34);
+    Transaction test2("Ralphs 2", new Date(1, 1, 2000), randK(50));
     std::cout << test2.getTransString() << "\n";
     test2.addTrans();
 
-    Transaction test3("Ralphs 3", new Date(1, 1, 2000), 12.34);
+    Transaction test3("Ralphs 3", new Date(1, 1, 2000), randK(50));
     std::cout << test3.getTransString() << "\n";
     test3.addTrans();
 
-    Transaction test4("Ralphs 4", new Date(2, 2, 2000), 56.78);
+    Transaction test4("Ralphs 4", new Date(2, 2, 2000), randK(50));
     std::cout << test4.getTransString() << "\n";
     test4.addTrans();
 

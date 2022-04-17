@@ -4,13 +4,7 @@
 
 int main() {
 
-std::fstream file;
-file.open("transactionsJSON.json", std::ios_base::out);
-file << "";
-file.close();
-file.open("user.json", std::ios_base::out);
-file << "";
-file.close();
+
 
 
 USER *user = new USER();

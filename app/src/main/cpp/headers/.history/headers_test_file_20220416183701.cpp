@@ -1,16 +1,13 @@
 #include "components.hpp"
-
+#include <time.h>
+#define randK(x)                     \
+    srand((unsigned int)time(NULL)); \
+    1 + (rand() % x);
 
 
 int main() {
 
-std::fstream file;
-file.open("transactionsJSON.json", std::ios_base::out);
-file << "";
-file.close();
-file.open("user.json", std::ios_base::out);
-file << "";
-file.close();
+
 
 
 USER *user = new USER();

@@ -4,15 +4,6 @@
 
 int main() {
 
-std::fstream file;
-file.open("transactionsJSON.json", std::ios_base::out);
-file << "";
-file.close();
-file.open("user.json", std::ios_base::out);
-file << "";
-file.close();
-
-
 USER *user = new USER();
 
   
@@ -45,8 +36,9 @@ USER *user = new USER();
     std::cout << test7.getTransString() << "\n";
     test7.addTrans();
 
+
 user->addBudget(632.32);
-user->addBudget(812.65);
+user->addBudget(632.32);
 user->addBudget(3214.32);
 user->recordDebits();
 
