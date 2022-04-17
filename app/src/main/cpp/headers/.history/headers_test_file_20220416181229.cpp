@@ -4,9 +4,6 @@
 
 int main() {
 
-
-
-
 USER *user = new USER();
 
   
@@ -41,8 +38,6 @@ USER *user = new USER();
 
 
 user->addBudget(632.32);
-user->addBudget(812.65);
-user->addBudget(3214.32);
 user->recordDebits();
 
 /*

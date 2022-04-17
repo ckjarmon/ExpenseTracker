@@ -279,7 +279,7 @@ public:
         for (int i = 0; i < iOS; i++)
         {
             float currBud = user["Budgets"][i];
-            user["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+            user["Scores"][i - ] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
         }
 
         /*

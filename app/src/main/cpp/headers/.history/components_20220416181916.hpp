@@ -278,8 +278,8 @@ public:
         // make a for loop to loop through all the budgets and and calculate all the scores
         for (int i = 0; i < iOS; i++)
         {
-            float currBud = user["Budgets"][i];
-            user["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+            float currBud = user["Budgets"][i -];
+            user["Scores"][i - 1] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
         }
 
         /*

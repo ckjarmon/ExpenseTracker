@@ -4,9 +4,6 @@
 
 int main() {
 
-
-
-
 USER *user = new USER();
 
   
