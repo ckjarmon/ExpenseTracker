@@ -4,7 +4,7 @@
 
 int main() {
 
-
+/
 std::fstream file;
 file.open("transactionsJSON.json", std::ios_base::out);
 file << "";

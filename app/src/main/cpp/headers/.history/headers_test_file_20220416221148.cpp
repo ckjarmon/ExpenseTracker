@@ -4,7 +4,7 @@
 
 int main() {
 
-
+/*
 std::fstream file;
 file.open("transactionsJSON.json", std::ios_base::out);
 file << "";
@@ -12,12 +12,12 @@ file.close();
 file.open("user.json", std::ios_base::out);
 file << "";
 file.close();
-
+*/
 
 USER *user = new USER();
 
   
-    Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34);
+    Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34));
     std::cout << test1.getTransString() << "\n";
     test1.addTrans();
 

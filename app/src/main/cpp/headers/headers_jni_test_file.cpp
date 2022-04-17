@@ -1,9 +1,7 @@
 #include "components.hpp"
+#include "headers_jni_test_file.h"
 
-
-
-int main() {
-
+JNIEXPORT void JNICALL Java_headers_1jni_1test_1file_TESTSEQ(JNIEnv* env, jobject thisObject) {
 
 std::fstream file;
 file.open("transactionsJSON.json", std::ios_base::out);
@@ -60,7 +58,5 @@ for (json::iterator it = test3.getJSON().begin(); it != test3.getJSON().end(); +
 
 
 user->USER_CLOSE();
-
-
 
 }

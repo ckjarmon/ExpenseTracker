@@ -12,6 +12,11 @@ extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
     return env->NewStringUTF(hello.c_str());
 }
 
+
+
+
+
+
 jint Jniint() {
     srand((unsigned int) time(0));
     int intrandom = (rand() % (990 - 101)) + 101;
