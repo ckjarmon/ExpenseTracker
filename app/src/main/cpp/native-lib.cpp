@@ -13,8 +13,7 @@ extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
 }
 
 
-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_jniUSER(
-        JNIEnv* env,
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_jniUSER (JNIEnv* env,
         jobject
         ) {
 
