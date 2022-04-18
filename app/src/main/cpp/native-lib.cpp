@@ -17,10 +17,13 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_
         jobject
         ) {
 
+    USER *user = new USER();
     std::ostringstream jni;
     Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34);
     jni << test1.getTransString() << "\n";
     test1.addTrans();
+
+    user->USER_CLOSE();
 
     return env->NewStringUTF(jni.str().c_str());
 }
