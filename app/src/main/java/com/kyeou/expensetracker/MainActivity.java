@@ -1,7 +1,7 @@
 package com.kyeou.expensetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.kyeou.expensetracker.databinding.ActivityMainBinding;
+//import com.kyeou.expensetracker.databinding.ActivityMainBinding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
+        //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         //String message = editText.getText().toString();
         String message = jniUSER();
         intent.putExtra(EXTRA_MESSAGE, message);
