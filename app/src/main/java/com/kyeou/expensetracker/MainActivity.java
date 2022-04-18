@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void sendMessage(View view) {
+    public void addBExpense(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         //String message = editText.getText().toString();
-        String message = jniUSER();
+        String message = addExpense();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
@@ -45,6 +45,6 @@ public class MainActivity extends AppCompatActivity {
      * A native method that is implemented by the 'expensetracker' native library,
      * which is packaged with this application.
      */
-    public native String jniUSER();
+    public native String addExpense();
     //public native String stringFromJNI2();
 }
