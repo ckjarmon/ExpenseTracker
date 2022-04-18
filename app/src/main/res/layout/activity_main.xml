@@ -45,6 +45,7 @@
         android:layout_width="174dp"
         android:layout_height="56dp"
         android:backgroundTint="#00e39f"
+        android:onClick="addBExpense"
         android:text="Edit Budget"
         android:textColor="#FFFFFF"
         app:iconTint="#FFFFFF"
