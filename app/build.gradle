@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.kyeou.expensetracker"
-        minSdk 21
+        minSdk 30
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -18,7 +18,12 @@ android {
                 cppFlags '-std=c++17'
             }
         }
+        ndk {
+            moduleName "cpp"
+            ldLibs "log"
+        }
     }
+
 
     buildTypes {
         release {
@@ -39,6 +44,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+    ndkVersion '24.0.8215888'
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {

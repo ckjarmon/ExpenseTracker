@@ -1,4 +1,0 @@
-C:/Users/kyeou/Dropbox/PC (2)/Desktop/Stuff On Github/Kyeou-C/using openxlsx/OpenXLSX-master/OpenXLSX/build/CMakeFiles/OpenXLSX.dir
-C:/Users/kyeou/Dropbox/PC (2)/Desktop/Stuff On Github/Kyeou-C/using openxlsx/OpenXLSX-master/OpenXLSX/build/CMakeFiles/INSTALL.dir
-C:/Users/kyeou/Dropbox/PC (2)/Desktop/Stuff On Github/Kyeou-C/using openxlsx/OpenXLSX-master/OpenXLSX/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/kyeou/Dropbox/PC (2)/Desktop/Stuff On Github/Kyeou-C/using openxlsx/OpenXLSX-master/OpenXLSX/build/CMakeFiles/ZERO_CHECK.dir

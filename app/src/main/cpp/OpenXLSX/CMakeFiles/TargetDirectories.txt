@@ -1,3 +1,0 @@
-C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/OpenXLSX/CMakeFiles/expensetracker.dir
-C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/OpenXLSX/CMakeFiles/ALL_BUILD.dir
-C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/OpenXLSX/CMakeFiles/ZERO_CHECK.dir
