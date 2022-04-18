@@ -208,6 +208,7 @@ class USER
 public:
     USER()
     {
+        std::cout << "USER DECLARED\n";
         // file will need to be gathered through the access token granted from Google Drive API
         userRead.open("user.json");
         if (is_empty(userRead))
