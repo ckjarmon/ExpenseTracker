@@ -19,6 +19,7 @@ public class AddExpense extends AppCompatActivity {
     }
 
 
+
 //get data that user types and write it to a file
     public void gatherFieldTest(View view)  throws IOException {
         String message  = "WRITE TEST!!!!!"; //whatever user types

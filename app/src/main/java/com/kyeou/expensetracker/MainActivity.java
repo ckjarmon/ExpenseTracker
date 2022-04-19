@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+//for example add_expense_function
     public void addBExpense(View view) throws IOException {
             //to write to files, i have to gather the text that needs to be writting and return it from a CPP functoin through JNI
        String message = "TEXT NOT CHANGED";

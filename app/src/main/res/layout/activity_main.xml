@@ -28,7 +28,7 @@
         android:id="@+id/addExpense3"
         android:layout_width="174dp"
         android:layout_height="56dp"
-        android:layout_marginStart="220dp"
+        android:layout_marginStart="208dp"
         android:background="#8C8017"
         android:backgroundTint="#99B616"
         android:text="Edit Budget"
@@ -37,13 +37,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintVertical_bias="0.911" />
 
     <Button
         android:id="@+id/addExpense"
         android:layout_width="174dp"
         android:layout_height="56dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:background="#8C8017"
         android:backgroundTint="#99B616"
         android:onClick="addBExpense"
@@ -53,7 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintVertical_bias="0.911" />
 
     <TextView
         android:id="@+id/user"

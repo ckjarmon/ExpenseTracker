@@ -14,10 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
-            android:name=".TestAcitivty"
-            android:exported="false"
-            android:label="@string/title_activity_test_acitivty"
-            android:theme="@style/Theme.ExpenseTracker.NoActionBar" />
+            android:name=".ErrorPage"
+            android:exported="false" />
         <activity
             android:name=".AddExpense"
             android:exported="false" />
