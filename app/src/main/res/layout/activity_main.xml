@@ -59,6 +59,7 @@
         android:id="@+id/user"
         android:layout_width="87dp"
         android:layout_height="40dp"
+        android:onClick="addBExpense"
         android:text="Hi User,"
         android:textColor="#F3EFEF"
         android:textSize="24sp"

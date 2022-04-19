@@ -120,6 +120,7 @@
         android:layout_width="129dp"
         android:layout_height="48dp"
         android:backgroundTint="#00e39f"
+        android:onClick="gatherFieldTest"
         android:text="@string/add"
         android:textColor="#6D4C41"
         app:layout_constraintBottom_toBottomOf="parent"
