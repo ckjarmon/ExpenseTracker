@@ -173,18 +173,18 @@ public:
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    void addTransToJson()
+    void addTrans()
     {
-        //writeTrans();
-        //transFileWrite.open("transactionsJSON.json", std::ios_base::out);
+        writeTrans();
+        transFileWrite.open("transactionsJSON.json", std::ios_base::out);
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
         transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         A_O_T++;
-        // transFileWrite.open("transactionsJSON.json");
-        //transFileWrite << std::setw(5) << transactionsJSON;
-        //transFileWrite.close();
+         transFileWrite.open("transactionsJSON.json");
+        transFileWrite << std::setw(5) << transactionsJSON;
+        transFileWrite.close();
     }
 
 private:
