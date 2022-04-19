@@ -64,10 +64,7 @@ public:
         this->year = year;
     }
 
-    __attribute__((unused)) std::string getMonthString(int i)
-    {
-        return months[i - 1];
-    }
+    __attribute__((unused)) std::string getMonthString(int i) { return months[i - 1]; }
 
     void setDate(int month, int day, int year)
     {

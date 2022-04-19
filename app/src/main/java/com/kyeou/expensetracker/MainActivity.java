@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
-
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,11 +40,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void addBExpense(View view) {
+    public void addBExpense(View view) throws IOException {
+            //to write to files, i have to gather the text that needs to be writting and return it from a CPP functoin through JNI
+       String message = "TEXT NOT CHANGED";
+        File path = getFilesDir();
+        File file = new File(path, "transactionsJSON.json");
+        FileOutputStream stream = new FileOutputStream(file);
+        try {
+            stream.write(message.getBytes());
+            message = addExpense();
+        } finally {
+            stream.close();
+        }
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         //String message = editText.getText().toString();
-        String message = addExpense();
+
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
