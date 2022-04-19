@@ -6,11 +6,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.5510416666666667" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml" value="0.33" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_trans_string.xml" value="0.33" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/addexpense.xml" value="0.5510416666666667" />
+        <entry key="..\:/Users/kyeou/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.33" />
+        <entry key="..\:/Users/kyeou/StudioProjects/ExpenseTracker/app/src/main/res/layout/addexpense.xml" value="0.346875" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.299" />
-        <entry key="app/src/main/res/layout/activity_add_expense.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/addexpense.xml" value="0.3541666666666667" />
       </map>

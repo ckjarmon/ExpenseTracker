@@ -2,7 +2,7 @@
 // Created by kyeou on 08/April/22.
 //
 
-// random change
+// the whole JNI scheme will work to create the json values and returns strings back to java to read them into the files
 
 #ifndef EXPENSE_TRACKER_COMPONENTS_H
 #define EXPENSE_TRACKER_COMPONENTS_H
@@ -34,7 +34,8 @@ namespace ETglobal
     int A_O_T, numOfBudgets;
     json transactionsJSON;
     std::ofstream transFileWrite;
-
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//this function could instea return a string (pretty much transactionsJSON.dump())
     void Transaction_CLOSE()
     {
         // transFileWrite.close();
@@ -44,7 +45,7 @@ namespace ETglobal
         // free(date);
     }
 }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------
 using namespace ETglobal;
 
 class Date
@@ -64,10 +65,7 @@ public:
         this->year = year;
     }
 
-    __attribute__((unused)) std::string getMonthString(int i)
-    {
-        return months[i - 1];
-    }
+    __attribute__((unused)) std::string getMonthString(int i) { return months[i - 1]; }
 
     void setDate(int month, int day, int year)
     {
@@ -105,7 +103,7 @@ private:
 class Transaction
 {
 public:
-     Transaction(std::string name, Date *date, float amount)
+    Transaction(std::string name, Date *date, float amount)
     {
         this->name = name;
         this->date = date;
@@ -155,6 +153,7 @@ public:
     float getAmount() { return this->amount; }
 
     // write to the JSON variable
+    //--------------------------------------------------------------------------------------------------------------------------------------------
     void writeTrans()
     {
         transFileRead.open("transactionsJSON.json");
@@ -171,19 +170,21 @@ public:
         }
 
     } // end of function
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
-    void addTrans()
+
+    void addTransToJson()
     {
-        writeTrans();
-        transFileWrite.open("transactionsJSON.json", std::ios_base::out);
+        //writeTrans();
+        //transFileWrite.open("transactionsJSON.json", std::ios_base::out);
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
         transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         A_O_T++;
         // transFileWrite.open("transactionsJSON.json");
-        transFileWrite << std::setw(5) << transactionsJSON;
-        transFileWrite.close();
+        //transFileWrite << std::setw(5) << transactionsJSON;
+        //transFileWrite.close();
     }
 
 private:
@@ -211,7 +212,9 @@ public:
         std::cout << "USER DECLARED\n";
         // file will need to be gathered through the access token granted from Google Drive API
         userRead.open("user.json");
-        if (is_empty(userRead))
+        //this line above could be replaced with a constructor paramater that notes whether the file exists or not (do this in java)
+        //then this function will return user.dump()
+        if (is_empty(userRead)) //this should be checked in java
         {
             userRead.close();
             userWrite.open("user.json", std::ios_base::out);

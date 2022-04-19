@@ -16,7 +16,7 @@ extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_addExpense (JNIEnv* env,
         jobject
         ) {
-
+std::fstream file("wtf.txt");
     USER *user = new USER();
     std::ostringstream jni;
     Transaction test1("Ralphs 1", new Date(1, 1, 2000), 12.34);
