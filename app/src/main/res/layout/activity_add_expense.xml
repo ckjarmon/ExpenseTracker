@@ -12,7 +12,7 @@
         android:layout_width="169dp"
         android:layout_height="37dp"
         android:fontFamily="sans-serif-black"
-        android:text="Add Expense"
+        android:text="@string/add_expense"
         android:textAlignment="center"
         android:textColor="#C3F1E7E7"
         android:textSize="24sp"
@@ -39,6 +39,10 @@
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="33dp"
         android:autofillHints=""
         android:drawableStart="@drawable/ic_description"
         android:ems="10"
@@ -47,8 +51,11 @@
         android:inputType="textMultiLine"
         android:minHeight="48dp"
         android:textColor="#C3F3EEEE"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="173dp" />
+        android:textColorHint="#B3E5FC"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine2"
@@ -61,6 +68,7 @@
         android:hint="@string/amount"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:textColorHint="#E0E0E0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -79,6 +87,7 @@
         android:hint="@string/date"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:textColorHint="#B3E5FC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -94,12 +103,11 @@
         android:drawableStart="@drawable/ic_card"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Payment Type"
+        android:hint="@string/payment_type"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
-        android:textColor="#C3F8F5F5"
-        android:textColor="#C3F1E7E7"
-        android:textColorHint="#546E7A"
+        android:textColor="@color/white"
+        android:textColorHint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -113,12 +121,14 @@
         android:layout_height="48dp"
         android:backgroundTint="#00e39f"
         android:text="@string/add"
+        android:textColor="#6D4C41"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine5"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintVertical_bias="0.147"
+        tools:ignore="TextContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
