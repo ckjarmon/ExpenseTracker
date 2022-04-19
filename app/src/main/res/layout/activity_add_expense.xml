@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="#635F5F">
 
 
     <TextView
@@ -12,8 +12,9 @@
         android:layout_width="169dp"
         android:layout_height="37dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/add_expense"
+        android:text="Add Expense"
         android:textAlignment="center"
+        android:textColor="#C3F1E7E7"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,90 +23,97 @@
         app:layout_constraintVertical_bias="0.112" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ImageLogo"
         android:layout_width="75dp"
         android:layout_height="64dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.076"
-        app:srcCompat="@drawable/money"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/money" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:drawableStart="@drawable/ic_description"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/description"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:textColor="#C3F8F5F5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.131"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:drawableStart="@drawable/ic_money"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/amount"
+        android:textColor="#C3F8F5F5"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:textColor="#C3F1E7E7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.245"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.245" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:drawableStart="@drawable/ic_date"
         android:ems="10"
         android:gravity="start|top"
+        android:textColor="#C3F8F5F5"
         android:hint="@string/date"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:textColor="#C3F1E7E7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.371"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.371" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:drawableStart="@drawable/ic_card"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/payment_type"
+        android:textColor="#C3F8F5F5"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:textColor="#C3F1E7E7"
         android:textColorHint="#546E7A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.499"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/addButton"
