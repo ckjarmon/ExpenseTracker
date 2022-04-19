@@ -4,54 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6C6464"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteX="-1dp"
     tools:layout_editor_absoluteY="21dp">
 
 
-<!--    <Button-->
-<!--        android:id="@+id/button2"-->
-<!--        android:layout_width="282dp"-->
-<!--        android:layout_height="42dp"-->
-<!--        android:layout_marginStart="60dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="60dp"-->
-<!--        android:onClick="sendMessage"-->
-<!--        android:text="@string/button_send"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/button2"-->
+    <!--        android:layout_width="282dp"-->
+    <!--        android:layout_height="42dp"-->
+    <!--        android:layout_marginStart="60dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="60dp"-->
+    <!--        android:onClick="sendMessage"-->
+    <!--        android:text="@string/button_send"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+
+    <Button
+        android:id="@+id/addExpense3"
+        android:layout_width="174dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="220dp"
+        android:background="#8C8017"
+        android:backgroundTint="#99B616"
+        android:text="Edit Budget"
+        android:textColor="#FFFFFF"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.899" />
 
     <Button
         android:id="@+id/addExpense"
         android:layout_width="174dp"
         android:layout_height="56dp"
         android:layout_marginStart="24dp"
-        android:backgroundTint="#00e39f"
+        android:background="#8C8017"
+        android:backgroundTint="#99B616"
         android:onClick="addBExpense"
         android:text="Add Expense"
         android:textColor="#FFFFFF"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editBudget"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
-
-    <Button
-        android:id="@+id/editBudget"
-        android:layout_width="174dp"
-        android:layout_height="56dp"
-        android:backgroundTint="#00e39f"
-        android:onClick="addBExpense"
-        android:text="Edit Budget"
-        android:textColor="#FFFFFF"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.899" />
@@ -61,6 +60,7 @@
         android:layout_width="87dp"
         android:layout_height="40dp"
         android:text="Hi User,"
+        android:textColor="#F3EFEF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +74,7 @@
         android:layout_width="103dp"
         android:layout_height="36dp"
         android:text="Balance:"
+        android:textColor="#F3EFEF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +88,7 @@
         android:layout_width="103dp"
         android:layout_height="36dp"
         android:text="Budget:"
+        android:textColor="#F3EFEF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +102,7 @@
         android:layout_width="103dp"
         android:layout_height="36dp"
         android:text="Score:"
+        android:textColor="#F3EFEF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
