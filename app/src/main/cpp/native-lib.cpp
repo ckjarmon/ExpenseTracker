@@ -4,14 +4,14 @@
 
 #include <cstdlib>
 #include <ctime>
-
+/*
 extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
         JNIEnv* env,
-        jobject /* this */) {
+        jobject  this ) {
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
-
+*/
 /*
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_addExpense (JNIEnv* env,
         jobject
@@ -33,8 +33,8 @@ std::fstream file("wtf.txt");
 
 //first function should take in a string from files after reading and pass it as a parameter to one of these functions
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_addTrans (JNIEnv* env, jobject, jstring name, int day, int month, int year, float amount, jstring JSON) {
-    Transaction *t = new Transaction(env->GetStringUTFChars(name, NULL), new Date(month, day, year), amount);
-   return env->NewStringUTF(t->addTrans(env->GetStringUTFChars(JSON, NULL)).c_str());
+    auto *t = new Transaction(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount);
+   return env->NewStringUTF(t->addTrans(env->GetStringUTFChars(JSON, nullptr)).c_str());
 
 
 
