@@ -8,21 +8,16 @@ import android.view.View;
 
 import java.io.IOException;
 
-public class UserProfile extends AppCompatActivity {
+public class Reports extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_reports);
     }
 
     public void exitPage(View view) throws IOException {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void reports(View view) throws IOException {
-        Intent intent = new Intent(this, Reports.class);
+        Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
 }

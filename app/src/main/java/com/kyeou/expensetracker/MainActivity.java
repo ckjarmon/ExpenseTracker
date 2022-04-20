@@ -28,37 +28,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = findViewById(R.id.addExpense);
-        btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                setContentView(R.layout.activity_add_expense);
-            }
-        });
+//        Button btn = findViewById(R.id.addExpense);
+//        btn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                setContentView(R.layout.activity_add_expense);
+//            }
+//        });
     }
 
 
 
 //for example add_expense_function
-    /*
+
     public void addBExpense(View view) throws IOException {
             //to write to files, i have to gather the text that needs to be writting and return it from a CPP function through JNI
-       String message = "TEXT NOT CHANGED";
-        File path = getFilesDir();
-        File file = new File(path, "transactionsJSON.json");
-        FileOutputStream stream = new FileOutputStream(file);
-        try {
-            stream.write(message.getBytes());
-            message = addExpense();
-        } finally {
-            stream.close();
-        }
+//       String message = "TEXT NOT CHANGED";
+//        File path = getFilesDir();
+//        File file = new File(path, "transactionsJSON.json");
+//        FileOutputStream stream = new FileOutputStream(file);
+//        try {
+//            stream.write(message.getBytes());
+//            message = addExpense();
+//        } finally {
+//            stream.close();
+//        }
         Intent intent = new Intent(this, AddExpense.class);
         //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         //String message = editText.getText().toString();
 
         //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+    }
+
+    public void hamburgerMenu(View view) throws IOException{
+            Intent intent = new Intent(this, UserProfile.class);
+            startActivity(intent);
     }
 
 

@@ -30,6 +30,7 @@
         android:layout_height="56dp"
         android:background="#8C8017"
         android:backgroundTint="#99B616"
+        android:onClick="signUp"
         android:text="Edit Budget"
         android:textColor="#000000"
         app:iconTint="#FFFFFF"
@@ -46,6 +47,7 @@
         android:layout_height="56dp"
         android:background="#8C8017"
         android:backgroundTint="#99B616"
+        android:onClick="addBExpense"
         android:text="Add Expense"
         android:textColor="#000000"
         app:iconTint="#FFFFFF"
@@ -110,6 +112,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budget"
         app:layout_constraintVertical_bias="0.036" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="hamburgerMenu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/ic_hamburger_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

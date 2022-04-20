@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Button;
 
@@ -24,10 +25,9 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
     private TextView datetext;
 
     //These are for input fields to add expense
-    String description, paymentType, amount, gMonth, gDay, gYear, dateMessage;
+    String description, amount;
     EditText descriptionInput;
     EditText amountInput;
-    EditText paymentTypeInput;
     Button addButton;
 
     int month, day, year;
@@ -67,12 +67,12 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
         descriptionInput = findViewById(R.id.descriptionField);
         amountInput = findViewById(R.id.amountField);
-        paymentTypeInput = findViewById(R.id.paymentTypeField);
 
         description = descriptionInput.getText().toString();
         amount = amountInput.getText().toString();
-        paymentType = paymentTypeInput.getText().toString();
         String newline = "\r\n";
+
+
 //instad of writing all that data directly to the file, call the JNI addTrans function to return the json string to then overrride what is in the json file
         File path = getFilesDir();
         File file = new File(path, "transactionsJSON.json");
@@ -99,16 +99,11 @@ stream.write(addTrans(description, day, month, year, Float.valueOf(amount).float
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        gMonth = String.valueOf(month);
-        gDay = String.valueOf(dayOfMonth);
-        gYear = String.valueOf(year);
         this.day = dayOfMonth;
         this.year=year;
         this.month = month;
 
-
         String date = month + "/" + dayOfMonth + "/" + year;
-        dateMessage =  month + "/" + dayOfMonth + "/" + year;
 
         datetext.setText(date);
     }
@@ -155,6 +150,10 @@ stream.write(addTrans(description, day, month, year, Float.valueOf(amount).float
 
     }
 
+    public void exitPage(View view) throws IOException{
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 
     public native String addTrans( String name, int day, int month, int year, float amount, String JSON);
