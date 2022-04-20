@@ -56,7 +56,7 @@ public class WriteReadHandle {
       //new WriteReadHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
       WriteReadHandle test = new WriteReadHandle();
       System.out.println(test.ReadHandle("transactionsJSON.json"));
-      System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
+      new WriteReadHandle().ReadHandle("transactionsJSON")
    }//end main 
 }
 
