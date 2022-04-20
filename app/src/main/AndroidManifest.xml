@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
+            android:name=".new_empty"
+            android:exported="false" />
+        <activity
             android:name=".UserProfile"
             android:exported="false" />
         <activity

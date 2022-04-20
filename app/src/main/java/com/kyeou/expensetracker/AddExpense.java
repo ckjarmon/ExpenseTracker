@@ -11,15 +11,11 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 
 public class AddExpense extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
@@ -47,14 +43,14 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         findViewById(R.id.show_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDailog();
+                showDatePickerDialog();
             }
         });
 
     }
 
 
-    private void showDatePickerDailog(){
+    public void showDatePickerDialog(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(
             this,
                 this,

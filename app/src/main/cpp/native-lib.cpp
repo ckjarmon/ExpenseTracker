@@ -39,3 +39,4 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_ad
 
 
 }
+
