@@ -178,9 +178,9 @@ return transactionsJSON;
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    std::string addTrans()
+    std::string addTrans(std::string JSON)
     {
-        //writeTrans();
+        writeTrans(JSON);
         //transFileWrite.open("transactionsJSON.json", std::ios_base::out);
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
@@ -192,6 +192,8 @@ return transactionsJSON;
         transFileWrite.close();
         return transactionsJSON.dump();
     }
+
+    ~Transaction() {}
 
 private:
     std::string name;
@@ -232,6 +234,7 @@ public:
                 {"Income", 0},
                 {"Scores", {}},
                 {"SumDebits", 0}};
+                A_O_T = user["A_O_T"];
             // userWrite << std::setw(4) << user << std::endl;
             // userWrite.close();
         }
@@ -240,9 +243,9 @@ public:
             // read file and gather data -> A_O_T
             userRead.close();
             std::ifstream i("user.json");
-            //i >> user;
+           // i >> user;
             user = json::parse(userJSONString);
-            std::cout << user.dump();
+            std::cout << "\n" << user.dump() << "\n";
             i.close();
             userWrite.open("user.json", std::ios_base::out);
             // need to read A_O_T value from JSON
@@ -250,6 +253,44 @@ public:
         }
     }
     // need a parse procedure for fields that are integer values
+
+ USER()
+    {
+        //std::cout << "USER DECLARED\n";
+        // file will need to be gathered through the access token granted from Google Drive API
+        userRead.open("user.json");
+        //this line above could be replaced with a constructor paramater that notes whether the file exists or not (do this in java)
+        //then this function will return user.dump()
+       // if (is_empty(userRead)) //this should be checked in java
+       if (is_empty(userRead))
+        {
+            userRead.close();
+            userWrite.open("user.json", std::ios_base::out);
+            user = {
+                {"Name", "FirstName LastName"},
+                {"A_O_T", 0},
+                {"Budgets", {}},
+                {"Income", 0},
+                {"Scores", {}},
+                {"SumDebits", 0}};
+            // userWrite << std::setw(4) << user << std::endl;
+            // userWrite.close();
+        }
+        else
+        {
+            // read file and gather data -> A_O_T
+            userRead.close();
+            std::ifstream i("user.json");
+            i >> user;
+            //user = json::parse(userJSONString);
+            std::cout << user.dump();
+            i.close();
+            userWrite.open("user.json", std::ios_base::out);
+            // need to read A_O_T value from JSON
+            A_O_T = user["A_O_T"];
+        }
+    }
+
 
     void setUserValue(std::string s, int iValue, float dValue)
     {
@@ -310,7 +351,7 @@ public:
             A_O_T++;
         } */
         Transaction_CLOSE();
-        //setUserValue("A_O_T", A_O_T, 0);
+        setUserValue("A_O_T", A_O_T, 0);
         userWrite << std::setw(4) << user << std::endl;
         userWrite.close();
         //std::cout << user.dump();

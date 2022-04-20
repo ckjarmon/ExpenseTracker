@@ -1,1 +1,14 @@
-[{"Name": "FirstName LastName",  "A_O_T": 0,  "Budgets": [1,2,3],"Income": 0,"Scores": [],"SumDebits": 0 }]
+[
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "Amount: ": 12.34000015258789,
+          "Date: ": "Jan 1, 2000",
+          "Name: ": "Ralphs 1"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": false,
+          "Amount: ": 12.34000015258789,
+          "Date: ": "Jan 1, 2000",
+          "Name: ": "Ralphs 2"
+     }
+]

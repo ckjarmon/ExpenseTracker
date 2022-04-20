@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
@@ -32,6 +34,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
     EditText paymentTypeInput;
     Button addButton;
 
+    int month, day, year;
 
 
     @Override
@@ -74,12 +77,13 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         amount = amountInput.getText().toString();
         paymentType = paymentTypeInput.getText().toString();
         String newline = "\r\n";
-
+//instad of writing all that data directly to the file, call the JNI addTrans function to return the json string to then overrride what is in the json file
         File path = getFilesDir();
         File file = new File(path, "transactionsJSON.json");
         file.createNewFile();
         FileOutputStream stream = new FileOutputStream(file);
         try {
+            /*
             stream.write(description.getBytes());
             stream.write(newline.getBytes());
             stream.write(amount.getBytes());
@@ -87,6 +91,9 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
             stream.write(dateMessage.getBytes());
             stream.write(newline.getBytes());
             stream.write(paymentType.getBytes());
+            */
+
+stream.write(addTrans(description, day, month, year, Float.valueOf(amount).floatValue(), ReadHandle("transactionsJSON.json")).getBytes());
         } finally {
             stream.close();
         }
@@ -100,6 +107,10 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         gMonth = String.valueOf(month);
         gDay = String.valueOf(dayOfMonth);
         gYear = String.valueOf(year);
+        this.day = dayOfMonth;
+        this.year=year;
+        this.month = month;
+
 
         String date = month + "/" + dayOfMonth + "/" + year;
         dateMessage =  month + "/" + dayOfMonth + "/" + year;
@@ -108,4 +119,48 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
     }
 
 
+    public String ReadHandle(String filename) throws IOException {
+        File file = new File(filename);
+        file.createNewFile();
+        FileReader in = null;
+        String ret = "";
+
+        try {
+            in = new FileReader(filename);
+
+            int content;
+            while ((content = in.read()) != -1) {
+                //System.out.print((char) content);
+                ret += (char)content;
+            }
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+        return ret;
+    }
+
+
+    public void WriteHandle(String filename, String ttw) throws IOException {
+        File file = new File(filename);
+        file.createNewFile();
+
+        FileWriter out = null;
+
+        try {
+            out = new FileWriter(filename);
+            out.write(ttw);
+        } finally {
+
+            if (out != null) {
+                out.close();
+            }
+        }
+
+    }
+
+
+
+    public native String addTrans( String name, int day, int month, int year, float amount, String JSON);
 }

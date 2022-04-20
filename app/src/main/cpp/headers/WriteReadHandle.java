@@ -1,34 +1,58 @@
-package main.cpp.headers;
+//package main.cpp.headers;
 
 import java.io.*;
 
 public class WriteReadHandle {
-   public WriteReadHandle(String filename, String ttw)throws IOException {
+   
+   
+   public void WriteHandle(String filename, String ttw) throws IOException {
       File file = new File(filename);
       file.createNewFile();
-      FileReader in = null;
+
       FileWriter out = null;
       
       try {
-         in = new FileReader(filename);
          out = new FileWriter(filename);
-
          out.write(ttw);
       } finally {
-         if (in != null) {
-            in.close();
-         }
+
          if (out != null) {
             out.close();
          }
       }
+
+   }
+
+   public String ReadHandle(String filename) throws IOException {
+      File file = new File(filename);
+      file.createNewFile();
+      FileReader in = null;
+      String ret = "";
+
+      try {
+         in = new FileReader(filename);
+
+         int content;
+         while ((content = in.read()) != -1) {
+            //System.out.print((char) content);
+            ret += (char)content;
+         }
+      } finally {
+         if (in != null) {
+            in.close();
+         }
+      }
+      return ret;
    }
 
 
-   public static void main(String args[]) throws IOException {
-      new WriteReadHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
 
-   }//end main
+  
+   public static void main(String args[]) throws IOException {
+      //new WriteReadHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
+      WriteReadHandle test = new WriteReadHandle();
+      System.out.println(test.ReadHandle("transactionsJSON.json"));
+   }//end main 
 }
 
 /*

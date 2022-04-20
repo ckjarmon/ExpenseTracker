@@ -13,6 +13,22 @@ public class VerifyLogin {
 
     public void loadProfile(String username){
         //this will call all methods required to login and load a users profile
+        //From Christion: On a successful login this method should open up the user.json
+        /*
+{
+    "A_O_T": 2.0,
+    "Budgets": [],
+    "Income": 0,
+    "Name": "FirstName LastName",
+    "Scores": [],
+    "SumDebits": 0
+}
+         */
+
+
+
+
+
     }
 
     //this method will verify if the the username and password given by the user matches what was

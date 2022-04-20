@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 //for example add_expense_function
     public void addBExpense(View view) throws IOException {
-            //to write to files, i have to gather the text that needs to be writting and return it from a CPP functoin through JNI
+            //to write to files, i have to gather the text that needs to be writting and return it from a CPP function through JNI
        String message = "TEXT NOT CHANGED";
         File path = getFilesDir();
         File file = new File(path, "transactionsJSON.json");
