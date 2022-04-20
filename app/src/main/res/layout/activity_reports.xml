@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#635F5F"
-    android:clickable="true"
-    tools:context=".new_empty">
+    android:background="#6C6464"
+    tools:context=".Reports">
 
     <TextView
         android:id="@+id/textView5"
@@ -40,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#635F5F"
+        android:onClick="exitPage"
         android:src="@android:drawable/btn_dialog"
         android:textAlignment="center"
         app:circularflow_radiusInDP="5 sp"
