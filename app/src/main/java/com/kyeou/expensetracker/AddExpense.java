@@ -1,37 +1,111 @@
 package com.kyeou.expensetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Calendar;
 
-public class AddExpense extends AppCompatActivity {
+public class AddExpense extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+
+    //This is for the Calendar
+    private TextView datetext;
+
+    //These are for input fields to add expense
+    String description, paymentType, amount, gMonth, gDay, gYear, dateMessage;
+    EditText descriptionInput;
+    EditText amountInput;
+    EditText paymentTypeInput;
+    Button addButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
+
+        //Calendar function
+        datetext = findViewById(R.id.date_text);
+        findViewById(R.id.show_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDailog();
+            }
+        });
+
     }
 
+
+    private void showDatePickerDailog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+            this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
 
 
 //get data that user types and write it to a file
     public void gatherFieldTest(View view)  throws IOException {
-        String message  = "WRITE TEST!!!!!"; //whatever user types
+
+        descriptionInput = (EditText) findViewById(R.id.descriptionField);
+        amountInput = (EditText) findViewById(R.id.amountField);
+        paymentTypeInput = (EditText) findViewById(R.id.paymentTypeField);
+
+        description = descriptionInput.getText().toString();
+        amount = amountInput.getText().toString();
+        paymentType = paymentTypeInput.getText().toString();
+        String newline = "\r\n";
+
         File path = getFilesDir();
         File file = new File(path, "transactionsJSON.json");
         file.createNewFile();
         FileOutputStream stream = new FileOutputStream(file);
         try {
-            stream.write(message.getBytes());
+            stream.write(description.getBytes());
+            stream.write(newline.getBytes());
+            stream.write(amount.getBytes());
+            stream.write(newline.getBytes());
+            stream.write(dateMessage.getBytes());
+            stream.write(newline.getBytes());
+            stream.write(paymentType.getBytes());
         } finally {
             stream.close();
         }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        gMonth = String.valueOf(month);
+        gDay = String.valueOf(dayOfMonth);
+        gYear = String.valueOf(year);
+
+        String date = month + "/" + dayOfMonth + "/" + year;
+        dateMessage =  month + "/" + dayOfMonth + "/" + year;
+
+        datetext.setText(date);
+    }
+
 
 }
