@@ -6,13 +6,18 @@ public class WriteReadHandle {
    
    
    public void WriteHandle(String filename, String ttw) throws IOException {
-      File file = new File(filename);
-      file.createNewFile();
 
-      FileWriter out = null;
+
+      File path = getFilesDir();
+      File file = new File(path, filename);
+      file.createNewFile();
+      FileOutputStream stream = new FileOutputStream(file);
+
+
+
+     Writer out = new FileWriter(file);
       
       try {
-         out = new FileWriter(filename);
          out.write(ttw);
       } finally {
 
@@ -25,12 +30,11 @@ public class WriteReadHandle {
 
    public String ReadHandle(String filename) throws IOException {
       File file = new File(filename);
-      file.createNewFile();
-      FileReader in = null;
+      //file.createNewFile();
+      FileReader in = new FileReader(file);
       String ret = "";
 
       try {
-         in = new FileReader(filename);
 
          int content;
          while ((content = in.read()) != -1) {

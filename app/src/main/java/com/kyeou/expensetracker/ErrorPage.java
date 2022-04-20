@@ -16,7 +16,6 @@ public class ErrorPage extends AppCompatActivity {
         setContentView(R.layout.activity_error_page);
     }
 
-
     public void exitPage(View view) throws IOException {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

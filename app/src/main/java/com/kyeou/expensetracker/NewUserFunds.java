@@ -17,14 +17,13 @@ public class NewUserFunds extends AppCompatActivity {
 
     EditText balanceInput, budgetInput, cardNumberInput;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user_funds);
     }
 
-    public void gatherInput(View view) throws IOException{
+    public void gatherInput(View view) throws IOException {
         balanceInput = findViewById(R.id.initialBalanceText);
         budgetInput = findViewById(R.id.initialBudgetText);
         cardNumberInput = findViewById(R.id.creditCardNumberText);
@@ -32,7 +31,6 @@ public class NewUserFunds extends AppCompatActivity {
         balance = Double.parseDouble(balanceInput.getText().toString());
         budget = Double.parseDouble(budgetInput.getText().toString());
         cardNumber = cardNumberInput.getText().toString();
-
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

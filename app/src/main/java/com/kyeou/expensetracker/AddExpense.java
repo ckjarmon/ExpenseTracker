@@ -17,14 +17,15 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 
-public class AddExpense extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class AddExpense extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    //This is for the Calendar
+    // This is for the Calendar
     private TextView datetext;
 
-    //These are for input fields to add expense
+    // These are for input fields to add expense
     String description, amount;
     EditText descriptionInput;
     EditText amountInput;
@@ -32,13 +33,12 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     int month, day, year;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
 
-        //Calendar function
+        // Calendar function
         datetext = findViewById(R.id.date_text);
         findViewById(R.id.show_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,21 +49,18 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     }
 
-
-    public void showDatePickerDialog(){
+    public void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-            this,
+                this,
                 this,
                 Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        );
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
-
-//get data that user types and write it to a file
-    public void gatherFieldTest(View view)  throws IOException {
+    // get data that user types and write it to a file
+    public void gatherFieldTest(View view) throws IOException {
 
         descriptionInput = findViewById(R.id.descriptionField);
         amountInput = findViewById(R.id.amountField);
@@ -72,23 +69,27 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         amount = amountInput.getText().toString();
         String newline = "\r\n";
 
-
-//instad of writing all that data directly to the file, call the JNI addTrans function to return the json string to then overrride what is in the json file
+        // instad of writing all that data directly to the file, call the JNI addTrans
+        // function to return the json string to then overrride what is in the json file
         File path = getFilesDir();
         File file = new File(path, "transactionsJSON.json");
         file.createNewFile();
         FileOutputStream stream = new FileOutputStream(file);
         try {
             /*
-            stream.write(description.getBytes());
-            stream.write(newline.getBytes());
-            stream.write(amount.getBytes());
-            stream.write(newline.getBytes());
-            stream.write(dateMessage.getBytes());
-            stream.write(newline.getBytes());
-            stream.write(paymentType.getBytes());
-            */
-stream.write(addTrans(description, day, month, year, Float.valueOf(amount).floatValue(), ReadHandle("transactionsJSON.json")).getBytes());
+             * stream.write(description.getBytes());
+             * stream.write(newline.getBytes());
+             * stream.write(amount.getBytes());
+             * stream.write(newline.getBytes());
+             * stream.write(dateMessage.getBytes());
+             * stream.write(newline.getBytes());
+             * stream.write(paymentType.getBytes());
+             */
+            stream.write(    ( addTrans(   description, day, month, year, Float.valueOf(amount).floatValue(), ReadHandle("transactionsJSON.json")  )).getBytes()   );
+
+            recordDebits(ReadHandle("user.json"), ReadHandle("transactionsJSON.json"));
+            WriteHandle("user.json", getUSERSJSON());
+            WriteHandle("transactionsJSON.json", getTRANSJSON());
         } finally {
             stream.close();
         }
@@ -100,7 +101,7 @@ stream.write(addTrans(description, day, month, year, Float.valueOf(amount).float
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
         this.day = dayOfMonth;
-        this.year=year;
+        this.year = year;
         this.month = month;
 
         String date = month + "/" + dayOfMonth + "/" + year;
@@ -108,15 +109,36 @@ stream.write(addTrans(description, day, month, year, Float.valueOf(amount).float
         datetext.setText(date);
     }
 
+    public void WriteHandle(String filename, String ttw) throws IOException {
+
+
+        File path = getFilesDir();
+        File file = new File(path, filename);
+        file.createNewFile();
+        FileOutputStream stream = new FileOutputStream(file);
+
+
+
+        FileWriter out = new FileWriter(file);
+
+        try {
+            out.write(ttw);
+        } finally {
+
+            if (out != null) {
+                out.close();
+            }
+        }
+
+    }
 
     public String ReadHandle(String filename) throws IOException {
         File file = new File(filename);
-        file.createNewFile();
-        FileReader in = null;
+        //file.createNewFile();
+        FileReader in = new FileReader(file);
         String ret = "";
 
         try {
-            in = new FileReader(filename);
 
             int content;
             while ((content = in.read()) != -1) {
@@ -132,30 +154,17 @@ stream.write(addTrans(description, day, month, year, Float.valueOf(amount).float
     }
 
 
-    public void WriteHandle(String filename, String ttw) throws IOException {
-        File file = new File(filename);
-        file.createNewFile();
-
-        FileWriter out = null;
-
-        try {
-            out = new FileWriter(filename);
-            out.write(ttw);
-        } finally {
-
-            if (out != null) {
-                out.close();
-            }
-        }
-
-    }
-
-    public void exitPage(View view) throws IOException{
+    public void exitPage(View view) throws IOException {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    public native String addTrans(String name, int day, int month, int year, float amount, String JSON);
 
-    public native String addTrans( String name, int day, int month, int year, float amount, String JSON);
-    public native String recordDebits( String USER,  String JSON);
+    public native void recordDebits(String USER, String JSON);
+
+    public native String getUSERSJSON();
+
+    public native String getTRANSJSON();
+
 }

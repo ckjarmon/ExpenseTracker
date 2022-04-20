@@ -253,7 +253,7 @@ public:
         }
     }
     // need a parse procedure for fields that are integer values
-
+/*
  USER()
     {
         //std::cout << "USER DECLARED\n";
@@ -290,7 +290,7 @@ public:
             A_O_T = user["A_O_T"];
         }
     }
-
+*/
 
     void setUserValue(std::string s, int iValue, float dValue)
     {
@@ -308,13 +308,18 @@ public:
         user["Budgets"][currAMT] = amount;
     }
 
+    std::string getUserDump() {
+        return user.dump();
+    }
 
     //std::string recordDebits(std::string JSON, std::string USERJSON) -> {json transactionsJSON = json::parse; json user = json::parse(USERJSON) .... }
-    void recordDebits()
+    std::string recordDebits(std::string JSON, std::string USERJSON)
     {
         float temp = 0.0;
         int c = 0;
         // int itCount = 0;
+        transactionsJSON = json::parse(JSON);
+        user = json::parse(USERJSON);
         for (json::iterator it = transactionsJSON.begin(); it != transactionsJSON.end(); ++it)
         {
             if ((*it)["ATTRIBUTE->RECORDED_BOOL: "] == false)
@@ -342,7 +347,13 @@ public:
                 float currBud = user["Budgets"][iOS - 1];
                 user["Scores"][iOS - 1] = (((currBud - temp) / currBud) * 10 < 0) ? 0 :  ((currBud - temp) / currBud) * 10;
                 */
+    }//end recordDebits
+
+    std::string getJSONS(int i) {
+        return (i == 0) ? user.dump() : transactionsJSON.dump();
     }
+
+
 
     void USER_CLOSE()
     {

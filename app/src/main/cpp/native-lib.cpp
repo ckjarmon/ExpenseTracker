@@ -4,6 +4,9 @@
 
 #include <cstdlib>
 #include <ctime>
+
+Transaction *t;
+USER *u;
 /*
 extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -33,14 +36,28 @@ std::fstream file("wtf.txt");
 
 //first function should take in a string from files after reading and pass it as a parameter to one of these functions
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_addTrans (JNIEnv* env, jobject, jstring name, int day, int month, int year, float amount, jstring JSON) {
-    auto *t = new Transaction(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount);
+    t = new Transaction(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount);
    return env->NewStringUTF(t->addTrans(env->GetStringUTFChars(JSON, nullptr)).c_str());
 
 }
 
-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_recordDebits(JNIEnv * env, jobject, jstring USER, jstring JSON) {
+extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_AddExpense_recordDebits(JNIEnv * env, jobject, jstring USER, jstring JSON) {
+u->recordDebits(u->getJSONS(1),u->getJSONS(0) );
 
-    return env->NewStringUTF()
 }
 
-//need a function to update USER info for user.json
+
+
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getUSERSJSON(JNIEnv * env, jobject) {
+    return env->NewStringUTF(u->getJSONS(0).c_str());
+}
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getTRANSJSON(JNIEnv * env, jobject) {
+    return env->NewStringUTF(u->getJSONS(1).c_str());
+}
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_LoginPage_userManage(JNIEnv * env, jobject, jstring _USER) {
+    u = new USER(env->GetStringUTFChars(_USER, nullptr));
+    return env->NewStringUTF(u->getUserDump().c_str());
+}

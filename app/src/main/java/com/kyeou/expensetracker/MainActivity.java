@@ -13,68 +13,67 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.kyeou.expensetracker.MESSAGE";
 
     // Used to load the 'expensetracker' library on application startup.
 
-        static {System.loadLibrary("expensetracker");}
+    static {
+        System.loadLibrary("expensetracker");
+    }
 
-    //private ActivityMainBinding binding;
+    // private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Button btn = findViewById(R.id.addExpense);
-//        btn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                setContentView(R.layout.activity_add_expense);
-//            }
-//        });
+        // Button btn = findViewById(R.id.addExpense);
+        // btn.setOnClickListener(new View.OnClickListener(){
+        // @Override
+        // public void onClick(View v){
+        // setContentView(R.layout.activity_add_expense);
+        // }
+        // });
     }
 
-
-
-//for example add_expense_function
+    // for example add_expense_function
 
     public void addBExpense(View view) throws IOException {
-            //to write to files, i have to gather the text that needs to be writting and return it from a CPP function through JNI
-//       String message = "TEXT NOT CHANGED";
-//        File path = getFilesDir();
-//        File file = new File(path, "transactionsJSON.json");
-//        FileOutputStream stream = new FileOutputStream(file);
-//        try {
-//            stream.write(message.getBytes());
-//            message = addExpense();
-//        } finally {
-//            stream.close();
-//        }
+        // to write to files, i have to gather the text that needs to be writting and
+        // return it from a CPP function through JNI
+        // String message = "TEXT NOT CHANGED";
+        // File path = getFilesDir();
+        // File file = new File(path, "transactionsJSON.json");
+        // FileOutputStream stream = new FileOutputStream(file);
+        // try {
+        // stream.write(message.getBytes());
+        // message = addExpense();
+        // } finally {
+        // stream.close();
+        // }
         Intent intent = new Intent(this, AddExpense.class);
-        //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
-        //String message = editText.getText().toString();
+        // EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
+        // String message = editText.getText().toString();
 
-        //intent.putExtra(EXTRA_MESSAGE, message);
+        // intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
-    public void hamburgerMenu(View view) throws IOException{
-            Intent intent = new Intent(this, UserProfile.class);
-            startActivity(intent);
+    public void hamburgerMenu(View view) throws IOException {
+        Intent intent = new Intent(this, UserProfile.class);
+        startActivity(intent);
     }
 
-    public void editFunds(View view) throws IOException{
+    public void editFunds(View view) throws IOException {
         Intent intent = new Intent(this, NewUserFunds.class);
         startActivity(intent);
     }
-
 
     /**
      * A native method that is implemented by the 'expensetracker' native library,
      * which is packaged with this application.
      */
-    //public native String addExpense();
-    //public native String stringFromJNI2();
+    // public native String addExpense();
+    // public native String stringFromJNI2();
 }
