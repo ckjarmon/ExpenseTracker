@@ -36,12 +36,13 @@ namespace ETglobal
     std::ofstream transFileWrite;
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //this function could instea return a string (pretty much transactionsJSON.dump())
-    void Transaction_CLOSE()
+    std::string Transaction_CLOSE()
     {
         // transFileWrite.close();
         transFileWrite.open("transactionsJSON.json");
         transFileWrite << std::setw(5) << transactionsJSON;
         transFileWrite.close();
+        return transactionsJSON.dump();
         // free(date);
     }
 }
@@ -154,9 +155,13 @@ public:
 
     // write to the JSON variable
     //--------------------------------------------------------------------------------------------------------------------------------------------
-    void writeTrans()
+    //this function needs to parse the a .dump() and return a json::parse
+    json writeTrans(std::string s)
     {
-        transFileRead.open("transactionsJSON.json");
+       
+        transactionsJSON = json::parse(s);
+return transactionsJSON;
+       /* transFileRead.open("transactionsJSON.json");
         if (!(is_empty(transFileRead)))
         {
             transFileRead.close();
@@ -168,23 +173,24 @@ public:
         {
             A_O_T = 0;
         }
-
+*/
     } // end of function
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    void addTrans()
+    std::string addTrans()
     {
-        writeTrans();
-        transFileWrite.open("transactionsJSON.json", std::ios_base::out);
+        //writeTrans();
+        //transFileWrite.open("transactionsJSON.json", std::ios_base::out);
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
         transactionsJSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         A_O_T++;
-         transFileWrite.open("transactionsJSON.json");
+        transFileWrite.open("transactionsJSON.json");
         transFileWrite << std::setw(5) << transactionsJSON;
         transFileWrite.close();
+        return transactionsJSON.dump();
     }
 
 private:
@@ -207,14 +213,15 @@ private:
 class USER
 {
 public:
-    USER()
+    USER(std::string userJSONString)
     {
-        std::cout << "USER DECLARED\n";
+        //std::cout << "USER DECLARED\n";
         // file will need to be gathered through the access token granted from Google Drive API
         userRead.open("user.json");
         //this line above could be replaced with a constructor paramater that notes whether the file exists or not (do this in java)
         //then this function will return user.dump()
-        if (is_empty(userRead)) //this should be checked in java
+       // if (is_empty(userRead)) //this should be checked in java
+       if (userJSONString.compare("") == 0)
         {
             userRead.close();
             userWrite.open("user.json", std::ios_base::out);
@@ -233,7 +240,9 @@ public:
             // read file and gather data -> A_O_T
             userRead.close();
             std::ifstream i("user.json");
-            i >> user;
+            //i >> user;
+            user = json::parse(userJSONString);
+            std::cout << user.dump();
             i.close();
             userWrite.open("user.json", std::ios_base::out);
             // need to read A_O_T value from JSON
@@ -301,9 +310,10 @@ public:
             A_O_T++;
         } */
         Transaction_CLOSE();
-        setUserValue("A_O_T", A_O_T, 0);
+        //setUserValue("A_O_T", A_O_T, 0);
         userWrite << std::setw(4) << user << std::endl;
         userWrite.close();
+        //std::cout << user.dump();
     }
 
     ~USER() {}

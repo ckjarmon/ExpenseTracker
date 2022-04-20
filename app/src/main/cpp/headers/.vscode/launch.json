@@ -2,6 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Launch WriteReadHandle",
+      "request": "launch",
+      "mainClass": "main.cpp.headers.WriteReadHandle"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
