@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,14 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
         static {System.loadLibrary("expensetracker");}
 
-
     //private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 //        Button btn = findViewById(R.id.addExpense);
 //        btn.setOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -64,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void hamburgerMenu(View view) throws IOException{
             Intent intent = new Intent(this, UserProfile.class);
             startActivity(intent);
+    }
+
+    public void editFunds(View view) throws IOException{
+        Intent intent = new Intent(this, NewUserFunds.class);
+        startActivity(intent);
     }
 
 
