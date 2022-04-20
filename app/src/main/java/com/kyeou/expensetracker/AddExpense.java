@@ -69,9 +69,9 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 //get data that user types and write it to a file
     public void gatherFieldTest(View view)  throws IOException {
 
-        descriptionInput = (EditText) findViewById(R.id.descriptionField);
-        amountInput = (EditText) findViewById(R.id.amountField);
-        paymentTypeInput = (EditText) findViewById(R.id.paymentTypeField);
+        descriptionInput = findViewById(R.id.descriptionField);
+        amountInput = findViewById(R.id.amountField);
+        paymentTypeInput = findViewById(R.id.paymentTypeField);
 
         description = descriptionInput.getText().toString();
         amount = amountInput.getText().toString();
@@ -92,7 +92,6 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
             stream.write(newline.getBytes());
             stream.write(paymentType.getBytes());
             */
-
 stream.write(addTrans(description, day, month, year, Float.valueOf(amount).floatValue(), ReadHandle("transactionsJSON.json")).getBytes());
         } finally {
             stream.close();

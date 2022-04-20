@@ -75,8 +75,6 @@ public class AccountLogin {
     }
 
     public boolean isNewAccount(String username){
-        if(username.equals(getUsername()))
-            return true;
-        return false;
+        return username.equals(getUsername());
     }
 }
