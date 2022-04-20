@@ -47,8 +47,6 @@ u->recordDebits(u->getJSONS(1),u->getJSONS(0) );
 }
 
 
-
-
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getUSERSJSON(JNIEnv * env, jobject) {
     return env->NewStringUTF(u->getJSONS(0).c_str());
 }
@@ -57,7 +55,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_ge
     return env->NewStringUTF(u->getJSONS(1).c_str());
 }
 
-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_LoginPage_userManage(JNIEnv * env, jobject, jstring _USER) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userManage(JNIEnv * env, jobject, jstring _USER) {
     u = new USER(env->GetStringUTFChars(_USER, nullptr));
     return env->NewStringUTF(u->getUserDump().c_str());
 }

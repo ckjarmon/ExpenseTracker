@@ -13,8 +13,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class LoginPage extends AppCompatActivity {
-
+public class loginPage extends AppCompatActivity {
+    static {
+        System.loadLibrary("expensetracker");
+    }
 
     String email, password;
 
@@ -27,11 +29,11 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void logIn(View view) throws IOException {
-// when all is said and done the parameter should be what is read from the
+        // when all is said and done the parameter should be what is read from the
         // stream of user.json, if its blank
         // it should just return ""
         String s = userManage("");
-        //File path = getFilesDir();
+        // File path = getFilesDir();
         WriteHandle("user.json", s);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -51,20 +53,12 @@ public class LoginPage extends AppCompatActivity {
         password = passwordInput.getText().toString();
     }
 
-
-
-
-
-
     public void WriteHandle(String filename, String ttw) throws IOException {
-
 
         File path = getFilesDir();
         File file = new File(path, filename);
         file.createNewFile();
         FileOutputStream stream = new FileOutputStream(file);
-
-
 
         FileWriter out = new FileWriter(file);
 
@@ -81,7 +75,7 @@ public class LoginPage extends AppCompatActivity {
 
     public String ReadHandle(String filename) throws IOException {
         File file = new File(filename);
-        //file.createNewFile();
+        // file.createNewFile();
         FileReader in = new FileReader(file);
         String ret = "";
 
@@ -89,8 +83,8 @@ public class LoginPage extends AppCompatActivity {
 
             int content;
             while ((content = in.read()) != -1) {
-                //System.out.print((char) content);
-                ret += (char)content;
+                // System.out.print((char) content);
+                ret += (char) content;
             }
         } finally {
             if (in != null) {
@@ -99,9 +93,6 @@ public class LoginPage extends AppCompatActivity {
         }
         return ret;
     }
-
-
-
 
     public native String userManage(String _USER);
 }

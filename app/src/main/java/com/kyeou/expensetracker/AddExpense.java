@@ -17,11 +17,14 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 
 public class AddExpense extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
+    static {
+        System.loadLibrary("expensetracker");
+    }
     // This is for the Calendar
     private TextView datetext;
 
@@ -69,30 +72,11 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         amount = amountInput.getText().toString();
         String newline = "\r\n";
 
-        // instad of writing all that data directly to the file, call the JNI addTrans
-        // function to return the json string to then overrride what is in the json file
-        File path = getFilesDir();
-        File file = new File(path, "transactionsJSON.json");
-        file.createNewFile();
-        FileOutputStream stream = new FileOutputStream(file);
-        try {
-            /*
-             * stream.write(description.getBytes());
-             * stream.write(newline.getBytes());
-             * stream.write(amount.getBytes());
-             * stream.write(newline.getBytes());
-             * stream.write(dateMessage.getBytes());
-             * stream.write(newline.getBytes());
-             * stream.write(paymentType.getBytes());
-             */
-            stream.write(    ( addTrans(   description, day, month, year, Float.valueOf(amount).floatValue(), ReadHandle("transactionsJSON.json")  )).getBytes()   );
-
-            recordDebits(ReadHandle("user.json"), ReadHandle("transactionsJSON.json"));
-            WriteHandle("user.json", getUSERSJSON());
-            WriteHandle("transactionsJSON.json", getTRANSJSON());
-        } finally {
-            stream.close();
-        }
+        WriteHandle("transactionsJSON.json", addTrans(description, day, month, year, Float.valueOf(amount).floatValue(),
+                ReadHandle("transactionsJSON.json")));
+        recordDebits(ReadHandle("user.json"), ReadHandle("transactionsJSON.json"));
+        WriteHandle("user.json", getUSERSJSON());
+        WriteHandle("transactionsJSON.json", getTRANSJSON());
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -111,15 +95,12 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     public void WriteHandle(String filename, String ttw) throws IOException {
 
-
         File path = getFilesDir();
         File file = new File(path, filename);
         file.createNewFile();
         FileOutputStream stream = new FileOutputStream(file);
 
-
-
-        FileWriter out = new FileWriter(file);
+        Writer out = new FileWriter(file);
 
         try {
             out.write(ttw);
@@ -134,7 +115,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     public String ReadHandle(String filename) throws IOException {
         File file = new File(filename);
-        //file.createNewFile();
+        // file.createNewFile();
         FileReader in = new FileReader(file);
         String ret = "";
 
@@ -142,8 +123,8 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
             int content;
             while ((content = in.read()) != -1) {
-                //System.out.print((char) content);
-                ret += (char)content;
+                // System.out.print((char) content);
+                ret += (char) content;
             }
         } finally {
             if (in != null) {
@@ -152,7 +133,6 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         }
         return ret;
     }
-
 
     public void exitPage(View view) throws IOException {
         Intent intent = new Intent(this, MainActivity.class);

@@ -32,7 +32,7 @@ namespace ETglobal
     // things that needs to be global
     // A_O_T;
     int A_O_T, numOfBudgets;
-    json transactionsJSON;
+    json transactionsJSON, user;
     std::ofstream transFileWrite;
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //this function could instea return a string (pretty much transactionsJSON.dump())
@@ -178,10 +178,12 @@ return transactionsJSON;
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    std::string addTrans(std::string JSON)
+    std::string addTrans(std::string JSON, std::string USERJSON)
     {
-        writeTrans(JSON);
+        transactionsJSON = json::parse(JSON);
+        user = json::parse(USERJSON);
         //transFileWrite.open("transactionsJSON.json", std::ios_base::out);
+        A_O_T = user["A_O_T"];
         transactionsJSON[A_O_T]["Name: "] = this->name;
         transactionsJSON[A_O_T]["Date: "] = this->date->getDateString();
         transactionsJSON[A_O_T]["Amount: "] = this->amount;
