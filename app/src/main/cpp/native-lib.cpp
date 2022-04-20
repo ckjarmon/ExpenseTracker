@@ -36,7 +36,9 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_ad
     auto *t = new Transaction(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount);
    return env->NewStringUTF(t->addTrans(env->GetStringUTFChars(JSON, nullptr)).c_str());
 
+}
 
+extern "C" JNIEXPORT jstring JNICALL AddExpense.recordDebits((JNIEnv* env, jobject, jstring JSON) {
 
 }
 

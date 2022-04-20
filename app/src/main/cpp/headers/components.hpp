@@ -308,6 +308,8 @@ public:
         user["Budgets"][currAMT] = amount;
     }
 
+
+    //std::string recordDebits(std::string JSON, std::string USERJSON) -> {json transactionsJSON = json::parse; json user = json::parse(USERJSON) .... }
     void recordDebits()
     {
         float temp = 0.0;
