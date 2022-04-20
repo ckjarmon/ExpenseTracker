@@ -169,4 +169,17 @@
         app:layout_constraintVertical_bias="0.581"
         app:srcCompat="@drawable/ic_notifications" />
 
+    <ImageButton
+        android:id="@+id/userInfoExitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#635F5F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
