@@ -219,7 +219,7 @@ public:
     {
         //std::cout << "USER DECLARED\n";
         // file will need to be gathered through the access token granted from Google Drive API
-        userRead.open("user.json");
+        //userRead.open("user.json");
         //this line above could be replaced with a constructor paramater that notes whether the file exists or not (do this in java)
         //then this function will return user.dump()
        // if (is_empty(userRead)) //this should be checked in java

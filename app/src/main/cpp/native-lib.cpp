@@ -38,7 +38,9 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_ad
 
 }
 
-extern "C" JNIEXPORT jstring JNICALL AddExpense.recordDebits((JNIEnv* env, jobject, jstring JSON) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_recordDebits(JNIEnv * env, jobject, jstring USER, jstring JSON) {
 
+    return env->NewStringUTF()
 }
 
+//need a function to update USER info for user.json

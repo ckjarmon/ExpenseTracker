@@ -157,4 +157,5 @@ stream.write(addTrans(description, day, month, year, Float.valueOf(amount).float
 
 
     public native String addTrans( String name, int day, int month, int year, float amount, String JSON);
+    public native String recordDebits( String USER,  String JSON);
 }
