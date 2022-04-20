@@ -27,19 +27,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        Button btn = (Button)findViewById(R.id.addExpense);
+
+        Button btn = findViewById(R.id.addExpense);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                setContentView(R.layout.addexpense);
+                setContentView(R.layout.activity_add_expense);
             }
-        }); */
+        });
     }
 
 
 
 //for example add_expense_function
+    /*
     public void addBExpense(View view) throws IOException {
             //to write to files, i have to gather the text that needs to be writting and return it from a CPP function through JNI
        String message = "TEXT NOT CHANGED";
@@ -65,6 +66,6 @@ public class MainActivity extends AppCompatActivity {
      * A native method that is implemented by the 'expensetracker' native library,
      * which is packaged with this application.
      */
-    public native String addExpense();
+    //public native String addExpense();
     //public native String stringFromJNI2();
 }
