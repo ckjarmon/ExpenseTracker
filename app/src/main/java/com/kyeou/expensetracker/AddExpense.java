@@ -72,11 +72,17 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         amount = amountInput.getText().toString();
         String newline = "\r\n";
 
-        WriteHandle("transactionsJSON.json", addTrans(description, day, month, year, Float.valueOf(amount).floatValue(),
-                ReadHandle("transactionsJSON.json")));
-        recordDebits(ReadHandle("user.json"), ReadHandle("transactionsJSON.json"));
-        WriteHandle("user.json", getUSERSJSON());
-        WriteHandle("transactionsJSON.json", getTRANSJSON());
+
+ String temp_parm = new WriteReadHandle().ReadHandle("transactions.json");
+ if (temp_parm.equals("")) {new WriteReadHandle().WriteHandle("transactions.json", "[]");}
+
+
+
+        new WriteReadHandle().WriteHandle("transactions.json", addTrans(description, day, month, year, Float.valueOf(amount).floatValue(),
+                new WriteReadHandle().ReadHandle("transactions.json")));
+        recordDebits();
+        new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
+        new WriteReadHandle().WriteHandle("transactions.json", getTRANSJSON());
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -93,46 +99,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         datetext.setText(date);
     }
 
-    public void WriteHandle(String filename, String ttw) throws IOException {
 
-        File path = getFilesDir();
-        File file = new File(path, filename);
-        file.createNewFile();
-        FileOutputStream stream = new FileOutputStream(file);
-
-        Writer out = new FileWriter(file);
-
-        try {
-            out.write(ttw);
-        } finally {
-
-            if (out != null) {
-                out.close();
-            }
-        }
-
-    }
-
-    public String ReadHandle(String filename) throws IOException {
-        File file = new File(filename);
-        // file.createNewFile();
-        FileReader in = new FileReader(file);
-        String ret = "";
-
-        try {
-
-            int content;
-            while ((content = in.read()) != -1) {
-                // System.out.print((char) content);
-                ret += (char) content;
-            }
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-        return ret;
-    }
 
     public void exitPage(View view) throws IOException {
         Intent intent = new Intent(this, MainActivity.class);
@@ -141,7 +108,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     public native String addTrans(String name, int day, int month, int year, float amount, String JSON);
 
-    public native void recordDebits(String USER, String JSON);
+    public native void recordDebits();
 
     public native String getUSERSJSON();
 
