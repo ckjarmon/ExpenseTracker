@@ -54,13 +54,15 @@ public class WriteReadHandle {
 
   
    public static void main(String args[]) throws IOException {
-      //new WriteReadHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
+      new WriteReadHandle().WriteHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
       //WriteReadHandle test = new WriteReadHandle();
-     /// System.out.println(test.ReadHandle("transactionsJSON.json"));
-      //System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
-      new WriteReadHandle().WriteHandle("transactionsJSON.json", "ASDGHLD");
+      //System.out.println(test.ReadHandle("transactionsJSON.json"));
       System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
-   }//end main 
+      //new WriteReadHandle().WriteHandle("transactionsJSON.json", "ASDGHLD");
+      System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
+   }//end main
+   
+   
 }
 
 /*

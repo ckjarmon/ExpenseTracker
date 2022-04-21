@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class loginPage extends AppCompatActivity {
     static {
@@ -32,22 +33,49 @@ public class loginPage extends AppCompatActivity {
         // when all is said and done the parameter should be what is read from the
         // stream of user.json, if its blank
         // it should just return ""
+/*
+        File path = getFilesDir();
+        File file = new File(path, "transactionsJSON.json");
+        file.createNewFile();
+        FileOutputStream stream = new FileOutputStream(file);
+        try {
+            stream.write(message.getBytes());
+        } finally {
+            stream.close();
+        } */
+/*
+        File path = getFilesDir();
+        File file = new File(path, "transactions.json");
+        file.createNewFile();
 
-        // to write to files, i have to gather the text that needs to be writting and
-        // return it from a CPP function through JNI
-        // String message = "TEXT NOT CHANGED";
-        // File path = getFilesDir();
-        // File file = new File(path, "transactionsJSON.json");
-        // FileOutputStream stream = new FileOutputStream(file);
-        // try {
-        // stream.write(message.getBytes());
-        // message = addExpense();
-        // } finally {
-        // stream.close();
-        // }
+        path = getFilesDir();
+         file = new File(path, "user.json");
+        file.createNewFile();
+*/
+        OutputStream os = openFileOutput("user.json", MODE_PRIVATE);
+        OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);
+
+        os.close(); od.close();
+
+        File file = new File("user.json");
+        FileReader in = new FileReader(file);
+        String ret = "";
+
+        try {
+
+            int content;
+            while ((content = in.read()) != -1) {
+                //System.out.print((char) content);
+                ret += (char)content;
+            }
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
 
 
-        new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+       // new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 

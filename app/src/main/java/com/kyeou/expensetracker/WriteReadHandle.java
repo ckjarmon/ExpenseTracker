@@ -1,13 +1,10 @@
 package com.kyeou.expensetracker;//package main.cpp.headers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+//import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.*;
 
-public class WriteReadHandle {
+public class WriteReadHandle{//} extends AppCompatActivity {
    
 
 
@@ -17,6 +14,7 @@ public class WriteReadHandle {
 
 
 
+  
    public void WriteHandle(String filename, String ttw) throws IOException {
 
 
@@ -24,12 +22,11 @@ public class WriteReadHandle {
       //File file = new File(path, filename);
       File file = new File(filename);
       file.createNewFile();
-      new FileOutputStream(file);
+      FileOutputStream stream = new FileOutputStream(file);
 
 
-      try (FileWriter out = new FileWriter(file)) {
+      try (Writer out = new FileWriter(file)) {
          out.write(ttw);
-         //stream.write(ttw.getBytes());
       }
 
    }
@@ -38,28 +35,31 @@ public class WriteReadHandle {
       File file = new File(filename);
       //file.createNewFile();
       FileReader in = new FileReader(file);
-      StringBuilder ret = new StringBuilder();
+      String ret = "";
 
       try {
 
          int content;
          while ((content = in.read()) != -1) {
             //System.out.print((char) content);
-            ret.append((char) content);
+            ret += (char)content;
          }
       } finally {
          in.close();
       }
-      return ret.toString();
+      return ret;
    }
+
 
 
 
   
    public static void main(String[] args) throws IOException {
-      //new WriteReadHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
-      WriteReadHandle test = new WriteReadHandle();
-      System.out.println(test.ReadHandle("transactionsJSON.json"));
+      new WriteReadHandle().WriteHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
+      //WriteReadHandle test = new WriteReadHandle();
+      //System.out.println(test.ReadHandle("transactionsJSON.json"));
+      System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
+      //new WriteReadHandle().WriteHandle("transactionsJSON.json", "ASDGHLD");
       System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
    }//end main 
 
