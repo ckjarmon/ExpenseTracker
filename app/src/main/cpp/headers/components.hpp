@@ -137,6 +137,7 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Date: "] = this->date->getDateString();
         TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
         TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
+        USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
         return TRANSACTIONS_JSON.dump();
     }
 

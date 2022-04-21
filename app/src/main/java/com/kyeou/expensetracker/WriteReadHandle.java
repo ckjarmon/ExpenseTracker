@@ -18,9 +18,9 @@ public class WriteReadHandle{//} extends AppCompatActivity {
    public void WriteHandle(String filename, String ttw) throws IOException {
 
 
-      //File path = getFilesDir();
-      //File file = new File(path, filename);
-      File file = new File(filename);
+      File path = new File("/data/data/com.kyeou.expensetracker/files/");
+      File file = new File(path, filename);
+      //File file = new File(filename);
       file.createNewFile();
       FileOutputStream stream = new FileOutputStream(file);
 
@@ -32,7 +32,8 @@ public class WriteReadHandle{//} extends AppCompatActivity {
    }
 
    public String ReadHandle(String filename) throws IOException {
-      File file = new File(filename);
+      File path = new File("/data/data/com.kyeou.expensetracker/files/");
+      File file = new File(path, filename);
       //file.createNewFile();
       FileReader in = new FileReader(file);
       String ret = "";
