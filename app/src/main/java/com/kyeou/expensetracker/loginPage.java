@@ -32,8 +32,21 @@ public class loginPage extends AppCompatActivity {
         // when all is said and done the parameter should be what is read from the
         // stream of user.json, if its blank
         // it should just return ""
-        
+
+        // to write to files, i have to gather the text that needs to be writting and
+        // return it from a CPP function through JNI
+        // String message = "TEXT NOT CHANGED";
         // File path = getFilesDir();
+        // File file = new File(path, "transactionsJSON.json");
+        // FileOutputStream stream = new FileOutputStream(file);
+        // try {
+        // stream.write(message.getBytes());
+        // message = addExpense();
+        // } finally {
+        // stream.close();
+        // }
+
+        new WriteReadHandle().createFiles();
         new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

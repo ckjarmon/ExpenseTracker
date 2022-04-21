@@ -1,10 +1,60 @@
 package com.kyeou.expensetracker;//package main.cpp.headers;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class WriteReadHandle {
    
-  
+
+
+   public void createFiles() throws IOException{
+      FileOutputStream fos = null;
+
+      try {
+         fos = new FileOutputStream("user.json");
+         fos.write("".getBytes());
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      } finally {
+         if (fos != null) {
+            try {
+               fos.close();
+            } catch (IOException e) {
+               e.printStackTrace();
+            }
+         }
+      }
+
+      try {
+         fos = new FileOutputStream("transactions.json");
+         fos.write("".getBytes());
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      } finally {
+         if (fos != null) {
+            try {
+               fos.close();
+            } catch (IOException e) {
+               e.printStackTrace();
+            }
+         }
+      }
+   }//end function
+
+
+
    public void WriteHandle(String filename, String ttw) throws IOException {
 
 
@@ -16,10 +66,11 @@ public class WriteReadHandle {
 
 
 
-     Writer out = new FileWriter(file);
+     FileWriter out = new FileWriter(file);
       
       try {
-         out.write(ttw);
+         //out.write(ttw);
+         stream.write(ttw.getBytes());
       } finally {
 
          if (out != null) {
@@ -31,7 +82,7 @@ public class WriteReadHandle {
 
    public String ReadHandle(String filename) throws IOException {
       File file = new File(filename);
-      file.createNewFile();
+      //file.createNewFile();
       FileReader in = new FileReader(file);
       String ret = "";
 
