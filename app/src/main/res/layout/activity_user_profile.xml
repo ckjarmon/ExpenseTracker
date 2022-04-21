@@ -8,40 +8,15 @@
     tools:context=".UserProfile">
 
     <ImageView
-        android:id="@+id/settingsImage"
-        android:layout_width="66dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reportImage"
-        app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/ic_settings" />
-
-    <ImageView
         android:id="@+id/reportImage"
         android:layout_width="66dp"
         android:layout_height="65dp"
+        android:layout_marginBottom="176dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reportsButton"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bankImage"
-        app:layout_constraintVertical_bias="0.115"
-        app:srcCompat="@drawable/ic_report" />
-
-    <ImageView
-        android:id="@+id/bankImage"
-        android:layout_width="66dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bankAcctButton"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationImage"
-        app:layout_constraintVertical_bias="0.088"
-        app:srcCompat="@drawable/ic_bank" />
+        app:srcCompat="@drawable/ic_report" />
 
     <ImageView
         android:id="@+id/infoImage"
@@ -56,19 +31,20 @@
         app:srcCompat="@drawable/ic_user_info" />
 
     <Button
-        android:id="@+id/settingsButton"
+        android:id="@+id/signOutButton"
         android:layout_width="241dp"
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
-        android:text="Settings"
+        android:onClick="signOut"
+        android:text="Sign Out"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.905" />
+        app:layout_constraintVertical_bias="0.782" />
 
     <Button
         android:id="@+id/reportsButton"
@@ -81,10 +57,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintVertical_bias="0.519" />
 
     <Button
         android:id="@+id/notificationsButton"
@@ -100,21 +76,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameText"
         app:layout_constraintVertical_bias="0.243" />
-
-    <Button
-        android:id="@+id/bankAcctButton"
-        android:layout_width="241dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="28dp"
-        android:text="Bank Account"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.469" />
 
     <ImageView
         android:id="@+id/userAcctLogo"
@@ -148,6 +109,7 @@
         android:layout_width="241dp"
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
+        android:onClick="personalInformation"
         android:text="Personal Information"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -183,5 +145,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="67dp"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

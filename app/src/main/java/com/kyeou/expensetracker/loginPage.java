@@ -1,16 +1,12 @@
 package com.kyeou.expensetracker;
 
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -19,9 +15,9 @@ public class loginPage extends AppCompatActivity {
         System.loadLibrary("expensetracker");
     }
 
-    String email, password;
+    String username, password;
 
-    EditText emailInput, passwordInput;
+    EditText usernameInput, passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,16 @@ public class loginPage extends AppCompatActivity {
         path = getFilesDir();
          file = new File(path, "user.json");
         file.createNewFile();
+
 */
+
+        usernameInput = findViewById(R.id.usernameInput3);
+        passwordInput = findViewById(R.id.passwordInput);
+
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
+
+
         OutputStream os = openFileOutput("user.json", MODE_PRIVATE);
         OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);
 
@@ -63,17 +68,11 @@ public class loginPage extends AppCompatActivity {
     }
 
     public void signUp(View view) throws IOException {
-        Intent intent = new Intent(this, NewUserFunds.class);
+        Intent intent = new Intent(this, SignupPage.class);
         startActivity(intent);
     }
 
-    public void gatherInput(View view) throws IOException {
-        emailInput = findViewById(R.id.emailInput);
-        passwordInput = findViewById(R.id.passwordInput);
 
-        email = emailInput.getText().toString();
-        password = passwordInput.getText().toString();
-    }
 
 
 

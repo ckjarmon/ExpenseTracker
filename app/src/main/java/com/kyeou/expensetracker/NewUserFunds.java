@@ -12,10 +12,9 @@ import java.io.IOException;
 
 public class NewUserFunds extends AppCompatActivity {
 
-    double balance, budget;
-    String cardNumber;
+    double budget;
 
-    EditText balanceInput, budgetInput, cardNumberInput;
+    EditText budgetInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +23,8 @@ public class NewUserFunds extends AppCompatActivity {
     }
 
     public void gatherInput(View view) throws IOException {
-        balanceInput = findViewById(R.id.initialBalanceText);
         budgetInput = findViewById(R.id.initialBudgetText);
-        cardNumberInput = findViewById(R.id.creditCardNumberText);
-
-        balance = Double.parseDouble(balanceInput.getText().toString());
         budget = Double.parseDouble(budgetInput.getText().toString());
-        cardNumber = cardNumberInput.getText().toString();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

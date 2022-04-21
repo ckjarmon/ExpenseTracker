@@ -46,7 +46,7 @@ public class loginPage extends AppCompatActivity {
     }
 
     public void gatherInput(View view) throws IOException {
-        emailInput = findViewById(R.id.emailInput);
+        emailInput = findViewById(R.id.usernameInput3);
         passwordInput = findViewById(R.id.passwordInput);
 
         email = emailInput.getText().toString();

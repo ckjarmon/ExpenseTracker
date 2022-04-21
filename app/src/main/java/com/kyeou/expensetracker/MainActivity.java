@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewUserFunds.class);
         startActivity(intent);
     }
+
 
     /**
      * A native method that is implemented by the 'expensetracker' native library,

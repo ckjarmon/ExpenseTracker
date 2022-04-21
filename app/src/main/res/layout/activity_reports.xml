@@ -7,6 +7,34 @@
     android:background="#6C6464"
     tools:context=".Reports">
 
+    <Button
+        android:id="@+id/dateRangeButton"
+        android:layout_width="114dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#00e39f"
+        android:onClick="dateRange"
+        android:text="Date Range"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.342" />
+
+    <TextView
+        android:id="@+id/dateRangeText"
+        android:layout_width="169dp"
+        android:layout_height="23dp"
+        android:text="MONTH/DAY/YEAR"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.411" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
