@@ -34,7 +34,7 @@ public class loginPage extends AppCompatActivity {
         // it should just return ""
         
         // File path = getFilesDir();
-        WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+        new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
@@ -53,46 +53,7 @@ public class loginPage extends AppCompatActivity {
         password = passwordInput.getText().toString();
     }
 
-    public void WriteHandle(String filename, String ttw) throws IOException {
 
-        File path = getFilesDir();
-        File file = new File(path, filename);
-        file.createNewFile();
-        FileOutputStream stream = new FileOutputStream(file);
-
-        FileWriter out = new FileWriter(file);
-
-        try {
-            out.write(ttw);
-        } finally {
-
-            if (out != null) {
-                out.close();
-            }
-        }
-
-    }
-
-    public String ReadHandle(String filename) throws IOException {
-        File file = new File(filename);
-        // file.createNewFile();
-        FileReader in = new FileReader(file);
-        String ret = "";
-
-        try {
-
-            int content;
-            while ((content = in.read()) != -1) {
-                // System.out.print((char) content);
-                ret += (char) content;
-            }
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-        return ret;
-    }
 
     public native String userLOGIN(String USER_INFO_JSON, String TRANS_INFO_JSON);
 }

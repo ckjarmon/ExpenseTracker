@@ -1,4 +1,4 @@
-package com.kyeou.expensetracker;//package main.cpp.headers;
+//package main.cpp.headers;
 
 import java.io.*;
 
@@ -31,7 +31,7 @@ public class WriteReadHandle {
 
    public String ReadHandle(String filename) throws IOException {
       File file = new File(filename);
-      file.createNewFile();
+      //file.createNewFile();
       FileReader in = new FileReader(file);
       String ret = "";
 
@@ -58,6 +58,8 @@ public class WriteReadHandle {
       WriteReadHandle test = new WriteReadHandle();
       System.out.println(test.ReadHandle("transactionsJSON.json"));
       System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
+      new WriteReadHandle().WriteHandle("transactionsJSON.json", "ASDFHKLJASDGHLD");
+      
    }//end main 
 }
 

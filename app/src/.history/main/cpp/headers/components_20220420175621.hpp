@@ -167,8 +167,8 @@ public:
         {
             USER_JSON = json::parse(CON_PARM_USER);
         }
-        if (!(CON_PARM_USER.compare("") == 0))
-        {TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);}
+        if (!(CON_PARM_US.compare("") == 0))
+        TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);
     } // end of constructor
 
 

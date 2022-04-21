@@ -8,6 +8,5 @@ float amount = 43.23;
  std::cout << ret << std::endl;
 
 
-USER_HANDLE u("", "");
-
+ 
 }
