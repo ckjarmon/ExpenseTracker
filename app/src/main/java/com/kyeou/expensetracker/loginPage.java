@@ -57,25 +57,8 @@ public class loginPage extends AppCompatActivity {
 
         os.close(); od.close();
 
-        File file = new File("user.json");
-        FileReader in = new FileReader(file);
-        String ret = "";
 
-        try {
-
-            int content;
-            while ((content = in.read()) != -1) {
-                //System.out.print((char) content);
-                ret += (char)content;
-            }
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-
-
-       // new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+        new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
