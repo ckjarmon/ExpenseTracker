@@ -46,7 +46,7 @@ public class loginPage extends AppCompatActivity {
         // stream.close();
         // }
 
-        new WriteReadHandle().createFiles();
+
         new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

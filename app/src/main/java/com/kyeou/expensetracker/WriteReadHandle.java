@@ -11,42 +11,9 @@ public class WriteReadHandle {
    
 
 
-   public void createFiles() throws IOException {
 
-      File file = new File("user.json");
-   file.createNewFile();
-     /* try {
-         fos = new FileOutputStream(file);
-         //fos.write("".getBytes());
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } finally {
-         if (fos != null) {
-            try {
-               fos.close();
-            } catch (IOException e) {
-               e.printStackTrace();
-            }
-         }
-      }*/
-      file = new File("transactions.json");
-      file.createNewFile();
-      /*
-      try {
-         fos = new FileOutputStream("transactions.json");
-         //fos.write("".getBytes());
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } finally {
-         if (fos != null) {
-            try {
-               fos.close();
-            } catch (IOException e) {
-               e.printStackTrace();
-            }
-         }
-      }*/
-   }//end function
+
+
 
 
 
