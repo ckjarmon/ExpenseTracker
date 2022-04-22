@@ -30,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String user_name = getUSERINFO("Name");
+        String balance = getUSERINFO("Balance");
+        String budget = getUSERINFO("Budget");
+        String score = getUSERINFO("Score")
+
         // Button btn = findViewById(R.id.addExpense);
         // btn.setOnClickListener(new View.OnClickListener(){
         // @Override
@@ -77,6 +83,6 @@ public class MainActivity extends AppCompatActivity {
      * A native method that is implemented by the 'expensetracker' native library,
      * which is packaged with this application.
      */
-    // public native String addExpense();
+     public native String getUSERINFO(String stringCALL);
     // public native String stringFromJNI2();
 }

@@ -18,5 +18,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="adjust_budget">Adjust Budget</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="hi_user">Hi User,</string>
+    <string name="balance">Balance:</string>
+    <string name="budget">Budget:</string>
+    <string name="score">Score:</string>
+    <string name="todo">TODO</string>
 
 </resources>

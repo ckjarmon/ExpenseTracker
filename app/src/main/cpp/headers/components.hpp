@@ -26,6 +26,39 @@ namespace GLOBAL_VARS
 {
     json TRANSACTIONS_JSON, USER_JSON;
     int A_O_T, A_O_B;
+    std::string recordDebits()
+    {
+        float temp = 0.0;
+        int c = 0;
+        // TRANSACTIONS_JSON = json::parse(trans_parm);
+        // USER_JSON = json::parse(user_parm);
+
+        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+        {
+            if ((*it)["ATTRIBUTE->RECORDED_BOOL: "] == false)
+            {
+                // std::cout << (*it)["Amount: "] << std::endl;
+                float as = (*it)["Amount: "];
+                temp += as;
+                (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
+                // itCount++;
+            } // end if
+        }     // end for
+
+        USER_JSON["SumDebits"].clear();
+        USER_JSON["SumDebits"] = temp;
+
+        A_O_B = USER_JSON["Budgets"].size();
+
+        for (int i = 0; i < A_O_B; i++)
+        {
+            float currBud = USER_JSON["Budgets"][i];
+            USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+        }
+
+        return TRANSACTIONS_JSON.dump();
+
+    } // end recordDebits
 
 }
 
@@ -137,11 +170,12 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Date: "] = this->date->getDateString();
         TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
         TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
+        float temp_bal = USER_JSON["Balance"];
+        USER_JSON["Balance"] = temp_bal - this->amount;
         USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
+        recordDebits();
         return TRANSACTIONS_JSON.dump();
     }
-
- 
 
     ~TRANS_HANDLE() {}
 
@@ -162,72 +196,60 @@ public:
     {
         if (CON_PARM_USER.compare("") == 0)
         {
-            USER_JSON = {{"Name", "FirstName LastName"}, {"A_O_T", 0}, {"Budgets", {}}, {"Income", 0}, {"Scores", {}}, {"SumDebits", 0}};
+            USER_JSON = {{"Name", "FirstName LastName"}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
         }
         else
         {
             USER_JSON = json::parse(CON_PARM_USER);
         }
         if (!(CON_PARM_USER.compare("") == 0))
-        {TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);}
+        {
+            TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);
+        }
     } // end of constructor
 
-
-
- void addBudget(float amount)
+    void addBudget(float amount)
     {
+        A_O_B = (USER_JSON["Budgets"] != NULL) ? USER_JSON["Budgets"].size() : 0;
+        // A_O_B = USER_JSON["Budgets"].size();
+        std::cout << A_O_B << std::endl;
+        USER_JSON["Budgets"][A_O_B] = amount;
+        float temp = USER_JSON["SumDebits"];
+
         A_O_B = USER_JSON["Budgets"].size();
-    
-       USER_JSON["Budgets"][A_O_B] = amount;
-    }
-
-//std::string recordDebits(std::string trans_parm, std::string user_parm)
-std::string recordDebits()
-    { 
-        float temp = 0.0;
-        int c = 0;
-        //TRANSACTIONS_JSON = json::parse(trans_parm);
-        //USER_JSON = json::parse(user_parm);
-
-        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
-        {
-            if ((*it)["ATTRIBUTE->RECORDED_BOOL: "] == false)
-            {
-                // std::cout << (*it)["Amount: "] << std::endl;
-                float as = (*it)["Amount: "];
-                temp += as;
-                (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
-                // itCount++;
-            } // end if
-        }//end for
-
-
-        USER_JSON["SumDebits"].clear();
-        USER_JSON["SumDebits"] = temp;
-        
-        
-         A_O_B =  USER_JSON["Budgets"].size();
-    
-     for (int i = 0; i < A_O_B; i++)
+        for (int i = 0; i < A_O_B; i++)
         {
             float currBud = USER_JSON["Budgets"][i];
             USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+            // std::cout << "Print Debug\n";
+        }
+    }
+
+    // std::string recordDebits(std::string trans_parm, std::string user_parm)
+
+    std::string getUSER_FIELD(std::string s)
+    {
+        if (s.compare("Budget") == 0)
+        {
+            int a = USER_JSON["Budgets"].size() - 1;
+            return to_string(USER_JSON["Budgets"][a]);
         }
 
-    
-    return TRANSACTIONS_JSON.dump();
-    
-    }//end recordDebits
+        if (s.compare("Score") == 0)
+        {
+            int a = USER_JSON["Scores"].size() - 1;
+            return to_string(USER_JSON["Scores"][a]);
+        }
+        return to_string(USER_JSON[s]);
+    }
 
-   
-
-
-
-    std::string USERDUMP() {
+    std::string USERDUMP()
+    {
         return USER_JSON.dump();
     }
 
-    std::string TRANSDUMP() {
+    std::string TRANSDUMP()
+    {
         return TRANSACTIONS_JSON.dump();
     }
 

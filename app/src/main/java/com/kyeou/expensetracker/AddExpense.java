@@ -88,7 +88,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
             new WriteReadHandle().WriteHandle("transactions.json", addTrans(description, day, month, year, Float.valueOf(amount).floatValue(),
                     new WriteReadHandle().ReadHandle("transactions.json")));
-            recordDebits();
+            //recordDebits();
             new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
             new WriteReadHandle().WriteHandle("transactions.json", getTRANSJSON());
 
@@ -119,7 +119,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     public native String addTrans(String name, int day, int month, int year, float amount, String JSON);
 
-    public native void recordDebits();
+    //public native void recordDebits();
 
     public native String getUSERSJSON();
 
