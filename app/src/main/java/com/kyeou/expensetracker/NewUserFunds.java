@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -26,8 +27,12 @@ public class NewUserFunds extends AppCompatActivity {
         budgetInput = findViewById(R.id.initialBudgetText);
         budget = Double.parseDouble(budgetInput.getText().toString());
 
+
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+
     }
 
     public void exitPage(View view) throws IOException {
