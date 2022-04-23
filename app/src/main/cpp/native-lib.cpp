@@ -99,3 +99,8 @@ extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_PersonalInformat
 {
     u->setName(env->GetStringUTFChars(name, nullptr));
 }
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_PersonalInformation_getUSERSJSON(JNIEnv *env, jobject)
+{
+    return env->NewStringUTF(u->USERDUMP().c_str());
+}

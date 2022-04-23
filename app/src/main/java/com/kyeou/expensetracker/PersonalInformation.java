@@ -29,7 +29,7 @@ public class PersonalInformation extends AppCompatActivity {
         username = usernameInput.getText().toString();
 
         setName(name);
-
+        new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
         Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
@@ -40,4 +40,6 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
     public native void setName(String name);
+    public native String getUSERSJSON();
+
 }
