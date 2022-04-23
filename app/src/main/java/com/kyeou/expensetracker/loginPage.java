@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class loginPage extends AppCompatActivity {
+
     static {
         System.loadLibrary("expensetracker");
     }
@@ -60,8 +61,8 @@ public class loginPage extends AppCompatActivity {
         OutputStream os = openFileOutput("user.json", MODE_PRIVATE);
         OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);
 
-
-        new WriteReadHandle().WriteHandle("user.json", userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+String sq = userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json"));
+        new WriteReadHandle().WriteHandle("user.json",sq );
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 

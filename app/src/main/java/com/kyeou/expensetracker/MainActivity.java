@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         String user_name = getUSERINFO("Name");
         String balance = getUSERINFO("Balance");
         String budget = getUSERINFO("Budget");
-        String score = getUSERINFO("Score")
+        String score = getUSERINFO("Score");
 
         // Button btn = findViewById(R.id.addExpense);
         // btn.setOnClickListener(new View.OnClickListener(){

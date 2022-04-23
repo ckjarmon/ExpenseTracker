@@ -211,17 +211,14 @@ public:
     void addBudget(float amount)
     {
         A_O_B = (USER_JSON["Budgets"] != NULL) ? USER_JSON["Budgets"].size() : 0;
-        // A_O_B = USER_JSON["Budgets"].size();
         std::cout << A_O_B << std::endl;
         USER_JSON["Budgets"][A_O_B] = amount;
         float temp = USER_JSON["SumDebits"];
-
         A_O_B = USER_JSON["Budgets"].size();
         for (int i = 0; i < A_O_B; i++)
         {
             float currBud = USER_JSON["Budgets"][i];
             USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
-            // std::cout << "Print Debug\n";
         }
     }
 

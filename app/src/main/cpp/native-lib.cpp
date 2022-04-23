@@ -54,12 +54,13 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_ge
     return env->NewStringUTF(u->TRANSDUMP().c_str());
 }
 
-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLOGIN(JNIEnv *env, jobject, jstring USER_INFO_JSON, jstring TRANS_INFO_JSON)
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)
 {
-    u = new USER_HANDLE(env->GetStringUTFChars(USER_INFO_JSON, nullptr), env->GetStringUTFChars(TRANS_INFO_JSON, nullptr));
-    return env->NewStringUTF(u->USERDUMP().c_str());
+    return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());
 }
 
-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL) {
-    return  env->NewStringUTF(        u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str()                  );
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLOGIN(JNIEnv *env, jobject,  jstring user_info_json,   jstring trans_info_json)
+{
+    u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
+    return env->NewStringUTF(u->USERDUMP().c_str());
 }
