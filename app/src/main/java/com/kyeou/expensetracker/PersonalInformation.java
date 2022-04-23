@@ -28,7 +28,7 @@ public class PersonalInformation extends AppCompatActivity {
         name = nameInput.getText().toString();
         username = usernameInput.getText().toString();
 
-        setName(username);
+        setName(name);
 
         Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
