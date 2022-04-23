@@ -26,12 +26,12 @@ public class UserProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void personalInformation(View view) throws IOException{
+    public void personalInformation(View view) throws IOException {
         Intent intent = new Intent(this, PersonalInformation.class);
         startActivity(intent);
     }
 
-    public void signOut(View view) throws IOException{
+    public void signOut(View view) throws IOException {
         Intent intent = new Intent(this, loginPage.class);
         startActivity(intent);
     }

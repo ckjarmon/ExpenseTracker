@@ -31,35 +31,33 @@ public class loginPage extends AppCompatActivity {
         // when all is said and done the parameter should be what is read from the
         // stream of user.json, if its blank
         // it should just return ""
-/*
-        File path = getFilesDir();
-        File file = new File(path, "transactionsJSON.json");
-        file.createNewFile();
-        FileOutputStream stream = new FileOutputStream(file);
-        try {
-            stream.write(message.getBytes());
-        } finally {
-            stream.close();
-        } */
-/*
-        File path = getFilesDir();
-        File file = new File(path, "transactions.json");
-        file.createNewFile();
-
-        path = getFilesDir();
-         file = new File(path, "user.json");
-        file.createNewFile();
-
-*/
+        /*
+         * File path = getFilesDir();
+         * File file = new File(path, "transactionsJSON.json");
+         * file.createNewFile();
+         * FileOutputStream stream = new FileOutputStream(file);
+         * try {
+         * stream.write(message.getBytes());
+         * } finally {
+         * stream.close();
+         * }
+         */
+        /*
+         * File path = getFilesDir();
+         * File file = new File(path, "transactions.json");
+         * file.createNewFile();
+         * 
+         * path = getFilesDir();
+         * file = new File(path, "user.json");
+         * file.createNewFile();
+         * 
+         */
 
         usernameInput = findViewById(R.id.usernameInput3);
         passwordInput = findViewById(R.id.passwordInput);
 
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
-
-
-
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -70,10 +68,5 @@ public class loginPage extends AppCompatActivity {
         Intent intent = new Intent(this, SignupPage.class);
         startActivity(intent);
     }
-
-
-
-
-
 
 }

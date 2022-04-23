@@ -19,14 +19,13 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.io.IOException;
 import java.util.Calendar;
 
-public class Reports extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class Reports extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     TextView startDateText, endDateText;
     Button startDateButton, endDateButton;
     int counter = 0;
 
     int[][] dates = new int[2][3];
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class Reports extends AppCompatActivity implements DatePickerDialog.OnDat
 
     }
 
-
     public void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
@@ -62,7 +60,6 @@ public class Reports extends AppCompatActivity implements DatePickerDialog.OnDat
         datePickerDialog.show();
     }
 
-
     public void exitPage(View view) throws IOException {
         Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
@@ -70,7 +67,7 @@ public class Reports extends AppCompatActivity implements DatePickerDialog.OnDat
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        if(counter%2 == 0){
+        if (counter % 2 == 0) {
             dates[0][0] = month;
             dates[0][1] = dayOfMonth;
             dates[0][2] = year;
@@ -78,7 +75,7 @@ public class Reports extends AppCompatActivity implements DatePickerDialog.OnDat
             startDateText.setText(date);
             counter++;
             return;
-        }else if(counter%2 == 1){
+        } else if (counter % 2 == 1) {
             dates[1][0] = month;
             dates[1][1] = dayOfMonth;
             dates[1][2] = year;

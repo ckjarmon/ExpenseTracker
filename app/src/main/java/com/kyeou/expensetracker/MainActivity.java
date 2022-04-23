@@ -26,12 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
-         String user_name = getUSERINFO("Name");
-       String balance = getUSERINFO("Balance");
+        String user_name = getUSERINFO("Name");
+        String balance = getUSERINFO("Balance");
         String budget = getUSERINFO("Budget");
         String score = getUSERINFO("Score");
 
@@ -61,12 +57,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     /**
      * A native method that is implemented by the 'expensetracker' native library,
      * which is packaged with this application.
      */
-     public native String getUSERINFO(String stringCALL);
+    public native String getUSERINFO(String stringCALL);
 
     // public native String stringFromJNI2();
 }
