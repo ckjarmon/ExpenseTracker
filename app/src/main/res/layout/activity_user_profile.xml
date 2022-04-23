@@ -11,23 +11,24 @@
         android:id="@+id/reportImage"
         android:layout_width="66dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="176dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reportsButton"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62"
         app:srcCompat="@drawable/ic_report" />
 
     <ImageView
         android:id="@+id/infoImage"
         android:layout_width="66dp"
         android:layout_height="65dp"
-        app:layout_constraintBottom_toTopOf="@+id/notificationImage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/userInfoButton"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934"
+        app:layout_constraintVertical_bias="0.462"
         app:srcCompat="@drawable/ic_user_info" />
 
     <Button
@@ -43,8 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.782" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
 
     <Button
         android:id="@+id/reportsButton"
@@ -59,23 +60,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.519" />
-
-    <Button
-        android:id="@+id/notificationsButton"
-        android:layout_width="240dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="28dp"
-        android:text="Notifications"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.603" />
 
     <ImageView
         android:id="@+id/userAcctLogo"
@@ -86,23 +72,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07"
+        app:layout_constraintVertical_bias="0.138"
         app:srcCompat="@drawable/ic_account_avatar" />
-
-    <TextView
-        android:id="@+id/userNameText"
-        android:layout_width="138dp"
-        android:layout_height="52dp"
-        android:text="[Name]"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAcctLogo"
-        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/userInfoButton"
@@ -115,22 +86,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <ImageView
-        android:id="@+id/notificationImage"
-        android:layout_width="66dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/notificationsButton"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581"
-        app:srcCompat="@drawable/ic_notifications" />
+        app:layout_constraintVertical_bias="0.438" />
 
     <ImageButton
         android:id="@+id/userInfoExitButton"
@@ -155,7 +114,7 @@
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881"
+        app:layout_constraintVertical_bias="0.781"
         app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
