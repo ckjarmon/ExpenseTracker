@@ -9,11 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class SignupPage extends AppCompatActivity {
 
     String name, username;
-    double budget;
+    float budget;
     EditText nameInput, usernameInput, budgetInput;
 
     @Override
@@ -29,14 +30,35 @@ public class SignupPage extends AppCompatActivity {
 
         name = nameInput.getText().toString();
         username = usernameInput.getText().toString();
-        budget = Double.parseDouble(budgetInput.getText().toString());
+        budget = Float.parseFloat(budgetInput.getText().toString());
 
+
+        OutputStream os = openFileOutput("user.json", MODE_PRIVATE);
+        OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);
+        os.close(); od.close();
+
+
+        new WriteReadHandle().WriteHandle("user.json", userSignUp(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+        addBudget(budget);
+        setName(username);
+        new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+
+
+
     }
 
     public void exitPage(View view) throws IOException{
         Intent intent = new Intent(this, loginPage.class);
         startActivity(intent);
     }
+
+    public native String userSignUp(String USER_INFO_JSON, String TRANS_INFO_JSON);
+    public native void addBudget(float amount);
+    public native void setName(String name);
+    public native String getUSERSJSON();
+
+    public native String getTRANSJSON();
 }

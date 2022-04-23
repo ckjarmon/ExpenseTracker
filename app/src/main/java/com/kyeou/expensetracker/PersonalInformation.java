@@ -29,6 +29,8 @@ public class PersonalInformation extends AppCompatActivity {
         name = nameInput.getText().toString();
         username = usernameInput.getText().toString();
 
+setName(username);
+
         Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
@@ -37,4 +39,6 @@ public class PersonalInformation extends AppCompatActivity {
         Intent intent = new Intent(this, loginPage.class);
         startActivity(intent);
     }
+
+    public native void setName(String name);
 }

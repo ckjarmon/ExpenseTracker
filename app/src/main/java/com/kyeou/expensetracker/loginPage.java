@@ -1,5 +1,6 @@
 package com.kyeou.expensetracker;
 
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,11 +59,8 @@ public class loginPage extends AppCompatActivity {
         password = passwordInput.getText().toString();
 
 
-        OutputStream os = openFileOutput("user.json", MODE_PRIVATE);
-        OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);
 
-String sq = userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json"));
-        new WriteReadHandle().WriteHandle("user.json",sq );
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
@@ -77,5 +75,5 @@ String sq = userLOGIN(new WriteReadHandle().ReadHandle("user.json"), new WriteRe
 
 
 
-    public native String userLOGIN(String USER_INFO_JSON, String TRANS_INFO_JSON);
+
 }

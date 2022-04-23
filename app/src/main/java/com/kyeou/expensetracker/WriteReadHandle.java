@@ -10,7 +10,19 @@ public class WriteReadHandle{//} extends AppCompatActivity {
 
 
 
+public void createFiles(String filename) throws IOException {
+   File path = new File("/data/data/com.kyeou.expensetracker/files/");
+   File file = new File(path, filename);
+   try {
+      file.createNewFile();
+   } catch (IOException e) {
+      e.printStackTrace();
+   }
+   //File file = new File(filename);
 
+   FileOutputStream stream = new FileOutputStream(file);
+   stream.write(" ".getBytes());
+}
 
 
 
@@ -36,19 +48,19 @@ public class WriteReadHandle{//} extends AppCompatActivity {
       File file = new File(path, filename);
       //file.createNewFile();
       FileReader in = new FileReader(file);
-      String ret = "";
+      StringBuilder ret = new StringBuilder();
 
       try {
 
          int content;
          while ((content = in.read()) != -1) {
             //System.out.print((char) content);
-            ret += (char)content;
+            ret.append((char) content);
          }
       } finally {
          in.close();
       }
-      return ret;
+      return ret.toString();
    }
 
 

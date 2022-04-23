@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class NewUserFunds extends AppCompatActivity {
 
-    double budget;
+    float budget;
 
     EditText budgetInput;
 
@@ -25,8 +25,9 @@ public class NewUserFunds extends AppCompatActivity {
 
     public void gatherInput(View view) throws IOException {
         budgetInput = findViewById(R.id.initialBudgetText);
-        budget = Double.parseDouble(budgetInput.getText().toString());
-
+        budget = Float.parseFloat(budgetInput.getText().toString());
+        addBudget(budget);
+        new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
 
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -39,4 +40,8 @@ public class NewUserFunds extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public native void addBudget(float amount);
+
+    public native String getUSERSJSON();
 }

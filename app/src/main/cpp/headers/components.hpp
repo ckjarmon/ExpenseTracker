@@ -26,9 +26,10 @@ namespace GLOBAL_VARS
 {
     json TRANSACTIONS_JSON, USER_JSON;
     int A_O_T, A_O_B;
+    float global_debit_bal;
     std::string recordDebits()
     {
-        float temp = 0.0;
+       global_debit_bal = 0.0;
         int c = 0;
         // TRANSACTIONS_JSON = json::parse(trans_parm);
         // USER_JSON = json::parse(user_parm);
@@ -39,26 +40,32 @@ namespace GLOBAL_VARS
             {
                 // std::cout << (*it)["Amount: "] << std::endl;
                 float as = (*it)["Amount: "];
-                temp += as;
+                global_debit_bal += as;
                 (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
                 // itCount++;
             } // end if
         }     // end for
 
         USER_JSON["SumDebits"].clear();
-        USER_JSON["SumDebits"] = temp;
+        USER_JSON["SumDebits"] =  global_debit_bal;
 
         A_O_B = USER_JSON["Budgets"].size();
 
         for (int i = 0; i < A_O_B; i++)
         {
             float currBud = USER_JSON["Budgets"][i];
-            USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+            USER_JSON["Scores"][i] = (((currBud -  global_debit_bal) / currBud) * 10 < 0) ? 0 : ((currBud -  global_debit_bal) / currBud) * 10;
         }
 
         return TRANSACTIONS_JSON.dump();
 
     } // end recordDebits
+
+    float correctBalance(float b) {
+        return (b - global_debit_bal);
+    }
+
+
 
 }
 
@@ -220,6 +227,7 @@ public:
             float currBud = USER_JSON["Budgets"][i];
             USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
         }
+        USER_JSON["Balance"] = correctBalance(amount);
     }
 
     // std::string recordDebits(std::string trans_parm, std::string user_parm)
@@ -239,6 +247,8 @@ public:
         }
         return to_string(USER_JSON[s]);
     }
+void setName(std::string name) {USER_JSON["Name"] = name;}
+
 
     std::string USERDUMP()
     {
