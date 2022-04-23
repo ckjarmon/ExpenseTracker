@@ -246,6 +246,8 @@ public:
         }
         return to_string(USER_JSON[s]);
     }
+
+
     void setName(std::string name) { USER_JSON["Name"] = name; }
 
     std::string USERDUMP()

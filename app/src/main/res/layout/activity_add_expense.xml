@@ -91,7 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.597"
-        tools:ignore="TextContrastCheck"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck"
         tools:text="Add Expense" />
 
     <Button
@@ -100,12 +100,14 @@
         android:layout_height="48dp"
         android:backgroundTint="#00e39f"
         android:text="Select Date"
+        android:textColor="#6D4C41"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.458"
+        tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/date_text"
@@ -126,6 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#635F5F"
+        android:contentDescription="TODO"
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:onClick="exitPage"
@@ -136,7 +139,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@android:drawable/btn_dialog"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/errorMessage"

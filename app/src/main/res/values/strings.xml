@@ -25,5 +25,8 @@
     <string name="budget">Budget:</string>
     <string name="score">Score:</string>
     <string name="todo">TODO</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="reports">Reports</string>
 
 </resources>
