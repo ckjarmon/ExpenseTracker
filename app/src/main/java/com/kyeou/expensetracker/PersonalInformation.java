@@ -28,14 +28,14 @@ public class PersonalInformation extends AppCompatActivity {
         name = nameInput.getText().toString();
         username = usernameInput.getText().toString();
 
-        setName(name);
+        setName(username);
         new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
         Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
 
     public void exitPage(View view) throws IOException {
-        Intent intent = new Intent(this, loginPage.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
