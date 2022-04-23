@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         String budget = getUSERINFO("Budget");
         String score = getUSERINFO("Score");
 
-        userText.setText("Hi " + user_name + ",");
+        userText.setText("Hi " + user_name.substring(1, user_name.length()-1) + ",");
         balanceText.setText("Balance: " + balance);
         budgetText.setText("Budget: " + budget);
         scoreText.setText("Score: " + score);
