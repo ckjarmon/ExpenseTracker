@@ -1,0 +1,219 @@
+Index: app/src/main/cpp/native-lib.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <jni.h>\r\n#include <string>\r\n#include \"headers/components.hpp\"\r\n\r\n#include <cstdlib>\r\n#include <ctime>\r\n\r\nTRANS_HANDLE *t;\r\nUSER_HANDLE *u;\r\n/*\r\nextern \"C\" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(\r\n        JNIEnv* env,\r\n        jobject  this ) {\r\n    std::string hello = \"Hello from C++\";\r\n    return env->NewStringUTF(hello.c_str());\r\n}\r\n*/\r\n/*\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_addExpense (JNIEnv* env,\r\n        jobject\r\n        ) {\r\nstd::fstream file(\"wtf.txt\");\r\n    USER *user = new USER();\r\n    std::ostringstream jni;\r\n    Transaction test1(\"Ralphs 1\", new Date(1, 1, 2000), 12.34);\r\n    jni << test1.getTransString() << \"\\n\";\r\n    test1.addTrans();\r\n\r\n    user->USER_CLOSE();\r\n\r\n    return env->NewStringUTF(jni.str().c_str());\r\n}*/\r\n\r\n\r\n\r\n\r\n//first function should take in a string from files after reading and pass it as a parameter to one of these functions\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_addTrans (JNIEnv* env, jobject, jstring name, int day, int month, int year, float amount, jstring TRANS_JSON_PARM) {\r\n  std::string ret = (new TRANS_HANDLE(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount))->addTrans(env->GetStringUTFChars(TRANS_JSON_PARM, nullptr));\r\n   return env->NewStringUTF(ret.c_str());\r\n\r\n}\r\n\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_AddExpense_recordDebits(JNIEnv * env, jobject) {\r\nu->recordDebits();\r\n\r\n}\r\n\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getUSERSJSON(JNIEnv * env, jobject) {\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getTRANSJSON(JNIEnv * env, jobject) {\r\n    return env->NewStringUTF(u->TRANSDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLOGIN(JNIEnv * env, jobject, jstring USER_INFO_JSON, jstring TRANS_INFO_JSON) {\r\n    u = new USER_HANDLE(env->GetStringUTFChars(USER_INFO_JSON, nullptr), env->GetStringUTFChars(TRANS_INFO_JSON, nullptr));\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/cpp/native-lib.cpp b/app/src/main/cpp/native-lib.cpp
+--- a/app/src/main/cpp/native-lib.cpp	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
++++ b/app/src/main/cpp/native-lib.cpp	(date 1650561747610)
+@@ -31,31 +31,30 @@
+     return env->NewStringUTF(jni.str().c_str());
+ }*/
+ 
+-
+-
+-
+-//first function should take in a string from files after reading and pass it as a parameter to one of these functions
+-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_addTrans (JNIEnv* env, jobject, jstring name, int day, int month, int year, float amount, jstring TRANS_JSON_PARM) {
+-  std::string ret = (new TRANS_HANDLE(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount))->addTrans(env->GetStringUTFChars(TRANS_JSON_PARM, nullptr));
+-   return env->NewStringUTF(ret.c_str());
+-
++// first function should take in a string from files after reading and pass it as a parameter to one of these functions
++extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_addTrans(JNIEnv *env, jobject, jstring name, int day, int month, int year, float amount, jstring TRANS_JSON_PARM)
++{
++    std::string ret = (new TRANS_HANDLE(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount))->addTrans(env->GetStringUTFChars(TRANS_JSON_PARM, nullptr));
++    return env->NewStringUTF(ret.c_str());
+ }
+ 
+-extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_AddExpense_recordDebits(JNIEnv * env, jobject) {
+-u->recordDebits();
+-
++extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_AddExpense_recordDebits(JNIEnv *env, jobject)
++{
++    u->recordDebits();
+ }
+ 
+-
+-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getUSERSJSON(JNIEnv * env, jobject) {
++extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getUSERSJSON(JNIEnv *env, jobject)
++{
+     return env->NewStringUTF(u->USERDUMP().c_str());
+ }
+ 
+-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getTRANSJSON(JNIEnv * env, jobject) {
++extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getTRANSJSON(JNIEnv *env, jobject)
++{
+     return env->NewStringUTF(u->TRANSDUMP().c_str());
+ }
+ 
+-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLOGIN(JNIEnv * env, jobject, jstring USER_INFO_JSON, jstring TRANS_INFO_JSON) {
++extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLOGIN(JNIEnv *env, jobject, jstring USER_INFO_JSON, jstring TRANS_INFO_JSON)
++{
+     u = new USER_HANDLE(env->GetStringUTFChars(USER_INFO_JSON, nullptr), env->GetStringUTFChars(TRANS_INFO_JSON, nullptr));
+     return env->NewStringUTF(u->USERDUMP().c_str());
+ }
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26_[Default_Changelist]/shelved.patch	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
++++ /dev/null	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
+@@ -1,20 +0,0 @@
+-Index: app/src/main/cpp/CMakeLists.txt
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+># For more information about using CMake with Android Studio, read the\r\n# documentation: https://d.android.com/studio/projects/add-native-code.html\r\n\r\n# Sets the minimum version of CMake required to build the native library.\r\n\r\ncmake_minimum_required(VERSION 3.18.1)\r\n\r\n# Declares and names the project.\r\n\r\nproject(\"expensetracker\")\r\nset(CMAKE_CXX_STANDARD 17)\r\nset(CMAKE_SYSTEM_NAME Android)\r\n\r\n\r\n\r\n# Set the build output location to a common directory\r\nset(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)\r\nset(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)\r\nset(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)\r\n# Creates and names a library, sets it as either STATIC\r\n# or SHARED, and provides the relative paths to its source code.\r\n# You can define multiple libraries, and CMake builds them for you.\r\n# Gradle automatically packages shared libraries with your APK.\r\n\r\nadd_subdirectory(OpenXLSX)\r\n\r\n\r\n\r\nadd_library( # Sets the name of the library.\r\n        native-lib\r\n\r\n        # Sets the library as a shared library.\r\n        SHARED\r\n\r\n        # Provides a relative path to your source file(s).\r\n        native-lib.cpp)\r\n\r\n\r\n\r\n\r\n\r\n# Searches for a specified prebuilt library and stores the path as a\r\n# variable. Because CMake includes system libraries in the search path by\r\n# default, you only need to specify the name of the public NDK library\r\n# you want to add. CMake verifies that the library exists before\r\n# completing its build.\r\n\r\nfind_library( # Sets the name of the path variable.\r\n        log-lib\r\n\r\n        # Specifies the name of the NDK library that\r\n        # you want CMake to locate.\r\n        log)\r\n\r\n# Specifies libraries CMake should link to your target library. You\r\n# can link multiple libraries, such as libraries you define in this\r\n# build script, prebuilt third-party libraries, or system libraries.\r\n#add_executable(expensetrackerEXE native-lib.cpp)\r\ntarget_link_libraries(native-lib  OpenXLSX::OpenXLSX)\r\n#this line causes -> C/C++: clang++: error: linker command failed with exit code 1 (use -v to see invocation)\r\n\r\n\r\n\r\n\r\ntarget_link_libraries( # Specifies the target library.\r\n        # expensetracker\r\n        # OpenXLSX::OpenXLSX\r\n        # Links the target library to the log library\r\n        # included in the NDK.\r\n        native-lib\r\n        ${log-lib})\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/app/src/main/cpp/CMakeLists.txt b/app/src/main/cpp/CMakeLists.txt
+---- a/app/src/main/cpp/CMakeLists.txt	(revision e78d53d9f50ca76c33851448a9e2ae1a7cca76d9)
+-+++ b/app/src/main/cpp/CMakeLists.txt	(date 1649800764190)
+-@@ -56,7 +56,8 @@
+- # can link multiple libraries, such as libraries you define in this
+- # build script, prebuilt third-party libraries, or system libraries.
+- #add_executable(expensetrackerEXE native-lib.cpp)
+--target_link_libraries(native-lib  OpenXLSX::OpenXLSX)
+-+
+-+#target_link_libraries(native-lib  OpenXLSX::OpenXLSX)
+- #this line causes -> C/C++: clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+- 
+- 
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26__Default_Changelist_.xml	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
++++ /dev/null	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_14_April_22_09_23_26_[Default_Changelist]" date="1649953426235" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_April_22_09_23_26_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 14/April/22 09:23:26 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: app/src/main/cpp/headers/components.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\r\n// Created by kyeou on 08/April/22.\r\n//\r\n\r\n// the whole JNI scheme will work to create the json values and returns strings back to java to read them into the files\r\n\r\n#ifndef EXPENSE_TRACKER_COMPONENTS_H\r\n#define EXPENSE_TRACKER_COMPONENTS_H\r\n\r\n#endif // EXPENSE_TRACKER_COMPONENTS_H\r\n\r\n#include \"iostream\"\r\n#include \"sstream\"\r\n#include \"fstream\"\r\n#include \"string\"\r\n#include \"stdio.h\"\r\n#include \"stdlib.h\"\r\n#include \"json.hpp\"\r\n\r\nusing json = nlohmann::json;\r\n\r\nstd::string months[] = {\"January\", \"February\", \"March\", \"April\", \"May\", \"June\",\r\n                        \"August\", \"September\", \"October\", \"November\", \"December\"};\r\n\r\nnamespace GLOBAL_VARS\r\n{\r\n    json TRANSACTIONS_JSON, USER_JSON;\r\n    int A_O_T, A_O_B;\r\n\r\n}\r\n\r\nusing namespace GLOBAL_VARS;\r\n\r\nclass Date\r\n\r\n{\r\npublic:\r\n    Date()\r\n    {\r\n        this->month = 0;\r\n        this->day = 0;\r\n        this->year = 0;\r\n    }\r\n\r\n    Date(int month, int day, int year)\r\n    {\r\n        this->month = month;\r\n        this->day = day;\r\n        this->year = year;\r\n    }\r\n\r\n    std::string getMonthString(int i) { return months[i - 1]; }\r\n\r\n    void setDate(int month, int day, int year)\r\n    {\r\n        this->month = month;\r\n        this->day = day;\r\n        this->year = year;\r\n    }\r\n\r\n    int getMonth() { return this->month; }\r\n    int getDay() { return this->day; }\r\n    int getYear() { return this->year; }\r\n\r\n    Date getDate() { return *(this); }\r\n\r\n    std::string getDateString()\r\n    {\r\n        // printf(\"Print Date Test: %s, %d, %d\", months[date.getMonth()].substr(0, 3), date.getDay(),date.getYear());\r\n        std::ostringstream os;\r\n        // os << \"Print Date Test: \";\r\n        os << months[this->getMonth() - 1].substr(0, 3);\r\n        os << \" \";\r\n        os << this->getDay();\r\n        os << \", \";\r\n        os << this->getYear();\r\n        return os.str();\r\n    }\r\n\r\n    ~Date() {}\r\n\r\nprivate:\r\n    int month, day, year;\r\n    std::string dateString;\r\n};\r\n// end of DATE\r\n\r\nclass TRANS_HANDLE\r\n{\r\npublic:\r\n    TRANS_HANDLE(std::string name, Date *date, float amount)\r\n    {\r\n        this->name = name;\r\n        this->date = date;\r\n        this->amount = amount;\r\n        this->recorded = false;\r\n    }\r\n\r\n    std::string getTransString()\r\n    {\r\n        std::ostringstream os;\r\n        os << \"Name: \";\r\n        os << name;\r\n        os << \" | Date: \";\r\n        os << this->date->getDateString();\r\n        os << \" | Amount: \";\r\n        os << amount;\r\n\r\n        return os.str();\r\n    }\r\n\r\n    void setAmount(float amount) { this->amount = amount; }\r\n\r\n    void setName(std::string name) { this->name = name; }\r\n\r\n    void setDate(Date *date) { this->date = date; }\r\n\r\n    void setRecord(bool q) { this->recorded = q; }\r\n\r\n    // void setCorD(std::string s) { this->creditORdebit = (s.compare(\"Debit\")) ? 0 : 1; }\r\n\r\n    Date getDate() { return date->getDate(); }\r\n\r\n    bool getCorD() { return this->creditORdebit; }\r\n\r\n    std::string getName() { return this->name; }\r\n\r\n    float getAmount() { return this->amount; }\r\n\r\n    // parm = text read by java from transactions.json\r\n    // returns a the json variable dumped\r\n    std::string addTrans(std::string t)\r\n    {\r\n        TRANSACTIONS_JSON = json::parse(t);\r\n        A_O_T = TRANSACTIONS_JSON.size();\r\n        TRANSACTIONS_JSON[A_O_T][\"Name: \"] = this->name;\r\n        TRANSACTIONS_JSON[A_O_T][\"Date: \"] = this->date->getDateString();\r\n        TRANSACTIONS_JSON[A_O_T][\"Amount: \"] = this->amount;\r\n        TRANSACTIONS_JSON[A_O_T][\"ATTRIBUTE->RECORDED_BOOL: \"] = this->recorded;\r\n        USER_JSON[\"A_O_T\"] = TRANSACTIONS_JSON.size();\r\n        return TRANSACTIONS_JSON.dump();\r\n    }\r\n\r\n \r\n\r\n    ~TRANS_HANDLE() {}\r\n\r\nprivate:\r\n    std::string name;\r\n    Date *date;\r\n    float amount;\r\n    bool recorded;\r\n    // 1 for credit, 0 for debit\r\n    bool creditORdebit;\r\n};\r\n\r\nclass USER_HANDLE\r\n{\r\npublic:\r\n    // java should open the user.json regardless, ift its empty it should return \"\"\r\n    USER_HANDLE(std::string CON_PARM_USER, std::string CON_PARM_TRANS)\r\n    {\r\n        if (CON_PARM_USER.compare(\"\") == 0)\r\n        {\r\n            USER_JSON = {{\"Name\", \"FirstName LastName\"}, {\"A_O_T\", 0}, {\"Budgets\", {}}, {\"Income\", 0}, {\"Scores\", {}}, {\"SumDebits\", 0}};\r\n        }\r\n        else\r\n        {\r\n            USER_JSON = json::parse(CON_PARM_USER);\r\n        }\r\n        if (!(CON_PARM_USER.compare(\"\") == 0))\r\n        {TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);}\r\n    } // end of constructor\r\n\r\n\r\n\r\n void addBudget(float amount)\r\n    {\r\n        A_O_B = USER_JSON[\"Budgets\"].size();\r\n    \r\n       USER_JSON[\"Budgets\"][A_O_B] = amount;\r\n    }\r\n\r\n//std::string recordDebits(std::string trans_parm, std::string user_parm)\r\nstd::string recordDebits()\r\n    { \r\n        float temp = 0.0;\r\n        int c = 0;\r\n        //TRANSACTIONS_JSON = json::parse(trans_parm);\r\n        //USER_JSON = json::parse(user_parm);\r\n\r\n        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)\r\n        {\r\n            if ((*it)[\"ATTRIBUTE->RECORDED_BOOL: \"] == false)\r\n            {\r\n                // std::cout << (*it)[\"Amount: \"] << std::endl;\r\n                float as = (*it)[\"Amount: \"];\r\n                temp += as;\r\n                (*it)[\"ATTRIBUTE->RECORDED_BOOL: \"] = true;\r\n                // itCount++;\r\n            } // end if\r\n        }//end for\r\n\r\n\r\n        USER_JSON[\"SumDebits\"].clear();\r\n        USER_JSON[\"SumDebits\"] = temp;\r\n        \r\n        \r\n         A_O_B =  USER_JSON[\"Budgets\"].size();\r\n    \r\n     for (int i = 0; i < A_O_B; i++)\r\n        {\r\n            float currBud = USER_JSON[\"Budgets\"][i];\r\n            USER_JSON[\"Scores\"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;\r\n        }\r\n\r\n    \r\n    return TRANSACTIONS_JSON.dump();\r\n    \r\n    }//end recordDebits\r\n\r\n   \r\n\r\n\r\n\r\n    std::string USERDUMP() {\r\n        return USER_JSON.dump();\r\n    }\r\n\r\n    std::string TRANSDUMP() {\r\n        return TRANSACTIONS_JSON.dump();\r\n    }\r\n\r\n    ~USER_HANDLE() {}\r\n\r\nprivate:\r\n}; // end of class\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/cpp/headers/components.hpp b/app/src/main/cpp/headers/components.hpp
+--- a/app/src/main/cpp/headers/components.hpp	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
++++ b/app/src/main/cpp/headers/components.hpp	(date 1650561755677)
+@@ -141,8 +141,6 @@
+         return TRANSACTIONS_JSON.dump();
+     }
+ 
+- 
+-
+     ~TRANS_HANDLE() {}
+ 
+ private:
+@@ -169,25 +167,25 @@
+             USER_JSON = json::parse(CON_PARM_USER);
+         }
+         if (!(CON_PARM_USER.compare("") == 0))
+-        {TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);}
++        {
++            TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);
++        }
+     } // end of constructor
+ 
+-
+-
+- void addBudget(float amount)
++    void addBudget(float amount)
+     {
+         A_O_B = USER_JSON["Budgets"].size();
+-    
+-       USER_JSON["Budgets"][A_O_B] = amount;
++
++        USER_JSON["Budgets"][A_O_B] = amount;
+     }
+ 
+-//std::string recordDebits(std::string trans_parm, std::string user_parm)
+-std::string recordDebits()
+-    { 
++    // std::string recordDebits(std::string trans_parm, std::string user_parm)
++    std::string recordDebits()
++    {
+         float temp = 0.0;
+         int c = 0;
+-        //TRANSACTIONS_JSON = json::parse(trans_parm);
+-        //USER_JSON = json::parse(user_parm);
++        // TRANSACTIONS_JSON = json::parse(trans_parm);
++        // USER_JSON = json::parse(user_parm);
+ 
+         for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+         {
+@@ -199,35 +197,30 @@
+                 (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
+                 // itCount++;
+             } // end if
+-        }//end for
++        }     // end for
+ 
+-
+         USER_JSON["SumDebits"].clear();
+         USER_JSON["SumDebits"] = temp;
+-        
+-        
+-         A_O_B =  USER_JSON["Budgets"].size();
+-    
+-     for (int i = 0; i < A_O_B; i++)
++
++        A_O_B = USER_JSON["Budgets"].size();
++
++        for (int i = 0; i < A_O_B; i++)
+         {
+             float currBud = USER_JSON["Budgets"][i];
+             USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+         }
+ 
+-    
+-    return TRANSACTIONS_JSON.dump();
+-    
+-    }//end recordDebits
++        return TRANSACTIONS_JSON.dump();
++
++    } // end recordDebits
+ 
+-   
+-
+-
+-
+-    std::string USERDUMP() {
++    std::string USERDUMP()
++    {
+         return USER_JSON.dump();
+     }
+ 
+-    std::string TRANSDUMP() {
++    std::string TRANSDUMP()
++    {
+         return TRANSACTIONS_JSON.dump();
+     }
+ 
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Sat Apr 09 11:16:41 PDT 2022\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-7.2-bin.zip\r\ndistributionPath=wrapper/dists\r\nzipStorePath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+--- a/gradle/wrapper/gradle-wrapper.properties	(revision a36a71b887cde3901b1b8fd6700452505b09fb83)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1650561478096)
+@@ -1,6 +1,6 @@
+-#Sat Apr 09 11:16:41 PDT 2022
++#Thu Apr 21 10:17:58 PDT 2022
+ distributionBase=GRADLE_USER_HOME
+-distributionUrl=https\://services.gradle.org/distributions/gradle-7.2-bin.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-7.3.1-bin.zip
+ distributionPath=wrapper/dists
+ zipStorePath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
