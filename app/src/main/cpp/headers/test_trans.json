@@ -1,0 +1,72 @@
+[
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 77.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 77"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 13.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 13"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 32.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 32"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 55.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 55"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 85.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 85"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 35.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 35"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 58.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 58"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 96.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 96"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 59.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 59"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount: ": 97.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "THIS->STRING: ": "Name: BLEH | Date: Jan 30, 2002 | Amount: 97"
+     }
+]
