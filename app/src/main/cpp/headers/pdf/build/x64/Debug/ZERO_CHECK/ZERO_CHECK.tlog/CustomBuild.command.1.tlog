@@ -1,0 +1,10 @@
+^C:\USERS\KYEOU\ANDROIDSTUDIOPROJECTS\EXPENSETRACKER\APP\SRC\MAIN\CPP\HEADERS\PDF\BUILD\CMAKEFILES\8E1FD542450640DF7F1A29387B248D87\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf -BC:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build/pdf_shit_test.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

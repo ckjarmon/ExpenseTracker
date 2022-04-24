@@ -1,0 +1,84 @@
+[
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 16.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "Ranks": 7,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 16"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 81.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 81"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 30.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 30"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 9.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 9"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 96.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 96"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 93.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 93"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 97.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 97"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 54.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 54"
+     },
+     {
+          "ATTRIBUTE->RECORDED_BOOL: ": true,
+          "Amount": null,
+          "Amount: ": 55.0,
+          "Date: ": "Jan 30, 2002",
+          "Name: ": "BLEH",
+          "Rank": 2147483647,
+          "TRANS_STRING": "Name: BLEH | Date: Jan 30, 2002 | Amount: 55"
+     }
+]

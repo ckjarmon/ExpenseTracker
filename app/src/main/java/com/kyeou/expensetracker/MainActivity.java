@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            new WriteReadHandle().WriteHandle("user.json", userLogIn(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         userText = findViewById(R.id.user);
         balanceText = findViewById(R.id.balance);
@@ -75,6 +80,6 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String getUSERINFO(String stringCALL);
-
+    public native String userLogIn(String USER_INFO_JSON, String TRANS_INFO_JSON);
     // public native String stringFromJNI2();
 }

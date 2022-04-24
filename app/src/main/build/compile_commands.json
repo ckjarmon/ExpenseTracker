@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/build",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe -Dexpensetracker_EXPORTS  -g -o CMakeFiles\\expensetracker.dir\\native-lib.cpp.obj -c C:\\Users\\kyeou\\AndroidStudioProjects\\ExpenseTracker\\app\\src\\main\\cpp\\native-lib.cpp",
+  "file": "C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/native-lib.cpp"
+}
+]

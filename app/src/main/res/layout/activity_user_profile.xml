@@ -17,19 +17,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.62"
-        app:srcCompat="@drawable/ic_report" />
+        app:srcCompat="@drawable/ic_report"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/infoImage"
         android:layout_width="66dp"
         android:layout_height="65dp"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/userInfoButton"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.462"
-        app:srcCompat="@drawable/ic_user_info" />
+        app:srcCompat="@drawable/ic_user_info"
+        tools:ignore="ImageContrastCheck" />
 
     <Button
         android:id="@+id/signOutButton"
@@ -37,15 +41,17 @@
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
         android:onClick="signOut"
-        android:text="Sign Out"
+        android:text="@string/sign_out"
         android:textAlignment="center"
+        android:textColor="#795548"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.772"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/reportsButton"
@@ -53,27 +59,31 @@
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
         android:onClick="reports"
-        android:text="Reports"
+        android:text="@string/reports"
         android:textAlignment="center"
+        android:textColor="#795548"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintVertical_bias="0.603"
+        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/userAcctLogo"
         android:layout_width="160dp"
         android:layout_height="161dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.138"
-        app:srcCompat="@drawable/ic_account_avatar" />
+        app:srcCompat="@drawable/ic_account_avatar"
+        tools:ignore="ImageContrastCheck" />
 
     <Button
         android:id="@+id/userInfoButton"
@@ -81,21 +91,26 @@
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
         android:onClick="personalInformation"
-        android:text="Personal Information"
+        android:text="@string/personal_information"
         android:textAlignment="center"
+        android:textColor="#795548"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.438"
+        tools:ignore="TextContrastCheck" />
 
     <ImageButton
         android:id="@+id/userInfoExitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#635F5F"
+        android:contentDescription="@string/todo"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:onClick="exitPage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,18 +118,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/btn_dialog"
+        tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="67dp"
         android:layout_height="66dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.781"
-        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24"
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

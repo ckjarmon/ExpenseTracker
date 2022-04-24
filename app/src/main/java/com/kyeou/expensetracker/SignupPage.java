@@ -42,6 +42,7 @@ public class SignupPage extends AppCompatActivity {
         addBudget(budget);
         setName(username);
         new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
+        new WriteReadHandle().WriteHandle("transactions.json", "[]");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 

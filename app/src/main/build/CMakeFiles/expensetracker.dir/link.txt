@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\expensetracker.dir/objects.a
+C:\MinGW\bin\ar.exe qc CMakeFiles\expensetracker.dir/objects.a @CMakeFiles\expensetracker.dir\objects1.rsp
+C:\MinGW\bin\mingw32-g++.exe -g -shared -o libexpensetracker.dll -Wl,--out-implib,libexpensetracker.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\expensetracker.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\expensetracker.dir\linklibs.rsp
