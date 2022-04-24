@@ -106,25 +106,50 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_PersonalInfor
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, jstring month, int day1, int month1, int year1, int day2, int month2, int year2)
+extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
 {
-    establishRanks(day1, month1, year1, day2, month2, year2);
+  //  establishRanks(day1, month1, year1, day2, month2, year2);
   //establishRanks(env->GetStringUTFChars(month, nullptr));
 //J31, F28, M31, A30, M31, J30, J31, A31, S30, O31, N30, D31
-/*
-  switch () {
-      case "january": establishRanks(1, 1, y1, 31, 1, y1); break;
-      case "february": establishRanks(1, 1, y1, 28, 1, y1); break;
-      case "march": establishRanks(1, 1, y1, 31, 1, y1); break;
-      case "april": establishRanks(1, 1, y1, 30, 1, y1); break;
-      case "may": establishRanks(1, 1, y1, 31, 1, y1); break;
-      case "june": establishRanks(1, 1, y1, 30, 1, y1); break;
-      case "july": establishRanks(1, 1, y1, 31, 1, y1); break;
-      case "august": establishRanks(1, 1, y1, 31, 1, y1); break;
-      case "september": establishRanks(1, 1, y1, 30, 1, y1); break;
-      case "october": establishRanks(1, 1, y1, 31, 1, y1); break;
-      case "novmeber": establishRanks(1, 1, y1, 30, 1, y1); break;
-      case "december": establishRanks(1, 1, y1, 31, 1,y1); break;
-*/
+
+  switch ( month1) {
+      case 1:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+      case 2:
+          establishRanks(1, 1, y1, 28, 1, y1);
+          break;
+      case 3:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+      case 4:
+          establishRanks(1, 1, y1, 30, 1, y1);
+          break;
+      case 5:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+      case 6:
+          establishRanks(1, 1, y1, 30, 1, y1);
+          break;
+      case 7:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+      case 8:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+      case 9:
+          establishRanks(1, 1, y1, 30, 1, y1);
+          break;
+      case 10:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+      case 11:
+          establishRanks(1, 1, y1, 30, 1, y1);
+          break;
+      case 12:
+          establishRanks(1, 1, y1, 31, 1, y1);
+          break;
+  }
+
   
 }

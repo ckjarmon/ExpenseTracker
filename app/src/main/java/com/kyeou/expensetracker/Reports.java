@@ -85,4 +85,5 @@ public class Reports extends AppCompatActivity implements DatePickerDialog.OnDat
             return;
         }
     }
+    public native void genReport( int month1, int year1, int month2, int year2);
 }
