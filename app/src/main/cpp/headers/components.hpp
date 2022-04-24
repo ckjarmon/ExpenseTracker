@@ -67,6 +67,7 @@ namespace GLOBAL_VARS
 
     float correctBalance(float b)
     {
+        recordDebits();
         return (b - global_debit_bal);
     }
 
@@ -266,6 +267,7 @@ public:
         A_O_B = (USER_JSON["Budgets"] != NULL) ? USER_JSON["Budgets"].size() : 0;
         std::cout << A_O_B << std::endl;
         USER_JSON["Budgets"][A_O_B] = amount;
+        recordDebits();
         float temp = USER_JSON["SumDebits"];
         A_O_B = USER_JSON["Budgets"].size();
         for (int i = 0; i < A_O_B; i++)
