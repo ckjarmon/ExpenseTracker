@@ -1,5 +1,7 @@
 package com.kyeou.expensetracker;
 
+import java.io.IOException;
+
 public class VerifyLogin {
     private String password;
     private String username;
@@ -10,7 +12,7 @@ public class VerifyLogin {
         this.username = AccountLogin.getUsername();// this will get the username that is stored
     }
 
-    public void loadProfile(String username) {
+    public void loadProfile(String username) throws IOException {
         // this will call all methods required to login and load a users profile
         // From Christion: On a successful login this method should open up the
         // user.json
@@ -24,13 +26,14 @@ public class VerifyLogin {
          * "SumDebits": 0
          * }
          */
+        new WriteReadHandle().WriteHandle("user.json", userLogIn(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
 
     }
 
     // this method will verify if the the username and password given by the user
     // matches what was
     // found in the database
-    public boolean isUsernameAndPassword(String username, String password) {
+    public boolean isUsernameAndPassword(String username, String password) throws IOException {
         getCredentials();
         if (!this.username.equals(username) || !this.password.equals(password)) {
             System.out.println("Incorrect username or password");
@@ -39,4 +42,5 @@ public class VerifyLogin {
         loadProfile(username);
         return true;
     }
+    public native String userLogIn(String USER_INFO_JSON, String TRANS_INFO_JSON);
 }

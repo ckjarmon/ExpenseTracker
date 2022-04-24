@@ -69,7 +69,7 @@ public class AccountLogin {
     }
 
     // user has an existing account and logs into their account
-    public void verifyLogin(String username, String password) {
+    public void verifyLogin(String username, String password) throws IOException {
         VerifyLogin userProfile = new VerifyLogin();
         userProfile.isUsernameAndPassword(username, password);
     }

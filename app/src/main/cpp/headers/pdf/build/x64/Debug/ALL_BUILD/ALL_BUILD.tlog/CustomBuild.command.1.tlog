@@ -1,0 +1,10 @@
+^C:\USERS\KYEOU\ANDROIDSTUDIOPROJECTS\EXPENSETRACKER\APP\SRC\MAIN\CPP\HEADERS\PDF\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf -BC:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build --check-stamp-file C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

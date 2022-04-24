@@ -24,11 +24,16 @@ std::string months[] = {"January", "February", "March", "April", "May", "June",
 
 namespace GLOBAL_VARS
 {
-    json TRANSACTIONS_JSON, USER_JSON;
-    int A_O_T, A_O_B;
+    json TRANSACTIONS_JSON, USER_JSON, RANKS_JSON;
+    int A_O_T, A_O_B, A_O_R = 0;
+    float global_debit_bal;
+    bool isbetween(int d, int m, int y, int day1, int month1, int year1, int day2, int month2, int year2)
+    {
+        return ((d >= day1 && d <= day2) && (m >= month1 && m <= month2) && (y >= year1 && y <= year2));
+    }
     std::string recordDebits()
     {
-        float temp = 0.0;
+        global_debit_bal = 0.0;
         int c = 0;
         // TRANSACTIONS_JSON = json::parse(trans_parm);
         // USER_JSON = json::parse(user_parm);
@@ -39,26 +44,63 @@ namespace GLOBAL_VARS
             {
                 // std::cout << (*it)["Amount: "] << std::endl;
                 float as = (*it)["Amount: "];
-                temp += as;
+                global_debit_bal += as;
                 (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
                 // itCount++;
             } // end if
         }     // end for
 
         USER_JSON["SumDebits"].clear();
-        USER_JSON["SumDebits"] = temp;
+        USER_JSON["SumDebits"] = global_debit_bal;
 
         A_O_B = USER_JSON["Budgets"].size();
 
         for (int i = 0; i < A_O_B; i++)
         {
             float currBud = USER_JSON["Budgets"][i];
-            USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
+            USER_JSON["Scores"][i] = (((currBud - global_debit_bal) / currBud) * 10 < 0) ? 0 : ((currBud - global_debit_bal) / currBud) * 10;
         }
 
         return TRANSACTIONS_JSON.dump();
 
     } // end recordDebits
+
+    float correctBalance(float b)
+    {
+        recordDebits();
+        return (b - global_debit_bal);
+    }
+
+    void establishRanks(int day1, int month1, int year1, int day2, int month2, int year2)
+    {
+        RANKS_JSON.clear();
+        A_O_R = 0;
+        float static_max = std::numeric_limits<float>::max();
+        float curr_max = std::numeric_limits<float>::min();
+
+        int ranked = 0;
+
+        while (ranked < 10)
+        {
+            curr_max = std::numeric_limits<float>::min();
+            for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+            {
+                if ((*it)["Amount: "] >= curr_max && (*it)["Amount: "] < static_max && isbetween((*it)["Date->Day: "], (*it)["Date->Month: "], (*it)["Date->Year: "], day1, month1, year1, day2, month2, year2))
+                {
+                    RANKS_JSON[A_O_R] = (*it);
+                    curr_max = (*it)["Amount: "];
+                }
+            }
+            static_max = curr_max;
+            RANKS_JSON[A_O_R]["Ranked"] = true;
+            A_O_R = RANKS_JSON.size();
+            ranked++;
+        } // end while
+        for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
+        {
+            std::cout << (*it)["THIS->STRING: "] << std::endl;
+        }
+    }
 
 }
 
@@ -127,6 +169,7 @@ public:
         this->date = date;
         this->amount = amount;
         this->recorded = false;
+        this->ranked = false;
     }
 
     std::string getTransString()
@@ -168,12 +211,20 @@ public:
         A_O_T = TRANSACTIONS_JSON.size();
         TRANSACTIONS_JSON[A_O_T]["Name: "] = this->name;
         TRANSACTIONS_JSON[A_O_T]["Date: "] = this->date->getDateString();
+        TRANSACTIONS_JSON[A_O_T]["Date->Month: "] = this->date->getMonth();
+        TRANSACTIONS_JSON[A_O_T]["Date->Day: "] = this->date->getDay();
+        TRANSACTIONS_JSON[A_O_T]["Date->Year: "] = this->date->getYear();
+
         TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
         TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
+        TRANSACTIONS_JSON[A_O_T]["THIS->STRING: "] = this->getTransString();
+        // TRANSACTIONS_JSON[A_O_T]["ID: "] = 1 + (rand() % 50000);
+
         float temp_bal = USER_JSON["Balance"];
         USER_JSON["Balance"] = temp_bal - this->amount;
         USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
         recordDebits();
+        // establishRanks();
         return TRANSACTIONS_JSON.dump();
     }
 
@@ -184,6 +235,7 @@ private:
     Date *date;
     float amount;
     bool recorded;
+    bool ranked;
     // 1 for credit, 0 for debit
     bool creditORdebit;
 };
@@ -194,6 +246,8 @@ public:
     // java should open the user.json regardless, ift its empty it should return ""
     USER_HANDLE(std::string CON_PARM_USER, std::string CON_PARM_TRANS)
     {
+        srand((unsigned int)time(NULL));
+
         if (CON_PARM_USER.compare("") == 0)
         {
             USER_JSON = {{"Name", "FirstName LastName"}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
@@ -211,18 +265,17 @@ public:
     void addBudget(float amount)
     {
         A_O_B = (USER_JSON["Budgets"] != NULL) ? USER_JSON["Budgets"].size() : 0;
-        // A_O_B = USER_JSON["Budgets"].size();
         std::cout << A_O_B << std::endl;
         USER_JSON["Budgets"][A_O_B] = amount;
+        recordDebits();
         float temp = USER_JSON["SumDebits"];
-
         A_O_B = USER_JSON["Budgets"].size();
         for (int i = 0; i < A_O_B; i++)
         {
             float currBud = USER_JSON["Budgets"][i];
             USER_JSON["Scores"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;
-            // std::cout << "Print Debug\n";
         }
+        USER_JSON["Balance"] = correctBalance(amount);
     }
 
     // std::string recordDebits(std::string trans_parm, std::string user_parm)
@@ -243,9 +296,15 @@ public:
         return to_string(USER_JSON[s]);
     }
 
+    void setName(std::string name) { USER_JSON["Name"] = name; }
+
     std::string USERDUMP()
     {
         return USER_JSON.dump();
+    }
+    json getTRANS()
+    {
+        return TRANSACTIONS_JSON;
     }
 
     std::string TRANSDUMP()
