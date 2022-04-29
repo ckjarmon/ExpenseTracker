@@ -21,7 +21,8 @@ public class DriveServiceHelper {
         return Tasks.call(mExecutor,() -> {
 
             File fileMetaData = new File();
-            fileMetaData.setName("PDFFile");
+           // fileMetaData.setName("PDFFile");
+            fileMetaData.setOriginalFilename("PDFFILE Name Test");
 
             java.io.File file = new java.io.File(filePath);
 
@@ -30,6 +31,7 @@ public class DriveServiceHelper {
             File myFile = null;
             try{
                 myFile = mDriveService.files().create(fileMetaData,mediaContent).execute();
+
 
             } catch (Exception e){
                 e.printStackTrace();
