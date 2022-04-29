@@ -22,7 +22,7 @@ public class DriveServiceHelper {
 
             File fileMetaData = new File();
            // fileMetaData.setName("PDFFile");
-            fileMetaData.setOriginalFilename("PDFFILE Name Test");
+
 
             java.io.File file = new java.io.File(filePath);
 
@@ -30,7 +30,7 @@ public class DriveServiceHelper {
 
             File myFile = null;
             try{
-                myFile = mDriveService.files().create(fileMetaData,mediaContent).execute();
+                //myFile = mDriveService.files().create(fileMetaData,mediaContent).execute();
 
 
             } catch (Exception e){
