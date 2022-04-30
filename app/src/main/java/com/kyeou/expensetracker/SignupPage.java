@@ -42,6 +42,7 @@ public class SignupPage extends AppCompatActivity {
         addBudget(budget);
         setName(name);
         setUsername(username);
+        setPassword("Micheal set this to the variable name of the password input lmao");
         new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
         new WriteReadHandle().WriteHandle("transactions.json", "[]");
         Intent intent = new Intent(this, MainActivity.class);
@@ -61,6 +62,7 @@ public class SignupPage extends AppCompatActivity {
     public native void addBudget(float amount);
     public native void setName(String name);
     public native void setUsername(String name);
+    public native void setPassword(String pswd);
     public native String getUSERSJSON();
 
     public native String getTRANSJSON();

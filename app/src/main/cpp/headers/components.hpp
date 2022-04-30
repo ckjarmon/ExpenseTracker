@@ -214,7 +214,6 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Date->Month: "] = this->date->getMonth();
         TRANSACTIONS_JSON[A_O_T]["Date->Day: "] = this->date->getDay();
         TRANSACTIONS_JSON[A_O_T]["Date->Year: "] = this->date->getYear();
-
         TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
         TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         TRANSACTIONS_JSON[A_O_T]["THIS->STRING: "] = this->getTransString();
@@ -250,7 +249,7 @@ public:
 
         if (CON_PARM_USER.compare("") == 0)
         {
-            USER_JSON = {{"Name", "FirstName LastName"}, {"Username", "name"}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
+            USER_JSON = {{"Name", "FirstName LastName"}, {"Username", "name"}, {"Password", ""}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
         }
         else
         {
@@ -298,6 +297,14 @@ public:
 
     void setName(std::string name) { USER_JSON["Name"] = name; }
     void setUsername(std::string name) { USER_JSON["Username"] = name; }
+    void setPassword(std::string pswd) {
+        std::string temp = pswd; 
+        for (int i = 0; i < pswd.length(); i++) {
+            temp[i] = (pswd[i] + 12);
+        }
+         USER_JSON["Password"] = temp;
+       
+    }
 
     std::string USERDUMP()
     {
@@ -307,6 +314,7 @@ public:
     {
         return TRANSACTIONS_JSON;
     }
+
 
     std::string TRANSDUMP()
     {

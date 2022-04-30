@@ -103,6 +103,11 @@ extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_SignupPage_setUs
     u->setUsername(env->GetStringUTFChars(name, nullptr));
 }
 
+extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_SignupPage_setPassword(JNIEnv *env, jobject, jstring name)
+{
+    u->setPassword(env->GetStringUTFChars(name, nullptr));
+}
+
 extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_NewUserFunds_addBudget(JNIEnv *env, jobject, float amount)
 {
     u->addBudget(amount);
