@@ -250,7 +250,7 @@ public:
 
         if (CON_PARM_USER.compare("") == 0)
         {
-            USER_JSON = {{"Name", "FirstName LastName"}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
+            USER_JSON = {{"Name", "FirstName LastName"}, {"Username", "name"}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
         }
         else
         {
@@ -297,6 +297,7 @@ public:
     }
 
     void setName(std::string name) { USER_JSON["Name"] = name; }
+    void setUsername(std::string name) { USER_JSON["Username"] = name; }
 
     std::string USERDUMP()
     {

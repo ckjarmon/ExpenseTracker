@@ -40,7 +40,8 @@ public class SignupPage extends AppCompatActivity {
 
         new WriteReadHandle().WriteHandle("user.json", userSignUp(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
         addBudget(budget);
-        setName(username);
+        setName(name);
+        setUsername(username);
         new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
         new WriteReadHandle().WriteHandle("transactions.json", "[]");
         Intent intent = new Intent(this, MainActivity.class);
@@ -59,6 +60,7 @@ public class SignupPage extends AppCompatActivity {
     public native String userSignUp(String USER_INFO_JSON, String TRANS_INFO_JSON);
     public native void addBudget(float amount);
     public native void setName(String name);
+    public native void setUsername(String name);
     public native String getUSERSJSON();
 
     public native String getTRANSJSON();
