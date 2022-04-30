@@ -73,28 +73,29 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         description = descriptionInput.getText().toString();
         amount = amountInput.getText().toString();
 
-        if (description.equals("")) {
-            errorMessage.setText("Description Field Is Empty");
-        } else if (amount.equals("")) {
-            errorMessage.setText("Amount Field Must Be Greater Than 0");
-        } else if (datetext.getText().toString().equals("MONTH/DAY/YEAR")) {
-            errorMessage.setText("Please Select A Date");
-        } else {
-            String temp_parm = new WriteReadHandle().ReadHandle("transactions.json");
-            if (temp_parm.equals("")) {
-                new WriteReadHandle().WriteHandle("transactions.json", "[]");
-            }
 
-            new WriteReadHandle().WriteHandle("transactions.json",
-                    addTrans(description, day, month, year, Float.valueOf(amount).floatValue(),
-                            new WriteReadHandle().ReadHandle("transactions.json")));
-            // recordDebits();
+        if(description.equals("")){
+            errorMessage.setText("Description Field Is Empty");
+        }else if(amount.equals("")){
+            errorMessage.setText("Amount Field Must Be Greater Than 0");
+        }else if(datetext.getText().toString().equals("MONTH/DAY/YEAR")){
+            errorMessage.setText("Please Select A Date");
+        }else{
+            String temp_parm = new WriteReadHandle().ReadHandle("transactions.json");
+            if (temp_parm.equals("")) {new WriteReadHandle().WriteHandle("transactions.json", "[]");}
+
+
+
+            new WriteReadHandle().WriteHandle("transactions.json", addTrans(description, day, month, year, Float.valueOf(amount).floatValue(),
+                    new WriteReadHandle().ReadHandle("transactions.json")));
+            //recordDebits();
             new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
             new WriteReadHandle().WriteHandle("transactions.json", getTRANSJSON());
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+
 
     }
 
@@ -109,6 +110,8 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
         datetext.setText(date);
     }
 
+
+
     public void exitPage(View view) throws IOException {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -116,7 +119,7 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
     public native String addTrans(String name, int day, int month, int year, float amount, String JSON);
 
-    // public native void recordDebits();
+    //public native void recordDebits();
 
     public native String getUSERSJSON();
 

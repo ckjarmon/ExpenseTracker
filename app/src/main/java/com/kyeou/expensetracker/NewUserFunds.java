@@ -29,8 +29,10 @@ public class NewUserFunds extends AppCompatActivity {
         addBudget(budget);
         new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
 
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
 
     }
 
