@@ -32,6 +32,7 @@ public class SignupPage extends AppCompatActivity {
         username = usernameInput.getText().toString();
         budget = Float.parseFloat(budgetInput.getText().toString());
 
+        //MICHEAL: Write some code reject budget if the number input < 0;
 
         OutputStream os = openFileOutput("user.json", MODE_PRIVATE);
         OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);

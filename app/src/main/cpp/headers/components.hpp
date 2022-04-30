@@ -264,7 +264,7 @@ public:
     void addBudget(float amount)
     {
         A_O_B = (USER_JSON["Budgets"] != NULL) ? USER_JSON["Budgets"].size() : 0;
-        std::cout << A_O_B << std::endl;
+        //std::cout << A_O_B << std::endl;
         USER_JSON["Budgets"][A_O_B] = amount;
         recordDebits();
         float temp = USER_JSON["SumDebits"];
@@ -308,17 +308,32 @@ public:
 
     std::string USERDUMP()
     {
-        return USER_JSON.dump();
+        std::ostringstream os;
+        os << std::setw(4) << USER_JSON;
+        return os.str();
     }
     json getTRANS()
     {
         return TRANSACTIONS_JSON;
     }
 
+    bool checkPass(std::string check) {
+           std::string temp = USER_JSON["Password"]; 
+            std::string b_check = check;
+        for (int i = 0; i < check.length(); i++) {
+            b_check[i] = (check[i] + 12);
+        }
+         bool b = (b_check.compare(temp) == 0) ? true : false;
+         return b;
+       
+    }
+
 
     std::string TRANSDUMP()
     {
-        return TRANSACTIONS_JSON.dump();
+        std::ostringstream os;
+        os << std::setw(4) << TRANSACTIONS_JSON;
+        return os.str();
     }
 
     ~USER_HANDLE() {}
