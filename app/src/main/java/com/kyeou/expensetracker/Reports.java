@@ -51,6 +51,8 @@ public class Reports extends AppCompatActivity {
         month = monthSelection.getSelectedItem().toString();
         year = yearSelection.getSelectedItem().toString();
 
+
+        genReport(Integer.parseInt(month), Integer.parseInt(year));
         Log.d("test", month);
         Log.d("test", year);
     }
@@ -62,5 +64,5 @@ public class Reports extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+public native String genReport(int m, int y);
 }

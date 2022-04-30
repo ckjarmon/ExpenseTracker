@@ -38,7 +38,7 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
        // requestSignIn();
 
     }
-
+/*
     private void requestSignIn() {
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -49,8 +49,8 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
 
         //noinspection deprecation
         startActivityForResult(client.getSignInIntent(),400);
-    }//requestSignIn
-
+    }//requestSignIn */
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -62,8 +62,8 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
                 }
                 break;
         }
-    }//onActivityResult
-
+    }//onActivityResult */
+/*
     private void handleSignInIntent(Intent data) {
         GoogleSignIn.getSignedInAccountFromIntent(data)
                 .addOnSuccessListener(new OnSuccessListener<GoogleSignInAccount>() {
@@ -89,8 +89,8 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
 
                     }
                 });
-    }//handleSignInIntent
-
+    }//handleSignInIntent */
+/*
     public void uploadPdfFile(View v){
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setTitle("Uploading to Google Drive");
@@ -115,6 +115,6 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
                 });
 
     }//UploadPdfFile
-
+*/
 
 }//public class Main Activity

@@ -124,7 +124,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_PersonalInfor
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
 {
     //  establishRanks(day1, month1, year1, day2, month2, year2);
     // establishRanks(env->GetStringUTFChars(month, nullptr));
@@ -169,4 +169,12 @@ extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_Reports_genRepor
         establishRanks(1, 12, y1, 31, 12, y1);
         break;
     }
+
+    std::ostringstream os;
+
+    for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it) {
+        os << (*it)["THIS->STRING "] << "\n";
+    }
+    return env->NewStringUTF(os.str().c_str());
+
 }

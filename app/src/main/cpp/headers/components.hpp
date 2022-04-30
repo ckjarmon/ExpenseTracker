@@ -336,6 +336,13 @@ public:
         return os.str();
     }
 
+ std::string RANKSDUMP()
+    {
+        std::ostringstream os;
+        os << std::setw(4) << RANKS_JSON;
+        return os.str();
+    }
+
     ~USER_HANDLE() {}
 
 private:
