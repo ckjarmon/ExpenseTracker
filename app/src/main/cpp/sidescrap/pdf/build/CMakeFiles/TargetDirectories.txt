@@ -1,3 +1,0 @@
-C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build/CMakeFiles/pdf_shit.dir
-C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/cpp/headers/pdf/build/CMakeFiles/ZERO_CHECK.dir
