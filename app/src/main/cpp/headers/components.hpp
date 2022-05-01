@@ -20,14 +20,15 @@
 using json = nlohmann::json;
 
 std::string months[] = {"January", "February", "March", "April", "May", "June", "July"
-                        "August", "September", "October", "November", "December"};
+                                                                                "August",
+                        "September", "October", "November", "December"};
 
 namespace GLOBAL_VARS
 {
     json TRANSACTIONS_JSON, USER_JSON, RANKS_JSON;
     int A_O_T, A_O_B, A_O_R = 0;
     float global_debit_bal;
-    int MONTH_COUNT[] = {0,0,0,0,0,0,0,0,0,0,0,0};
+    int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     bool isbetween(int d, int m, int y, int day1, int month1, int year1, int day2, int month2, int year2)
     {
         return ((d >= day1 && d <= day2) && (m >= month1 && m <= month2) && (y >= year1 && y <= year2));
@@ -86,8 +87,8 @@ namespace GLOBAL_VARS
             curr_max = std::numeric_limits<float>::min();
             for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
             {
-                
-                if ((*it)["Amount: "] >= curr_max && (*it)["Amount: "] < static_max && ((*it)["Date->Month: "] == month1)  && ((*it)["Date->Year: "] == year1))
+
+                if ((*it)["Amount: "] >= curr_max && (*it)["Amount: "] < static_max && ((*it)["Date->Month: "] == month1) && ((*it)["Date->Year: "] == year1))
                 {
                     RANKS_JSON[A_O_R] = (*it);
                     curr_max = (*it)["Amount: "];
@@ -188,24 +189,6 @@ public:
         return os.str();
     }
 
-    void setAmount(float amount) { this->amount = amount; }
-
-    void setName(std::string name) { this->name = name; }
-
-    void setDate(Date *date) { this->date = date; }
-
-    void setRecord(bool q) { this->recorded = q; }
-
-    // void setCorD(std::string s) { this->creditORdebit = (s.compare("Debit")) ? 0 : 1; }
-
-    Date getDate() { return date->getDate(); }
-
-    bool getCorD() { return this->creditORdebit; }
-
-    std::string getName() { return this->name; }
-
-    float getAmount() { return this->amount; }
-
     // parm = text read by java from transactions.json
     // returns a the json variable dumped
     std::string addTrans(std::string t)
@@ -215,25 +198,21 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Name: "] = this->name;
         TRANSACTIONS_JSON[A_O_T]["Date: "] = this->date->getDateString();
         TRANSACTIONS_JSON[A_O_T]["Date->Month: "] = this->date->getMonth();
-       // int ti = USER_JSON["MONTH_COUNTER"][this->date->getMonth() - 1];
-       
         (MONTH_COUNT[this->date->getMonth() - 1])++;
-        // std::cout << this->date->getMonth() - 1 << "---" << USER_JSON["MONTH_COUNTER"][this->date->getMonth() - 1] << std::endl;
         TRANSACTIONS_JSON[A_O_T]["Date->Day: "] = this->date->getDay();
         TRANSACTIONS_JSON[A_O_T]["Date->Year: "] = this->date->getYear();
         TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
         TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
         TRANSACTIONS_JSON[A_O_T]["THIS->STRING: "] = this->getTransString();
-        // TRANSACTIONS_JSON[A_O_T]["ID: "] = 1 + (rand() % 50000);
-
         float temp_bal = USER_JSON["Balance"];
         USER_JSON["Balance"] = temp_bal - this->amount;
         USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
         recordDebits();
         // establishRanks();
-           for (int i = 0; i < 11; i++) {
-             USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i] ;
-            }
+        for (int i = 0; i < 11; i++)
+        {
+            USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
+        }
         return TRANSACTIONS_JSON.dump();
     }
 
@@ -245,8 +224,6 @@ private:
     float amount;
     bool recorded;
     bool ranked;
-    // 1 for credit, 0 for debit
-    bool creditORdebit;
 };
 
 class USER_HANDLE
@@ -259,13 +236,14 @@ public:
 
         if (CON_PARM_USER.compare("") == 0)
         {
-            USER_JSON = {{"MONTH_COUNTER", {0,0,0,0,0,0,0,0,0,0,0,0}},{"Name", "FirstName LastName"}, {"Username", "name"}, {"Password", ""}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
+            USER_JSON = {{"MONTH_COUNTER", {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, {"Name", "FirstName LastName"}, {"Username", "name"}, {"Password", ""}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
         }
         else
         {
             USER_JSON = json::parse(CON_PARM_USER);
-            for (int i = 0; i < 11; i++) {
-              MONTH_COUNT[i] =  USER_JSON["MONTH_COUNTER"][i];
+            for (int i = 0; i < 11; i++)
+            {
+                MONTH_COUNT[i] = USER_JSON["MONTH_COUNTER"][i];
             }
         }
         if (!(CON_PARM_USER.compare("") == 0))
@@ -277,7 +255,7 @@ public:
     void addBudget(float amount)
     {
         A_O_B = (USER_JSON["Budgets"] != NULL) ? USER_JSON["Budgets"].size() : 0;
-        //std::cout << A_O_B << std::endl;
+        // std::cout << A_O_B << std::endl;
         USER_JSON["Budgets"][A_O_B] = amount;
         recordDebits();
         float temp = USER_JSON["SumDebits"];
@@ -310,13 +288,14 @@ public:
 
     void setName(std::string name) { USER_JSON["Name"] = name; }
     void setUsername(std::string name) { USER_JSON["Username"] = name; }
-    void setPassword(std::string pswd) {
-        std::string temp = pswd; 
-        for (int i = 0; i < pswd.length(); i++) {
+    void setPassword(std::string pswd)
+    {
+        std::string temp = pswd;
+        for (int i = 0; i < pswd.length(); i++)
+        {
             temp[i] = (pswd[i] + 12);
         }
-         USER_JSON["Password"] = temp;
-       
+        USER_JSON["Password"] = temp;
     }
 
     std::string USERDUMP()
@@ -330,23 +309,24 @@ public:
         return TRANSACTIONS_JSON;
     }
 
-    bool checkPass(std::string check) {
-           std::string temp = USER_JSON["Password"]; 
-            std::string b_check = check;
-        for (int i = 0; i < check.length(); i++) {
+    bool checkPass(std::string check)
+    {
+        std::string temp = USER_JSON["Password"];
+        std::string b_check = check;
+        for (int i = 0; i < check.length(); i++)
+        {
             b_check[i] = (check[i] + 12);
         }
-         bool b = (b_check.compare(temp) == 0) ? true : false;
-         return b;
-       
+        bool b = (b_check.compare(temp) == 0) ? true : false;
+        return b;
     }
 
-    bool checkUsername(std::string check) {
-        std::string temp = USER_JSON["Username"]; 
-             bool b = (check.compare(temp) == 0) ? true : false;
-         return b;
+    bool checkUsername(std::string check)
+    {
+        std::string temp = USER_JSON["Username"];
+        bool b = (check.compare(temp) == 0) ? true : false;
+        return b;
     }
-
 
     std::string TRANSDUMP()
     {
@@ -355,7 +335,7 @@ public:
         return os.str();
     }
 
- std::string RANKSDUMP()
+    std::string RANKSDUMP()
     {
         std::ostringstream os;
         os << std::setw(4) << RANKS_JSON;
