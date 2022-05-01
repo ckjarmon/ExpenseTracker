@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         budgetText.setText("Budget: " + budget);
         scoreText.setText("Score: " + score);
 
+        showTop();
+
         // Button btn = findViewById(R.id.addExpense);
         // btn.setOnClickListener(new View.OnClickListener(){
         // @Override

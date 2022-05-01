@@ -47,7 +47,7 @@
         android:layout_height="56dp"
         android:background="#8C8017"
         android:backgroundTint="#99B616"
-        android:onClick="editFunds"
+        android:onClick="deleteExpense"
         android:text="Delete Expense"
         android:textColor="#000000"
         app:iconTint="#FFFFFF"

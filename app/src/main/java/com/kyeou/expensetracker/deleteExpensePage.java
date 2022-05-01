@@ -26,8 +26,15 @@ public class deleteExpensePage extends AppCompatActivity {
 
         Log.d("Test", idInput.getText().toString());
         deleteTrans(id);
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void exitPage(View view) throws IOException {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public native void deleteTrans(int i);
 }
