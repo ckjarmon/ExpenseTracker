@@ -120,6 +120,29 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genRe
 
 }
 
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_showTop(JNIEnv *env, jobject)
+{
+    //  establishRanks(day1, month1, year1, day2, month2, year2);
+    // establishRanks(env->GetStringUTFChars(month, nullptr));
+    // J31, F28, M31, A30, M31, J30, J31, A31, S30, O31, N30, D31
+
+    establishTop();
+
+
+    std::ostringstream os;
+
+    for (json::iterator it = TOP_JSON.begin(); it != TOP_JSON.end(); ++it) {
+        os << (*it)["THIS->STRING "] << "\n";
+    }
+    return env->NewStringUTF(os.str().c_str());
+
+}
+
+
+
+
+
 extern "C"
 JNIEXPORT jboolean JNICALL
 Java_com_kyeou_expensetracker_loginPage_checkPassword(JNIEnv *env, jobject thiz, jstring pass) {
