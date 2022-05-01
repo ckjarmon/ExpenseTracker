@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'expensetracker' library on application startup.
 
-    TextView userText, balanceText, budgetText, scoreText;
+    TextView userText, balanceText, budgetText, scoreText, expenseRanking;
 
     static {
         System.loadLibrary("expensetracker");
@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         budgetText.setText("Budget: " + budget);
         scoreText.setText("Score: " + score);
 
-        showTop();
+        expenseRanking = findViewById(R.id.expensesRanked);
+        expenseRanking.setText(showTop());
+
 
         // Button btn = findViewById(R.id.addExpense);
         // btn.setOnClickListener(new View.OnClickListener(){
