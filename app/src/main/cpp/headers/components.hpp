@@ -144,16 +144,18 @@ namespace GLOBAL_VARS
     {
 
          int mtr, ytr;
+         bool change = false;
         for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
         {   
             if ((*it)["ID"] == id)
             {
                 mtr = (*it)["Date->Month"];
                 ytr = (*it)["Date->Month"];
+                change = true;
                 TRANSACTIONS_JSON.erase(id - 1);
             }
         }
-        establishRanks(mtr, ytr);
+        if (change = true ) { establishRanks(mtr, ytr); }
         establishTop();
     } 
     

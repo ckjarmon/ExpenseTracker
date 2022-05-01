@@ -63,7 +63,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_
 }
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_SignupPage_userSignUp(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)
 {
-    //u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
+    // u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
     u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), "[]");
 
     return env->NewStringUTF(u->USERDUMP().c_str());
@@ -108,18 +108,16 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genRe
     // establishRanks(env->GetStringUTFChars(month, nullptr));
     // J31, F28, M31, A30, M31, J30, J31, A31, S30, O31, N30, D31
 
-        establishRanks( month1, y1);
-
+    establishRanks(month1, y1);
 
     std::ostringstream os;
 
-    for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it) {
+    for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
+    {
         os << (*it)["THIS->STRING "] << "\n";
     }
     return env->NewStringUTF(os.str().c_str());
-
 }
-
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_showTop(JNIEnv *env, jobject)
 {
@@ -129,32 +127,24 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_
 
     establishTop();
 
-
     std::ostringstream os;
 
-    for (json::iterator it = TOP_JSON.begin(); it != TOP_JSON.end(); ++it) {
+    for (json::iterator it = TOP_JSON.begin(); it != TOP_JSON.end(); ++it)
+    {
         os << (*it)["THIS->STRING "] << "\n";
     }
     return env->NewStringUTF(os.str().c_str());
-
 }
 
-
-
-
-
-extern "C"
-JNIEXPORT jboolean JNICALL
-Java_com_kyeou_expensetracker_loginPage_checkPassword(JNIEnv *env, jobject thiz, jstring pass) {
+extern "C" JNIEXPORT jboolean JNICALL Java_com_kyeou_expensetracker_loginPage_checkPassword(JNIEnv *env, jobject thiz, jstring pass)
+{
     return u->checkPass(env->GetStringUTFChars(pass, nullptr));
 }
-extern "C"
-JNIEXPORT jboolean JNICALL
-Java_com_kyeou_expensetracker_loginPage_checkUsername(JNIEnv *env, jobject thiz, jstring pass) {
+extern "C" JNIEXPORT jboolean JNICALL Java_com_kyeou_expensetracker_loginPage_checkUsername(JNIEnv *env, jobject thiz, jstring pass)
+{
     return u->checkUsername(env->GetStringUTFChars(pass, nullptr));
 }
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i) {
+extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i)
+{
     deleteTrans(i);
 }
