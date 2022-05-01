@@ -19,7 +19,7 @@
 
 using json = nlohmann::json;
 
-std::string months[] = {"January", "February", "March", "April", "May", "June",
+std::string months[] = {"January", "February", "March", "April", "May", "June", "July"
                         "August", "September", "October", "November", "December"};
 
 namespace GLOBAL_VARS
@@ -27,6 +27,7 @@ namespace GLOBAL_VARS
     json TRANSACTIONS_JSON, USER_JSON, RANKS_JSON;
     int A_O_T, A_O_B, A_O_R = 0;
     float global_debit_bal;
+    int MONTH_COUNT[] = {0,0,0,0,0,0,0,0,0,0,0,0};
     bool isbetween(int d, int m, int y, int day1, int month1, int year1, int day2, int month2, int year2)
     {
         return ((d >= day1 && d <= day2) && (m >= month1 && m <= month2) && (y >= year1 && y <= year2));
@@ -71,7 +72,7 @@ namespace GLOBAL_VARS
         return (b - global_debit_bal);
     }
 
-    void establishRanks(int day1, int month1, int year1, int day2, int month2, int year2)
+    void establishRanks(int month1, int year1)
     {
         RANKS_JSON.clear();
         A_O_R = 0;
@@ -79,13 +80,14 @@ namespace GLOBAL_VARS
         float curr_max = std::numeric_limits<float>::min();
 
         int ranked = 0;
-
-        while (ranked < 10)
+        int max_rankings = USER_JSON["MONTH_COUNTER"][month1 - 1];
+        while (ranked < max_rankings)
         {
             curr_max = std::numeric_limits<float>::min();
             for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
             {
-                if ((*it)["Amount: "] >= curr_max && (*it)["Amount: "] < static_max && isbetween((*it)["Date->Day: "], (*it)["Date->Month: "], (*it)["Date->Year: "], day1, month1, year1, day2, month2, year2))
+                
+                if ((*it)["Amount: "] >= curr_max && (*it)["Amount: "] < static_max && ((*it)["Date->Month: "] == month1)  && ((*it)["Date->Year: "] == year1))
                 {
                     RANKS_JSON[A_O_R] = (*it);
                     curr_max = (*it)["Amount: "];
@@ -96,10 +98,11 @@ namespace GLOBAL_VARS
             A_O_R = RANKS_JSON.size();
             ranked++;
         } // end while
+        /*
         for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
         {
             std::cout << (*it)["THIS->STRING: "] << std::endl;
-        }
+        } */
     }
 
 }
@@ -212,6 +215,10 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Name: "] = this->name;
         TRANSACTIONS_JSON[A_O_T]["Date: "] = this->date->getDateString();
         TRANSACTIONS_JSON[A_O_T]["Date->Month: "] = this->date->getMonth();
+       // int ti = USER_JSON["MONTH_COUNTER"][this->date->getMonth() - 1];
+       
+        (MONTH_COUNT[this->date->getMonth() - 1])++;
+        // std::cout << this->date->getMonth() - 1 << "---" << USER_JSON["MONTH_COUNTER"][this->date->getMonth() - 1] << std::endl;
         TRANSACTIONS_JSON[A_O_T]["Date->Day: "] = this->date->getDay();
         TRANSACTIONS_JSON[A_O_T]["Date->Year: "] = this->date->getYear();
         TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
@@ -224,6 +231,9 @@ public:
         USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
         recordDebits();
         // establishRanks();
+           for (int i = 0; i < 11; i++) {
+             USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i] ;
+            }
         return TRANSACTIONS_JSON.dump();
     }
 
@@ -249,11 +259,14 @@ public:
 
         if (CON_PARM_USER.compare("") == 0)
         {
-            USER_JSON = {{"Name", "FirstName LastName"}, {"Username", "name"}, {"Password", ""}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
+            USER_JSON = {{"MONTH_COUNTER", {0,0,0,0,0,0,0,0,0,0,0,0}},{"Name", "FirstName LastName"}, {"Username", "name"}, {"Password", ""}, {"A_O_T", 0}, {"Budgets", {}}, {"Balance", 0}, {"Scores", {}}, {"SumDebits", 0}};
         }
         else
         {
             USER_JSON = json::parse(CON_PARM_USER);
+            for (int i = 0; i < 11; i++) {
+              MONTH_COUNT[i] =  USER_JSON["MONTH_COUNTER"][i];
+            }
         }
         if (!(CON_PARM_USER.compare("") == 0))
         {

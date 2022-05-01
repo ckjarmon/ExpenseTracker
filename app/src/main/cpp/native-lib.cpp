@@ -130,45 +130,8 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genRe
     // establishRanks(env->GetStringUTFChars(month, nullptr));
     // J31, F28, M31, A30, M31, J30, J31, A31, S30, O31, N30, D31
 
-    switch (month1)
-    {
-    case 1:
-        establishRanks(1, 1, y1, 31, 1, y1);
-        break;
-    case 2:
-        establishRanks(1, 2, y1, 28, 2, y1);
-        break;
-    case 3:
-        establishRanks(1, 3, y1, 31, 3, y1);
-        break;
-    case 4:
-        establishRanks(1, 4, y1, 30, 4, y1);
-        break;
-    case 5:
-        establishRanks(1, 5, y1, 31, 5, y1);
-        break;
-    case 6:
-        establishRanks(1, 6, y1, 30, 6, y1);
-        break;
-    case 7:
-        establishRanks(1, 7, y1, 31, 7, y1);
-        break;
-    case 8:
-        establishRanks(1, 8, y1, 31, 8, y1);
-        break;
-    case 9:
-        establishRanks(1, 9, y1, 30, 9, y1);
-        break;
-    case 10:
-        establishRanks(1, 10, y1, 31, 10, y1);
-        break;
-    case 11:
-        establishRanks(1, 11, y1, 30, 11, y1);
-        break;
-    case 12:
-        establishRanks(1, 12, y1, 31, 12, y1);
-        break;
-    }
+        establishRanks( month1, y1);
+
 
     std::ostringstream os;
 
