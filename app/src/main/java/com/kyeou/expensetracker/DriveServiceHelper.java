@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 
 public class DriveServiceHelper {
     private final Executor mExecutor = Executors.newSingleThreadExecutor();
-    private Drive mDriveService;
+    private final Drive mDriveService;
 
     public DriveServiceHelper(Drive mDriveService) {
         this.mDriveService = mDriveService;
