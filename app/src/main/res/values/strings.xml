@@ -56,6 +56,6 @@
         <item>2030</item>
     </string-array>
 
-<!-- add the client ID to test-->
+    <!-- add the client ID to test-->
     <string name="server_client_id"></string>
 </resources>

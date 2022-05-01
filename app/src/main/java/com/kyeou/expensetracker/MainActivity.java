@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void deleteExpense(View View){
+        Intent intent = new Intent(this, deleteExpensePage.class);
+        startActivity(intent);
+    }
+
     /**
      * A native method that is implemented by the 'expensetracker' native library,
      * which is packaged with this application.
