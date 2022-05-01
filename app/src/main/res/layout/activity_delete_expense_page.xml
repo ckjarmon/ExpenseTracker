@@ -13,7 +13,7 @@
         android:layout_height="45dp"
         android:backgroundTint="#00e39f"
         android:onClick="gatherInput"
-        android:text="@string/add"
+        android:text="Delete Expense"
         android:textColor="#6D4C41"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
