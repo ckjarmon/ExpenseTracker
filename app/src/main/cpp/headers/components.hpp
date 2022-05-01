@@ -341,6 +341,12 @@ public:
        
     }
 
+    bool checkUsername(std::string check) {
+        std::string temp = USER_JSON["Username"]; 
+             bool b = (check.compare(temp) == 0) ? true : false;
+         return b;
+    }
+
 
     std::string TRANSDUMP()
     {

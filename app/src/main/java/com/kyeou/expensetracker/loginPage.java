@@ -60,7 +60,7 @@ public class loginPage extends AppCompatActivity {
 
 
 
-if (checkPassword(password)) {
+if (checkPassword(password) && checkUsername(username)) {
     Intent intent = new Intent(this, MainActivity.class);
     startActivity(intent);
 }//end if
@@ -76,7 +76,7 @@ if (checkPassword(password)) {
 
 
 public native boolean checkPassword(String pass);
-
+    public native boolean checkUsername(String pass);
 
 
 }
