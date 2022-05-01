@@ -56,8 +56,7 @@ if (checkPassword(password) && checkUsername(username)) {
     }
 
 
-public native boolean checkPassword(String pass);
-    public native boolean checkUsername(String pass);
+public native boolean checkPassword(String pass);public native boolean checkUsername(String pass);
 
 
 }

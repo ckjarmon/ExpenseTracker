@@ -19,7 +19,7 @@
 
 using json = nlohmann::json;
 
-std::string months[] = {"January", "February", "March", "April", "May", "June", "July"
+std::string months[] = {"January", "February", "March", "April", "May", "June", "July",
                                                                                 "August",
                         "September", "October", "November", "December"};
 
@@ -29,10 +29,6 @@ namespace GLOBAL_VARS
     int A_O_T, A_O_B, A_O_R = 0;
     float global_debit_bal;
     int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    bool isbetween(int d, int m, int y, int day1, int month1, int year1, int day2, int month2, int year2)
-    {
-        return ((d >= day1 && d <= day2) && (m >= month1 && m <= month2) && (y >= year1 && y <= year2));
-    }
     std::string recordDebits()
     {
         global_debit_bal = 0.0;
@@ -44,7 +40,7 @@ namespace GLOBAL_VARS
         {
             if ((*it)["ATTRIBUTE->RECORDED_BOOL: "] == false)
             {
-                // std::cout << (*it)["Amount: "] << std::endl;
+                
                 float as = (*it)["Amount: "];
                 global_debit_bal += as;
                 (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
@@ -145,9 +141,8 @@ public:
 
     std::string getDateString()
     {
-        // printf("Print Date Test: %s, %d, %d", months[date.getMonth()].substr(0, 3), date.getDay(),date.getYear());
+      
         std::ostringstream os;
-        // os << "Print Date Test: ";
         os << months[this->getMonth() - 1].substr(0, 3);
         os << " ";
         os << this->getDay();
