@@ -150,14 +150,15 @@
 
     <TextView
         android:id="@+id/expensesRanked"
-        android:layout_width="345dp"
-        android:layout_height="235dp"
+        android:layout_width="365dp"
+        android:layout_height="236dp"
+        android:textColor="#FF0000"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintVertical_bias="0.658" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

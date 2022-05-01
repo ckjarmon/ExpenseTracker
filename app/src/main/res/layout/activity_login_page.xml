@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/errorText2"
-        android:layout_width="220dp"
-        android:layout_height="23dp"
+        android:layout_width="322dp"
+        android:layout_height="22dp"
         android:textAlignment="center"
         android:textColor="#E30000"
         app:layout_constraintBottom_toBottomOf="parent"
