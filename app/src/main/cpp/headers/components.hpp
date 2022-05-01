@@ -151,12 +151,18 @@ namespace GLOBAL_VARS
             {
                 
                 mtr = (*it)["Date->Month"];
+                int y = USER_JSON["MONTH_COUNTER"][mtr - 1];
+                USER_JSON["MONTH_COUNTER"][mtr - 1] = (y-1);
                 ytr = (*it)["Date->Month"];
                 int t = USER_JSON["A_O_T"];
                  USER_JSON["A_O_T"] = (t - 1);
                 change = true;
-                TRANSACTIONS_JSON.erase(id - 1);
+                float uy =   USER_JSON["Balance"];
+                float ui = (*it)["Amount"];
+                 USER_JSON["Balance"] = uy + ui;
+                TRANSACTIONS_JSON.erase(it);
                 recordDebits();
+               
                 break;
             }
         }
