@@ -154,6 +154,7 @@ namespace GLOBAL_VARS
             }
         }
         establishRanks(mtr, ytr);
+        establishTop();
     } 
     
 

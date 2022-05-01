@@ -153,3 +153,8 @@ JNIEXPORT jboolean JNICALL
 Java_com_kyeou_expensetracker_loginPage_checkUsername(JNIEnv *env, jobject thiz, jstring pass) {
     return u->checkUsername(env->GetStringUTFChars(pass, nullptr));
 }
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i) {
+    deleteTrans(i);
+}
