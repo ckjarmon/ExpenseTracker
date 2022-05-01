@@ -86,5 +86,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public native String getUSERINFO(String stringCALL);
     public native String userLogIn(String USER_INFO_JSON, String TRANS_INFO_JSON);
+    public native String showTop();
     // public native String stringFromJNI2();
 }

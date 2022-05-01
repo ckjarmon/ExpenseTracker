@@ -20,15 +20,16 @@
 using json = nlohmann::json;
 
 std::string months[] = {"January", "February", "March", "April", "May", "June", "July",
-                                                                                "August",
-                        "September", "October", "November", "December"};
+                        "August", "September", "October", "November", "December"};
 
 namespace GLOBAL_VARS
 {
-    json TRANSACTIONS_JSON, USER_JSON, RANKS_JSON;
-    int A_O_T, A_O_B, A_O_R = 0;
+    json TRANSACTIONS_JSON, USER_JSON, RANKS_JSON, TOP_JSON;
+    int A_O_T, A_O_B, A_O_R = 0, T_O_A_T = 0;
     float global_debit_bal;
     int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    
+
     std::string recordDebits()
     {
         global_debit_bal = 0.0;
@@ -38,12 +39,11 @@ namespace GLOBAL_VARS
 
         for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
         {
-            if ((*it)["ATTRIBUTE->RECORDED_BOOL: "] == false)
+            if ((*it)["ATTRIBUTE->RECORDED_BOOL"] == false)
             {
-                
-                float as = (*it)["Amount: "];
+                float as = (*it)["Amount"];
                 global_debit_bal += as;
-                (*it)["ATTRIBUTE->RECORDED_BOOL: "] = true;
+                (*it)["ATTRIBUTE->RECORDED_BOOL"] = true;
                 // itCount++;
             } // end if
         }     // end for
@@ -84,10 +84,10 @@ namespace GLOBAL_VARS
             for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
             {
 
-                if ((*it)["Amount: "] >= curr_max && (*it)["Amount: "] < static_max && ((*it)["Date->Month: "] == month1) && ((*it)["Date->Year: "] == year1))
+                if ((*it)["Amount"] >= curr_max && (*it)["Amount"] < static_max && ((*it)["Date->Month"] == month1) && ((*it)["Date->Year"] == year1) && (*it)["Ranked"] != true)
                 {
                     RANKS_JSON[A_O_R] = (*it);
-                    curr_max = (*it)["Amount: "];
+                    curr_max = (*it)["Amount"];
                 }
             }
             static_max = curr_max;
@@ -101,6 +101,61 @@ namespace GLOBAL_VARS
             std::cout << (*it)["THIS->STRING: "] << std::endl;
         } */
     }
+
+
+
+
+       void establishTop()
+    {
+        TOP_JSON.clear();
+        T_O_A_T = 0;
+        float static_max = std::numeric_limits<float>::max();
+        float curr_max = std::numeric_limits<float>::min();
+
+        int ranked = 0;
+       // int max_rankings = USER_JSON["MONTH_COUNTER"][month1 - 1];
+       
+        int max_rankings = (TRANSACTIONS_JSON.size() < 10) ? TRANSACTIONS_JSON.size()  : 10;
+       // std::cout << "TOP ALL TIME AMOUNT " << max_rankings << std::endl;
+        while (ranked < max_rankings)
+        {
+            curr_max = std::numeric_limits<float>::min();
+            for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+            {
+
+                if ((*it)["Amount"] >= curr_max && (*it)["Amount"] < static_max && (*it)["T_Ranked"] != true)
+                {
+                    TOP_JSON[T_O_A_T] = (*it);
+                    curr_max = (*it)["Amount"];
+                }
+            }
+            static_max = curr_max;
+            TOP_JSON[T_O_A_T]["T_Ranked"] = true;
+            T_O_A_T = TOP_JSON.size();
+            ranked++;
+        } // end while
+        /*
+        for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
+        {
+            std::cout << (*it)["THIS->STRING: "] << std::endl;
+        } */
+    }
+    void deleteTrans(int id)
+    {
+
+         int mtr, ytr;
+        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+        {   
+            if ((*it)["ID"] == id)
+            {
+                mtr = (*it)["Date->Month"];
+                ytr = (*it)["Date->Month"];
+                TRANSACTIONS_JSON.erase(id - 1);
+            }
+        }
+        establishRanks(mtr, ytr);
+    } 
+    
 
 }
 
@@ -141,7 +196,7 @@ public:
 
     std::string getDateString()
     {
-      
+
         std::ostringstream os;
         os << months[this->getMonth() - 1].substr(0, 3);
         os << " ";
@@ -174,12 +229,14 @@ public:
     std::string getTransString()
     {
         std::ostringstream os;
-        os << "Name: ";
-        os << name;
+        os << "ID: ";
+        os << this->id;
+        os << " | Name: ";
+        os << this->name;
         os << " | Date: ";
         os << this->date->getDateString();
         os << " | Amount: ";
-        os << amount;
+        os << this->amount;
 
         return os.str();
     }
@@ -190,15 +247,19 @@ public:
     {
         TRANSACTIONS_JSON = json::parse(t);
         A_O_T = TRANSACTIONS_JSON.size();
-        TRANSACTIONS_JSON[A_O_T]["Name: "] = this->name;
-        TRANSACTIONS_JSON[A_O_T]["Date: "] = this->date->getDateString();
-        TRANSACTIONS_JSON[A_O_T]["Date->Month: "] = this->date->getMonth();
+        TRANSACTIONS_JSON[A_O_T]["Name"] = this->name;
+        TRANSACTIONS_JSON[A_O_T]["Date"] = this->date->getDateString();
+        TRANSACTIONS_JSON[A_O_T]["Date->Month"] = this->date->getMonth();
+        this->id = (A_O_T + 1);
+        TRANSACTIONS_JSON[A_O_T]["ID"] = this->id;
         (MONTH_COUNT[this->date->getMonth() - 1])++;
-        TRANSACTIONS_JSON[A_O_T]["Date->Day: "] = this->date->getDay();
-        TRANSACTIONS_JSON[A_O_T]["Date->Year: "] = this->date->getYear();
-        TRANSACTIONS_JSON[A_O_T]["Amount: "] = this->amount;
-        TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL: "] = this->recorded;
-        TRANSACTIONS_JSON[A_O_T]["THIS->STRING: "] = this->getTransString();
+        TRANSACTIONS_JSON[A_O_T]["Date->Day"] = this->date->getDay();
+        TRANSACTIONS_JSON[A_O_T]["Date->Year"] = this->date->getYear();
+        TRANSACTIONS_JSON[A_O_T]["Amount"] = this->amount;
+        TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL"] = this->recorded;
+        TRANSACTIONS_JSON[A_O_T]["T_Ranked"] = false;
+        TRANSACTIONS_JSON[A_O_T]["Ranked"] = false;
+        TRANSACTIONS_JSON[A_O_T]["THIS->STRING"] = this->getTransString();
         float temp_bal = USER_JSON["Balance"];
         USER_JSON["Balance"] = temp_bal - this->amount;
         USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
@@ -219,6 +280,7 @@ private:
     float amount;
     bool recorded;
     bool ranked;
+    int id;
 };
 
 class USER_HANDLE
@@ -334,6 +396,13 @@ public:
     {
         std::ostringstream os;
         os << std::setw(4) << RANKS_JSON;
+        return os.str();
+    }
+
+    std::string TOPDUMP()
+    {
+        std::ostringstream os;
+        os << std::setw(4) << TOP_JSON;
         return os.str();
     }
 
