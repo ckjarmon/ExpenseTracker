@@ -268,10 +268,12 @@ public:
         USER_JSON["A_O_T"] = TRANSACTIONS_JSON.size();
         recordDebits();
         // establishRanks();
+
         for (int i = 0; i < 11; i++)
         {
             USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
         }
+        establishTop();
         return TRANSACTIONS_JSON.dump();
     }
 
