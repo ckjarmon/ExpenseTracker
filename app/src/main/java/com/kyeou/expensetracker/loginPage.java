@@ -60,10 +60,13 @@ public class loginPage extends AppCompatActivity {
 
 
 
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
+if (checkPassword(password)) {
+    Intent intent = new Intent(this, MainActivity.class);
+    startActivity(intent);
+}//end if
+        else {
+            //Micheal: create pop telling user shit is wrong
+        }
     }
 
     public void signUp(View view) throws IOException {
@@ -72,7 +75,7 @@ public class loginPage extends AppCompatActivity {
     }
 
 
-
+public native boolean checkPassword(String pass);
 
 
 

@@ -141,3 +141,9 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genRe
     return env->NewStringUTF(os.str().c_str());
 
 }
+
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_com_kyeou_expensetracker_loginPage_checkPassword(JNIEnv *env, jobject thiz, jstring pass) {
+    return u->checkPass(env->GetStringUTFChars(pass, nullptr));
+}

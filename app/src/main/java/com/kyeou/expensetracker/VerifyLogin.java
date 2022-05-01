@@ -33,6 +33,7 @@ public class VerifyLogin {
     // this method will verify if the the username and password given by the user
     // matches what was
     // found in the database
+    /*
     public boolean isUsernameAndPassword(String username, String password) throws IOException {
         getCredentials();
         if (!this.username.equals(username) || !this.password.equals(password)) {
@@ -41,6 +42,6 @@ public class VerifyLogin {
         }
         loadProfile(username);
         return true;
-    }
+    } */
     public native String userLogIn(String USER_INFO_JSON, String TRANS_INFO_JSON);
 }
