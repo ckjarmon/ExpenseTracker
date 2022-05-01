@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         scoreText.setText("Score: " + score);
 
         expenseRanking = findViewById(R.id.expensesRanked);
-        expenseRanking.setText(showTop());
+        expenseRanking.setText(showTop().toString());
 
 
         // Button btn = findViewById(R.id.addExpense);
