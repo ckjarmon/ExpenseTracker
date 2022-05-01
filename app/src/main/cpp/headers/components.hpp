@@ -140,7 +140,7 @@ namespace GLOBAL_VARS
             std::cout << (*it)["THIS->STRING: "] << std::endl;
         } */
     }
-    void deleteTrans(int id)
+    std::string deleteTrans(int id)
     {
 
          int mtr, ytr;
@@ -149,14 +149,20 @@ namespace GLOBAL_VARS
         {   
             if ((*it)["ID"] == id)
             {
+                
                 mtr = (*it)["Date->Month"];
                 ytr = (*it)["Date->Month"];
+                int t = USER_JSON["A_O_T"];
+                 USER_JSON["A_O_T"] = (t - 1);
                 change = true;
                 TRANSACTIONS_JSON.erase(id - 1);
+                recordDebits();
+                break;
             }
         }
         if (change = true ) { establishRanks(mtr, ytr); }
         establishTop();
+        return TRANSACTIONS_JSON.dump();
     } 
     
 

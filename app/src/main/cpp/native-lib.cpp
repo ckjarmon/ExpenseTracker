@@ -101,6 +101,11 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_PersonalInfor
     return env->NewStringUTF(u->USERDUMP().c_str());
 }
 
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_getUSERSJSON(JNIEnv *env, jobject)
+{
+    return env->NewStringUTF(u->USERDUMP().c_str());
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
 {
@@ -131,7 +136,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_
 
     for (json::iterator it = TOP_JSON.begin(); it != TOP_JSON.end(); ++it)
     {
-        os << (*it)["THIS->STRING "] << "\n";
+        os << (*it)["THIS->STRING"] << "\n";
     }
     return env->NewStringUTF(os.str().c_str());
 }
@@ -144,7 +149,7 @@ extern "C" JNIEXPORT jboolean JNICALL Java_com_kyeou_expensetracker_loginPage_ch
 {
     return u->checkUsername(env->GetStringUTFChars(pass, nullptr));
 }
-extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i)
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i)
 {
-    deleteTrans(i);
+    return env->NewStringUTF(deleteTrans(i).c_str());
 }

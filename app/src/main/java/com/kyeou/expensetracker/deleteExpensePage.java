@@ -25,7 +25,8 @@ public class deleteExpensePage extends AppCompatActivity {
         id = Integer.parseInt(idInput.getText().toString());
 
         Log.d("Test", idInput.getText().toString());
-        deleteTrans(id);
+       new WriteReadHandle().WriteHandle("transactions.json",deleteTrans(id));
+        new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -36,5 +37,6 @@ public class deleteExpensePage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public native void deleteTrans(int i);
+    public native String deleteTrans(int i);
+    public native String getUSERSJSON();
 }
