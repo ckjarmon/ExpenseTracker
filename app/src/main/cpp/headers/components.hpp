@@ -36,7 +36,10 @@ namespace GLOBAL_VARS
         int c = 0;
         // TRANSACTIONS_JSON = json::parse(trans_parm);
         // USER_JSON = json::parse(user_parm);
-
+for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+        {
+            (*it)["ATTRIBUTE->RECORDED_BOOL"] = false;
+        }
         for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
         {
             if ((*it)["ATTRIBUTE->RECORDED_BOOL"] == false)
@@ -151,8 +154,9 @@ namespace GLOBAL_VARS
             {
                 
                 mtr = (*it)["Date->Month"];
-                int y = USER_JSON["MONTH_COUNTER"][mtr - 1];
-                USER_JSON["MONTH_COUNTER"][mtr - 1] = (y-1);
+                //int y = USER_JSON["MONTH_COUNTER"][mtr - 1];
+                //USER_JSON["MONTH_COUNTER"][mtr - 1] = (y-1);
+                (MONTH_COUNT[mtr - 1])--;
                 ytr = (*it)["Date->Month"];
                 int t = USER_JSON["A_O_T"];
                  USER_JSON["A_O_T"] = (t - 1);
@@ -160,6 +164,10 @@ namespace GLOBAL_VARS
                 float uy =   USER_JSON["Balance"];
                 float ui = (*it)["Amount"];
                  USER_JSON["Balance"] = uy + ui;
+                  for (int i = 0; i < 12; i++)
+        {
+            USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
+        }
                 TRANSACTIONS_JSON.erase(it);
                 recordDebits();
                
@@ -267,11 +275,13 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Date->Month"] = this->date->getMonth();
         this->id = (A_O_T + 1);
         TRANSACTIONS_JSON[A_O_T]["ID"] = this->id;
+       //std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
         (MONTH_COUNT[this->date->getMonth() - 1])++;
+        //std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
         TRANSACTIONS_JSON[A_O_T]["Date->Day"] = this->date->getDay();
         TRANSACTIONS_JSON[A_O_T]["Date->Year"] = this->date->getYear();
         TRANSACTIONS_JSON[A_O_T]["Amount"] = this->amount;
-        TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL"] = this->recorded;
+        TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL"] = false;
         TRANSACTIONS_JSON[A_O_T]["T_Ranked"] = false;
         TRANSACTIONS_JSON[A_O_T]["Ranked"] = false;
         TRANSACTIONS_JSON[A_O_T]["THIS->STRING"] = this->getTransString();
@@ -281,9 +291,10 @@ public:
         recordDebits();
         // establishRanks();
 
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 12; i++)
         {
             USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
+            //std::cout << MONTH_COUNT[i] << std::endl;
         }
         establishTop();
         return TRANSACTIONS_JSON.dump();
