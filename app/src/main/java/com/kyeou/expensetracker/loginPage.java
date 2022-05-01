@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,6 +21,7 @@ public class loginPage extends AppCompatActivity {
     String username, password;
 
     EditText usernameInput, passwordInput;
+    TextView errorText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class loginPage extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.usernameInput3);
         passwordInput = findViewById(R.id.passwordInput);
+        errorText = findViewById(R.id.errorText2);
 
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
@@ -65,7 +68,7 @@ if (checkPassword(password) && checkUsername(username)) {
     startActivity(intent);
 }//end if
         else {
-            //Micheal: create pop telling user shit is wrong
+            errorText.setText("Username or Password is Incorrect");
         }
     }
 
