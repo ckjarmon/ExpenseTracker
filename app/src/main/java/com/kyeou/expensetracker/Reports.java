@@ -82,7 +82,15 @@ public class Reports extends AppCompatActivity {
     }
 
 
+    public void exitPage(View view) {
+        Intent intent = new Intent(this, UserProfile.class);
+        startActivity(intent);
+    }
 
+    public void resultsPage(View view) {
+        Intent intent = new Intent(this, ReportResult.class);
+        startActivity(intent);
+    }
 
 
 

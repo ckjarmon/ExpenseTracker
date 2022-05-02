@@ -109,7 +109,7 @@
         android:id="@+id/generateReportButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="generate"
+        android:onClick="resultsPage"
         android:text="Generate Report"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
