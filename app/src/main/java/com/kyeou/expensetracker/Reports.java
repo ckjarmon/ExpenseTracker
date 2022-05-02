@@ -95,7 +95,7 @@ public class Reports extends AppCompatActivity {
             public void onClick(View v) {
                 // calling method to
                 // generate our PDF file.
-                generatePDF();
+                //generatePDF();
             }
         });
 

@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
+            android:name=".ReportResult"
+            android:exported="false" />
+        <activity
             android:name=".deleteExpensePage"
             android:exported="false" />
         <activity
