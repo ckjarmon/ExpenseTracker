@@ -174,7 +174,7 @@ for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(
                 break;
             }
         }
-        if (change = true ) { establishRanks(mtr, ytr); }
+        if (change == true ) { establishRanks(mtr, ytr); }
         establishTop();
         return TRANSACTIONS_JSON.dump();
     } 
