@@ -43,16 +43,18 @@ import java.io.IOException;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-public class Reports extends AppCompatActivity {
 
+public class Reports extends AppCompatActivity {
+    //variables
     Spinner monthSelection, yearSelection;
     String month, year;
     int pageHeight = 1120;
     int pagewidth = 792;
+    Button generatePDFbtn;
 
     // creating a bitmap variable
     // for storing our images
-    Bitmap bmp, scaledbmp;
+    Bitmap bmp, logo;
 
     // constant code for runtime permissions
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -76,8 +78,9 @@ public class Reports extends AppCompatActivity {
         monthsItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSelection.setAdapter(yearItems);
 
-        //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.gfgimage);
-       // scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
+        generatePDFbtn = findViewById(R.id.generateReportButton);
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_report);
+        logo = Bitmap.createScaledBitmap(bmp, 140, 140, false);
 
         // below code is used for
         // checking our permissions.
@@ -87,9 +90,18 @@ public class Reports extends AppCompatActivity {
             requestPermission();
         }
 
+        generatePDFbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calling method to
+                // generate our PDF file.
+                generatePDF();
+            }
+        });
+
     }
 
-    public void generate(View view) throws IOException{
+    public void generatePDF() {
 
         month = monthSelection.getSelectedItem().toString();
         year = yearSelection.getSelectedItem().toString();
@@ -114,11 +126,11 @@ public class Reports extends AppCompatActivity {
         // in which we will be passing our pageWidth,
         // pageHeight and number of pages and after that
         // we are calling it to create our PDF.
-        PdfDocument.PageInfo mypageInfo = new PdfDocument.PageInfo.Builder(pagewidth, pageHeight, 1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(pagewidth, pageHeight, 1).create();
 
         // below line is used for setting
         // start page for our PDF file.
-        PdfDocument.Page myPage = pdfDocument.startPage(mypageInfo);
+        PdfDocument.Page myPage = pdfDocument.startPage(pageInfo);
 
         // creating a variable for canvas
         // from our page of PDF.
@@ -130,7 +142,7 @@ public class Reports extends AppCompatActivity {
         // second parameter is position from left
         // third parameter is position from top and last
         // one is our variable for paint.
-        canvas.drawBitmap(scaledbmp, 56, 40, paint);
+        canvas.drawBitmap(logo, 56, 40, paint);
 
         // below line is used for adding typeface for
         // our text which we will be adding in our PDF file.
@@ -151,19 +163,19 @@ public class Reports extends AppCompatActivity {
 
 
         canvas.drawText("Monthly Report", 209, 100, title);
-        canvas.drawText(month,209, 80, title);
+        canvas.drawText(month, 209, 80, title);
         canvas.drawText(year, 209, 80, title);
 
         // similarly we are creating another text and in this
         // we are aligning this text to center of our PDF file.
         title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         title.setColor(ContextCompat.getColor(this, R.color.purple_200));
-        title.setTextSize(15);
+        title.setTextSize(20);
 
         // below line is used for setting
         // our text to center of PDF.
         title.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText(genReport(Integer.parseInt(month), Integer.parseInt(year)), 396, 560, title);
+        canvas.drawText("TRANSACTIONS", 396, 560, title);
 
         // after adding all attributes to our
         // PDF file we will be finishing our page.
@@ -171,7 +183,7 @@ public class Reports extends AppCompatActivity {
 
         // below line is used to set the name of
         // our PDF file and its path.
-        File file = new File(Environment.getExternalStorageDirectory(), "GFG.pdf");
+        File file = new File(Environment.getExternalStorageDirectory(), "Report.pdf");
 
         try {
             // after creating a file name we will
@@ -190,13 +202,7 @@ public class Reports extends AppCompatActivity {
         // location we are closing our PDF file.
         pdfDocument.close();
 
-
-
-
-
-
     }
-
 
 
     public void exitPage(View view) throws IOException {
@@ -237,7 +243,4 @@ public class Reports extends AppCompatActivity {
             }
         }
     }
-
-
-public native String genReport(int m, int y);
 }

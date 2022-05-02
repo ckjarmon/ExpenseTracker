@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/generateReportButton"
         android:layout_width="193dp"
         android:layout_height="109dp"
         android:text="UPLOAD PDF"
