@@ -31,6 +31,11 @@ public class loginPage extends AppCompatActivity {
 
     public void logIn(View view) throws IOException {
 
+        try {
+            new WriteReadHandle().WriteHandle("user.json", userLogIn(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         usernameInput = findViewById(R.id.usernameInput3);
         passwordInput = findViewById(R.id.passwordInput);
@@ -58,6 +63,6 @@ if (checkPassword(password) && checkUsername(username)) {
 
 public native boolean checkPassword(String pass);
     public native boolean checkUsername(String pass);
-
+    public native String userLogIn(String USER_INFO_JSON, String TRANS_INFO_JSON);
 
 }

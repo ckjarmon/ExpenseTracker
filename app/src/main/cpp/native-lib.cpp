@@ -56,6 +56,12 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_VerifyLogin_u
     u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
     return env->NewStringUTF(u->USERDUMP().c_str());
 }
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLogIn(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)
+{
+    u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
+    return env->NewStringUTF(u->USERDUMP().c_str());
+}
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_userLogIn(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)
 {
     u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));

@@ -75,8 +75,9 @@ public class Reports extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.years));
         monthsItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSelection.setAdapter(yearItems);
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.gfgimage);
-        scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
+
+        //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.gfgimage);
+       // scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
 
         // below code is used for
         // checking our permissions.
@@ -99,7 +100,7 @@ public class Reports extends AppCompatActivity {
         Log.d("test", year);
 
 
-// creating an object variable
+        // creating an object variable
         // for our PDF document.
         PdfDocument pdfDocument = new PdfDocument();
 

@@ -28,7 +28,6 @@ namespace GLOBAL_VARS
     int A_O_T, A_O_B, A_O_R = 0, T_O_A_T = 0;
     float global_debit_bal;
     int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    
 
     std::string recordDebits()
     {
@@ -36,7 +35,7 @@ namespace GLOBAL_VARS
         int c = 0;
         // TRANSACTIONS_JSON = json::parse(trans_parm);
         // USER_JSON = json::parse(user_parm);
-for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
+        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
         {
             (*it)["ATTRIBUTE->RECORDED_BOOL"] = false;
         }
@@ -105,10 +104,7 @@ for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(
         } */
     }
 
-
-
-
-       void establishTop()
+    void establishTop()
     {
         TOP_JSON.clear();
         T_O_A_T = 0;
@@ -116,10 +112,10 @@ for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(
         float curr_max = std::numeric_limits<float>::min();
 
         int ranked = 0;
-       // int max_rankings = USER_JSON["MONTH_COUNTER"][month1 - 1];
-       
-        int max_rankings = (TRANSACTIONS_JSON.size() < 10) ? TRANSACTIONS_JSON.size()  : 10;
-       // std::cout << "TOP ALL TIME AMOUNT " << max_rankings << std::endl;
+        // int max_rankings = USER_JSON["MONTH_COUNTER"][month1 - 1];
+
+        int max_rankings = (TRANSACTIONS_JSON.size() < 10) ? TRANSACTIONS_JSON.size() : 10;
+        // std::cout << "TOP ALL TIME AMOUNT " << max_rankings << std::endl;
         while (ranked < max_rankings)
         {
             curr_max = std::numeric_limits<float>::min();
@@ -146,39 +142,41 @@ for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(
     std::string deleteTrans(int id)
     {
 
-         int mtr, ytr;
-         bool change = false;
+        int mtr, ytr;
+        bool change = false;
         for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)
-        {   
+        {
             if ((*it)["ID"] == id)
             {
-                
+
                 mtr = (*it)["Date->Month"];
-                //int y = USER_JSON["MONTH_COUNTER"][mtr - 1];
-                //USER_JSON["MONTH_COUNTER"][mtr - 1] = (y-1);
+                // int y = USER_JSON["MONTH_COUNTER"][mtr - 1];
+                // USER_JSON["MONTH_COUNTER"][mtr - 1] = (y-1);
                 (MONTH_COUNT[mtr - 1])--;
                 ytr = (*it)["Date->Month"];
                 int t = USER_JSON["A_O_T"];
-                 USER_JSON["A_O_T"] = (t - 1);
+                USER_JSON["A_O_T"] = (t - 1);
                 change = true;
-                float uy =   USER_JSON["Balance"];
+                float uy = USER_JSON["Balance"];
                 float ui = (*it)["Amount"];
-                 USER_JSON["Balance"] = uy + ui;
-                  for (int i = 0; i < 12; i++)
-        {
-            USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
-        }
+                USER_JSON["Balance"] = uy + ui;
+                for (int i = 0; i < 12; i++)
+                {
+                    USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
+                }
                 TRANSACTIONS_JSON.erase(it);
                 recordDebits();
-               
+
                 break;
             }
         }
-        if (change == true ) { establishRanks(mtr, ytr); }
+        if (change == true)
+        {
+            establishRanks(mtr, ytr);
+        }
         establishTop();
         return TRANSACTIONS_JSON.dump();
-    } 
-    
+    }
 
 }
 
@@ -275,9 +273,9 @@ public:
         TRANSACTIONS_JSON[A_O_T]["Date->Month"] = this->date->getMonth();
         this->id = (A_O_T + 1);
         TRANSACTIONS_JSON[A_O_T]["ID"] = this->id;
-       //std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
+        // std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
         (MONTH_COUNT[this->date->getMonth() - 1])++;
-        //std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
+        // std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
         TRANSACTIONS_JSON[A_O_T]["Date->Day"] = this->date->getDay();
         TRANSACTIONS_JSON[A_O_T]["Date->Year"] = this->date->getYear();
         TRANSACTIONS_JSON[A_O_T]["Amount"] = this->amount;
@@ -294,7 +292,7 @@ public:
         for (int i = 0; i < 12; i++)
         {
             USER_JSON["MONTH_COUNTER"][i] = MONTH_COUNT[i];
-            //std::cout << MONTH_COUNT[i] << std::endl;
+            // std::cout << MONTH_COUNT[i] << std::endl;
         }
         establishTop();
         return TRANSACTIONS_JSON.dump();

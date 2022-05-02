@@ -8,8 +8,6 @@ public class WriteReadHandle{//} extends AppCompatActivity {
    
 
 
-
-
 public void createFiles(String filename) throws IOException {
    File path = new File("/data/data/com.kyeou.expensetracker/files/");
    File file = new File(path, filename);
