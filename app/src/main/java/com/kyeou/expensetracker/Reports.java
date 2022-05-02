@@ -138,7 +138,7 @@ public class Reports extends AppCompatActivity {
 
         // below line is used for setting text size
         // which we will be displaying in our PDF file.
-        title.setTextSize(15);
+        title.setTextSize(24);
 
         // below line is sued for setting color
         // of our text inside our PDF file.
@@ -148,8 +148,11 @@ public class Reports extends AppCompatActivity {
         // the first parameter is our text, second parameter
         // is position from start, third parameter is position from top
         // and then we are passing our variable of paint which is title.
-        //canvas.drawText("A portal for IT professionals.", 209, 100, title);
-        //canvas.drawText("Geeks for Geeks", 209, 80, title);
+
+
+        canvas.drawText("Monthly Report", 209, 100, title);
+        canvas.drawText(month,209, 80, title);
+        canvas.drawText(year, 209, 80, title);
 
         // similarly we are creating another text and in this
         // we are aligning this text to center of our PDF file.
