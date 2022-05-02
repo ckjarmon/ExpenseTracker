@@ -378,7 +378,7 @@ public:
         std::string temp = pswd;
         for (int i = 0; i < pswd.length(); i++)
         {
-            temp[i] = (pswd[i] + 12);
+            temp[i] = (pswd[i] + 1);
         }
         USER_JSON["Password"] = temp;
     }
@@ -400,7 +400,7 @@ public:
         std::string b_check = check;
         for (int i = 0; i < check.length(); i++)
         {
-            b_check[i] = (check[i] + 12);
+            b_check[i] = (check[i] + 1);
         }
         bool b = (b_check.compare(temp) == 0) ? true : false;
         return b;

@@ -227,7 +227,7 @@ public class Reports extends AppCompatActivity {
                 if (writeStorage && readStorage) {
                     Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Permission Denined.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Permission Denied.", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
