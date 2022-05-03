@@ -193,7 +193,7 @@ extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_kyeou_expensetracker_ReportResult_getRankList(JNIEnv *env, jobject thiz) {
 
-    return env->NewStringUTF(u->RANK_STRING_DUMP().c_str());
+    return env->NewStringUTF((u->RANK_STRING_DUMP()).c_str());
 }
 
 
@@ -201,5 +201,5 @@ extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_kyeou_expensetracker_ReportResult_getRankDate(JNIEnv *env, jobject thiz) {
 
-    return env->NewStringUTF(u->getReportString().c_str());
+    return env->NewStringUTF((u->getReportString()).c_str());
 }

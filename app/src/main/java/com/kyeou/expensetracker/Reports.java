@@ -47,7 +47,9 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class Reports extends AppCompatActivity {
     //variables
     Spinner monthSelection, yearSelection;
-    String month, year;
+    static String month;
+        static int year;
+
 
 
     // constant code for runtime permissions
@@ -76,12 +78,7 @@ public class Reports extends AppCompatActivity {
     }
 
 
-    public void setReport() {
-        month = monthSelection.getSelectedItem().toString();
-        year = yearSelection.getSelectedItem().toString();
 
-
-    }
 
 
     public void exitPage(View view) {
@@ -90,10 +87,33 @@ public class Reports extends AppCompatActivity {
     }
 
     public void resultsPage(View view) {
+        month = monthSelection.getSelectedItem().toString();
+        year = Integer.valueOf(yearSelection.getSelectedItem().toString()).intValue();
+        //Float.valueOf(yearSelection.getSelectedItem().toString()).floatValue()
+        genReport(getMonthInt(month), year);
         Intent intent = new Intent(this, ReportResult.class);
         startActivity(intent);
     }
 
+    public int getMonthInt(String m) {
+        switch (m) {
+            case "January": return 1;
+            case "February": return 2;
+            case "March": return 3;
+            case "April": return 4;
+            case "May": return 5;
+            case "June": return 6;
+            case "July": return 7;
+            case "August": return 8;
+            case "September": return 9;
+            case "October": return 10;
+            case "November": return 11;
+            case "December": return 12;
+
+
+        }
+        return 0;
+    }
 
     public native void genReport(int m, int y);
 

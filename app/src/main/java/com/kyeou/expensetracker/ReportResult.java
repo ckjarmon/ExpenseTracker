@@ -28,11 +28,11 @@ TextView rankText, userText, dateText ;
 
         String user_name = getUSERINFO("Name");
         String report_date = getRankDate();
-        String rt = getRankList();
+       // String rt = getRankList();
 
         userText.setText("Name: " + user_name.substring(1, user_name.length()-1));
-        rankText.setText(rt);
-        dateText.setText("Date: " + report_date);
+        rankText.setText(getRankList());
+        dateText.setText("Date: " + Reports.month + "/" + Reports.year);
 
      }
 
