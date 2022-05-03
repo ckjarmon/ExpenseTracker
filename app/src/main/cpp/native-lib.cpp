@@ -7,6 +7,7 @@
 
 TRANS_HANDLE *t;
 USER_HANDLE *u;
+
 /*
 extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
         JNIEnv* env,
@@ -47,6 +48,11 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_NewUserFunds_
 }
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)
+{
+    return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());
+}
+
+extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_ReportResult_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)
 {
     return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());
 }
@@ -113,7 +119,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpense
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
+extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
 {
     //  establishRanks(day1, month1, year1, day2, month2, year2);
     // establishRanks(env->GetStringUTFChars(month, nullptr));
@@ -121,14 +127,19 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genRe
 
     establishRanks(month1, y1);
 
-    std::ostringstream os;
 
-    for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
-    {
-        os << (*it)["THIS->STRING "] << "\n";
-    }
-    return env->NewStringUTF(os.str().c_str());
+    //std::ostringstream os;
+
+    //for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
+   // {
+     //   os << (*it)["THIS->STRING "] << "\n";
+   // }
+    //return env->NewStringUTF(os.str().c_str());
 }
+
+
+
+
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_showTop(JNIEnv *env, jobject)
 {
@@ -158,4 +169,20 @@ extern "C" JNIEXPORT jboolean JNICALL Java_com_kyeou_expensetracker_loginPage_ch
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i)
 {
     return env->NewStringUTF(deleteTrans(i).c_str());
+}
+
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_kyeou_expensetracker_ReportResult_getRankList(JNIEnv *env, jobject thiz) {
+
+    return env->NewStringUTF(u->TOP_STRING_DUMP().c_str());
+}
+
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_kyeou_expensetracker_ReportResult_getRankDate(JNIEnv *env, jobject thiz) {
+
+    return env->NewStringUTF(u->getReportString().c_str());
 }

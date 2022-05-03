@@ -18,6 +18,7 @@
         android:padding="5dp" >
 
         <TextView
+            android:id="@+id/rname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="User:"
@@ -33,9 +34,10 @@
         android:padding="5dp" >
 
         <TextView
+            android:id="@+id/rdate"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Date:"
+            android:text="Month/Year:"
             android:textColor="#000"
             android:textSize="20sp" />
     </LinearLayout>
@@ -48,77 +50,13 @@
         android:padding="5dp">
 
         <TextView
+            android:id="@+id/ranks"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="433dp"
             android:text="Transaction Sample"
             android:textColor="#000"
             android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transaction Sample"
-            android:textColor="#000"
-            android:textSize="25sp" />
+
         <!-- Second box, box2bg.xml -->
     </LinearLayout>
 

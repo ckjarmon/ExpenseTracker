@@ -48,13 +48,7 @@ public class Reports extends AppCompatActivity {
     //variables
     Spinner monthSelection, yearSelection;
     String month, year;
-    int pageHeight = 1120;
-    int pagewidth = 792;
-    Button generatePDFbtn;
 
-    // creating a bitmap variable
-    // for storing our images
-    Bitmap bmp, logo;
 
     // constant code for runtime permissions
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -82,6 +76,14 @@ public class Reports extends AppCompatActivity {
     }
 
 
+    public void setReport() {
+        month = monthSelection.getSelectedItem().toString();
+        year = yearSelection.getSelectedItem().toString();
+
+
+    }
+
+
     public void exitPage(View view) {
         Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
@@ -93,7 +95,7 @@ public class Reports extends AppCompatActivity {
     }
 
 
-
+    public native void genReport(int m, int y);
 
     
 }

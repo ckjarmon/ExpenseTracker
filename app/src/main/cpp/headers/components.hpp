@@ -28,7 +28,7 @@ namespace GLOBAL_VARS
     int A_O_T, A_O_B, A_O_R = 0, T_O_A_T = 0;
     float global_debit_bal;
     int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
+    std::string reportString = "";
     std::string recordDebits()
     {
         global_debit_bal = 0.0;
@@ -73,6 +73,9 @@ namespace GLOBAL_VARS
 
     void establishRanks(int month1, int year1)
     {
+        std::ostringstream os;
+        os << months[month1] << "/" << year1;
+        reportString = os.str();
         RANKS_JSON.clear();
         A_O_R = 0;
         float static_max = std::numeric_limits<float>::max();
@@ -387,6 +390,22 @@ public:
         os << std::setw(4) << USER_JSON;
         return os.str();
     }
+
+    std::string TOP_STRING_DUMP() {
+        std::ostringstream os;
+
+        for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
+        {
+            os << (*it)["THIS->STRING "] << "\n";
+        }
+        return os.str();
+    }
+
+    std::string getReportString() {
+        return reportString;
+    }
+
+
     json getTRANS()
     {
         return TRANSACTIONS_JSON;
