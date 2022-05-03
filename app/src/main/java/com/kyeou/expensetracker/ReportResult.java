@@ -42,4 +42,5 @@ TextView rankText, userText, dateText ;
 public native String getRankList();
     public native String getRankDate();
 public native String getUSERINFO(String stringCALL);
+    public native String showTop();
 }
