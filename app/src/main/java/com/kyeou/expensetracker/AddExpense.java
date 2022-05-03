@@ -100,12 +100,12 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
     }
 
     @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        this.day = dayOfMonth;
-        this.year = year;
-        this.month = month;
+    public void onDateSet(DatePicker datePicker, int yearSelected, int monthSelected, int dayOfMonthSelected) {
+        day = dayOfMonthSelected;
+        year = yearSelected;
+        month = monthSelected + 1;
 
-        String date = month + "/" + dayOfMonth + "/" + year;
+        String date = month + "/" + day + "/" + year;
 
         datetext.setText(date);
     }
