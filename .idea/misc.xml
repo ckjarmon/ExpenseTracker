@@ -7,20 +7,53 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.33" />
+        <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_delete_expense_page.xml" value="0.38333333333333336" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml" value="0.3875" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml" value="0.33" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_personal_information.xml" value="0.33" />
+        <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_report_result.xml" value="0.3509963768115942" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_reports.xml" value="0.358695652173913" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_signup_page.xml" value="0.358695652173913" />
         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_user_profile.xml" value="0.3875" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box1.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box2.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box2bg.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/boxbg.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/boxbg2.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/custom_input.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/gfgimage.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_account_avatar.xml" value="0.164" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_bank.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_card.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_date.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_description.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_hamburger_menu.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_money.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_notifications.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_report.xml" value="0.1" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_user_info.xml" value="0.1" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/list_simple.xml" value="0.127" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/report_layout.xml" value="0.164" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_apipdftest_main.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_personal_information.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_report_result.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_reports.xml" value="0.17617753623188406" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.5510416666666667" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml" value="0.33" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_trans_string.xml" value="0.33" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml" value="0.33" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml" value="0.5138888888888888" />
-        <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_report_result.xml" value="0.6901270772238515" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_user_profile.xml" value="0.5138888888888888" />
         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/addexpense.xml" value="0.5510416666666667" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.299" />
@@ -31,10 +64,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/activity_new_user_funds.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_personal_information.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/activity_report_result.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/activity_reports.xml" value="0.3013153076171875" />
         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.20923913043478262" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/addexpense.xml" value="0.3541666666666667" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.35520833333333335" />
       </map>
     </option>
   </component>
