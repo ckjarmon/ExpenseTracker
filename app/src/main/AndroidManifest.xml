@@ -20,7 +20,11 @@
         android:theme="@style/Theme.ExpenseTracker">
         <activity
             android:name=".ReportResult"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Reports"
+
+        />
+
         <activity
             android:name=".deleteExpensePage"
             android:exported="false" />
