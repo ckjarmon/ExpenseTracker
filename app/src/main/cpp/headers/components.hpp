@@ -82,7 +82,8 @@ namespace GLOBAL_VARS
         float curr_max = std::numeric_limits<float>::min();
 
         int ranked = 0;
-        int max_rankings = USER_JSON["MONTH_COUNTER"][month1 - 1];
+        int b_s = (USER_JSON["MONTH_COUNTER"][month1 - 1]);
+        int max_rankings = ( b_s > 20) ? 20 : b_s;
         while (ranked < max_rankings)
         {
             curr_max = std::numeric_limits<float>::min();
@@ -281,7 +282,7 @@ public:
         // std::cout<<std::endl << months[this->date->getMonth() - 1] << " -- " << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;
         TRANSACTIONS_JSON[A_O_T]["Date->Day"] = this->date->getDay();
         TRANSACTIONS_JSON[A_O_T]["Date->Year"] = this->date->getYear();
-        TRANSACTIONS_JSON[A_O_T]["Amount"] = this->amount;
+        TRANSACTIONS_JSON[A_O_T]["Amount"] =( this->amount);
         TRANSACTIONS_JSON[A_O_T]["ATTRIBUTE->RECORDED_BOOL"] = false;
         TRANSACTIONS_JSON[A_O_T]["T_Ranked"] = false;
         TRANSACTIONS_JSON[A_O_T]["Ranked"] = false;
@@ -391,21 +392,22 @@ public:
         return os.str();
     }
 
-    std::string RANK_STRING_DUMP() {
+    std::string RANK_STRING_DUMP()
+    {
         std::ostringstream os;
 
         for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
         {
             os << (*it)["THIS->STRING"] << "\n";
-            //std::cout << os.str() << "-----------" <<std::endl;
+            // std::cout << os.str() << "-----------" <<std::endl;
         }
         return os.str();
     }
 
-    std::string getReportString() {
+    std::string getReportString()
+    {
         return reportString;
     }
-
 
     json getTRANS()
     {
@@ -435,6 +437,18 @@ public:
     {
         std::ostringstream os;
         os << std::setw(4) << TRANSACTIONS_JSON;
+        return os.str();
+    }
+
+    std::string BUDGETSDUMP()
+    {
+        int q = (USER_JSON["Budgets"].size() > 3) ? 3 : USER_JSON["Budgets"].size();
+        std::ostringstream os;
+        os << "Budget/Score\n";
+        for (int i = q - 1; i > -1; --i)
+        {
+            os << USER_JSON["Budgets"][i] << "/" << USER_JSON["Scores"][i] << "\n";
+        }
         return os.str();
     }
 

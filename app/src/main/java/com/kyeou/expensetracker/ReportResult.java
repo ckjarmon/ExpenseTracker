@@ -13,7 +13,7 @@ public class ReportResult extends AppCompatActivity {
     static {
         System.loadLibrary("expensetracker");
     }
-TextView rankText, userText, dateText ;
+TextView rankText, userText, dateText, scoreText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,7 @@ TextView rankText, userText, dateText ;
         rankText = findViewById(R.id.ranks);
         userText = findViewById(R.id.rname);
         dateText = findViewById(R.id.rdate);
+        scoreText = findViewById(R.id.rscore);
 
 
 
@@ -33,6 +34,7 @@ TextView rankText, userText, dateText ;
         userText.setText("Name: " + user_name.substring(1, user_name.length()-1));
         rankText.setText(getRankList());
         dateText.setText("Date: " + Reports.month + "/" + Reports.year);
+        scoreText.setText(showBS());
 
      }
 
@@ -40,7 +42,7 @@ TextView rankText, userText, dateText ;
 
 
 public native String getRankList();
-    public native String getRankDate();
+public native String getRankDate();
 public native String getUSERINFO(String stringCALL);
-    public native String showTop();
+public native String showBS();
 }

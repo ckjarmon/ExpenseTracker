@@ -2,6 +2,7 @@ package com.kyeou.expensetracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         String user_name = getUSERINFO("Name");
         String balance = getUSERINFO("Balance");
         String budget = getUSERINFO("Budget");
-        String score = getUSERINFO("Score").toString();
+        String score = getUSERINFO("Score");
 
         userText.setText("Hi " + user_name.substring(1, user_name.length()-1) + ",");
         balanceText.setText("Balance: " + balance);
         budgetText.setText("Budget: " + budget);
-        scoreText.setText("Score: " + score);
-
+        scoreText.setText("Score: " + score.substring(0, 3));
+        Log.d("test-------------------", score);
         expenseRanking = findViewById(R.id.expensesRanked);
         expenseRanking.setText(showTop().toString());
 

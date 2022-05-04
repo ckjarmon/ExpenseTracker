@@ -76,8 +76,8 @@ public class AddExpense extends AppCompatActivity implements DatePickerDialog.On
 
         if(description.equals("")){
             errorMessage.setText("Description Field Is Empty");
-        }else if(amount.equals("")){
-            errorMessage.setText("Amount Field Must Be Greater Than 0");
+        }else if(amount.equals("0") || amount.equals("0.00")){
+            errorMessage.setText("Amount Must Be Greater Than 0");
         }else if(datetext.getText().toString().equals("MONTH/DAY/YEAR")){
             errorMessage.setText("Please Select A Date");
         }else{

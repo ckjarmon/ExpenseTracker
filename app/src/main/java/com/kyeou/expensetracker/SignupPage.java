@@ -45,14 +45,14 @@ public class SignupPage extends AppCompatActivity {
             OutputStream od = openFileOutput("transactions.json", MODE_PRIVATE);
             os.close(); od.close();
 
-
+            new WriteReadHandle().WriteHandle("transactions.json", "[]");
             new WriteReadHandle().WriteHandle("user.json", userSignUp(new WriteReadHandle().ReadHandle("user.json"), new WriteReadHandle().ReadHandle("transactions.json")));
             addBudget(budget);
             setName(name);
             setUsername(username);
             setPassword(password);
             new WriteReadHandle().WriteHandle("user.json", getUSERSJSON());
-            new WriteReadHandle().WriteHandle("transactions.json", "[]");
+            //new WriteReadHandle().WriteHandle("transactions.json", "[]");
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

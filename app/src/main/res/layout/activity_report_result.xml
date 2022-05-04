@@ -63,16 +63,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="80dp"
+        android:layout_width="393dp"
+        android:layout_height="109dp"
         android:layout_margin="10dp"
         android:background="@drawable/box2bg"
         android:orientation="vertical"
         android:padding="7dp">
 
         <TextView
+            android:id="@+id/rscore"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:text="Score"
             android:textColor="#FFF"
             android:textSize="20sp" />

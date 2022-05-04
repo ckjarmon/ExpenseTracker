@@ -49,7 +49,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_NewUserFunds_
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)
 {
-    return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());
+    return env->NewStringUTF((u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr))).c_str());
 }
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_ReportResult_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)
@@ -202,4 +202,15 @@ JNIEXPORT jstring JNICALL
 Java_com_kyeou_expensetracker_ReportResult_getRankDate(JNIEnv *env, jobject thiz) {
 
     return env->NewStringUTF((u->getReportString()).c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_kyeou_expensetracker_ReportResult_showBS(JNIEnv *env, jobject thiz) {
+    return env->NewStringUTF(u->BUDGETSDUMP().c_str());
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_kyeou_expensetracker_PersonalInformation_setUsername(JNIEnv *env, jobject thiz,
+                                                              jstring name) {
+    u->setUsername(env->GetStringUTFChars(name, nullptr));
 }
