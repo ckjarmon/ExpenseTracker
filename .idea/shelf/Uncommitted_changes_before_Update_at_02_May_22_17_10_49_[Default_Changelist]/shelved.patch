@@ -1,0 +1,424 @@
+Index: app/src/main/java/com/kyeou/expensetracker/Reports.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kyeou.expensetracker;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.util.Pair;\r\nimport android.content.pm.PackageManager;\r\nimport android.graphics.Bitmap;\r\nimport android.graphics.BitmapFactory;\r\nimport android.graphics.Canvas;\r\nimport android.graphics.Paint;\r\nimport android.graphics.Typeface;\r\nimport android.graphics.pdf.PdfDocument;\r\nimport android.os.Bundle;\r\nimport android.os.Environment;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.Toast;\r\nimport android.app.DatePickerDialog;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.DatePicker;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\nimport android.widget.TextView;\r\n\r\nimport com.google.android.material.datepicker.MaterialDatePicker;\r\nimport com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;\r\n\r\nimport java.io.IOException;\r\nimport java.util.Calendar;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.app.ActivityCompat;\r\nimport androidx.core.content.ContextCompat;\r\n\r\nimport java.io.File;\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\n\r\nimport static android.Manifest.permission.READ_EXTERNAL_STORAGE;\r\nimport static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;\r\n\r\npublic class Reports extends AppCompatActivity {\r\n    //variables\r\n    Spinner monthSelection, yearSelection;\r\n    String month, year;\r\n    int pageHeight = 1120;\r\n    int pagewidth = 792;\r\n    Button generatePDFbtn;\r\n\r\n    // creating a bitmap variable\r\n    // for storing our images\r\n    Bitmap bmp, logo;\r\n\r\n    // constant code for runtime permissions\r\n    private static final int PERMISSION_REQUEST_CODE = 200;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_reports);\r\n\r\n        monthSelection = (Spinner) findViewById(R.id.monthSelection);\r\n        yearSelection = (Spinner) findViewById(R.id.yearSelection);\r\n\r\n        ArrayAdapter<String> monthsItems = new ArrayAdapter<String>(Reports.this,\r\n                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months));\r\n        monthsItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        monthSelection.setAdapter(monthsItems);\r\n\r\n        ArrayAdapter<String> yearItems = new ArrayAdapter<String>(Reports.this,\r\n                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.years));\r\n        monthsItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        yearSelection.setAdapter(yearItems);\r\n\r\n\r\n    }\r\n\r\n\r\n    public void exitPage(View view) {\r\n        Intent intent = new Intent(this, UserProfile.class);\r\n        startActivity(intent);\r\n    }\r\n\r\n    public void resultsPage(View view) {\r\n        Intent intent = new Intent(this, ReportResult.class);\r\n        startActivity(intent);\r\n    }\r\n\r\n\r\n\r\n\r\n    \r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/kyeou/expensetracker/Reports.java b/app/src/main/java/com/kyeou/expensetracker/Reports.java
+--- a/app/src/main/java/com/kyeou/expensetracker/Reports.java	(revision 26650527ba8ef284a53b13817b74999bd79ff1e8)
++++ b/app/src/main/java/com/kyeou/expensetracker/Reports.java	(date 1651533135468)
+@@ -48,13 +48,7 @@
+     //variables
+     Spinner monthSelection, yearSelection;
+     String month, year;
+-    int pageHeight = 1120;
+-    int pagewidth = 792;
+-    Button generatePDFbtn;
+ 
+-    // creating a bitmap variable
+-    // for storing our images
+-    Bitmap bmp, logo;
+ 
+     // constant code for runtime permissions
+     private static final int PERMISSION_REQUEST_CODE = 200;
+@@ -82,6 +76,14 @@
+     }
+ 
+ 
++    public void setReport() {
++        month = monthSelection.getSelectedItem().toString();
++        year = yearSelection.getSelectedItem().toString();
++
++
++    }
++
++
+     public void exitPage(View view) {
+         Intent intent = new Intent(this, UserProfile.class);
+         startActivity(intent);
+@@ -93,7 +95,7 @@
+     }
+ 
+ 
+-
++    public native void genReport(int m, int y);
+ 
+     
+ }
+\ No newline at end of file
+Index: app/src/main/cpp/headers/components.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\r\n// Created by kyeou on 08/April/22.\r\n//\r\n\r\n// the whole JNI scheme will work to create the json values and returns strings back to java to read them into the files\r\n\r\n#ifndef EXPENSE_TRACKER_COMPONENTS_H\r\n#define EXPENSE_TRACKER_COMPONENTS_H\r\n\r\n#endif // EXPENSE_TRACKER_COMPONENTS_H\r\n\r\n#include \"iostream\"\r\n#include \"sstream\"\r\n#include \"fstream\"\r\n#include \"string\"\r\n#include \"stdio.h\"\r\n#include \"stdlib.h\"\r\n#include \"json.hpp\"\r\n\r\nusing json = nlohmann::json;\r\n\r\nstd::string months[] = {\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\",\r\n                        \"August\", \"September\", \"October\", \"November\", \"December\"};\r\n\r\nnamespace GLOBAL_VARS\r\n{\r\n    json TRANSACTIONS_JSON, USER_JSON, RANKS_JSON, TOP_JSON;\r\n    int A_O_T, A_O_B, A_O_R = 0, T_O_A_T = 0;\r\n    float global_debit_bal;\r\n    int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};\r\n\r\n    std::string recordDebits()\r\n    {\r\n        global_debit_bal = 0.0;\r\n        int c = 0;\r\n        // TRANSACTIONS_JSON = json::parse(trans_parm);\r\n        // USER_JSON = json::parse(user_parm);\r\n        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)\r\n        {\r\n            (*it)[\"ATTRIBUTE->RECORDED_BOOL\"] = false;\r\n        }\r\n        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)\r\n        {\r\n            if ((*it)[\"ATTRIBUTE->RECORDED_BOOL\"] == false)\r\n            {\r\n                float as = (*it)[\"Amount\"];\r\n                global_debit_bal += as;\r\n                (*it)[\"ATTRIBUTE->RECORDED_BOOL\"] = true;\r\n                // itCount++;\r\n            } // end if\r\n        }     // end for\r\n\r\n        USER_JSON[\"SumDebits\"].clear();\r\n        USER_JSON[\"SumDebits\"] = global_debit_bal;\r\n\r\n        A_O_B = USER_JSON[\"Budgets\"].size();\r\n\r\n        for (int i = 0; i < A_O_B; i++)\r\n        {\r\n            float currBud = USER_JSON[\"Budgets\"][i];\r\n            USER_JSON[\"Scores\"][i] = (((currBud - global_debit_bal) / currBud) * 10 < 0) ? 0 : ((currBud - global_debit_bal) / currBud) * 10;\r\n        }\r\n\r\n        return TRANSACTIONS_JSON.dump();\r\n\r\n    } // end recordDebits\r\n\r\n    float correctBalance(float b)\r\n    {\r\n        recordDebits();\r\n        return (b - global_debit_bal);\r\n    }\r\n\r\n    void establishRanks(int month1, int year1)\r\n    {\r\n        RANKS_JSON.clear();\r\n        A_O_R = 0;\r\n        float static_max = std::numeric_limits<float>::max();\r\n        float curr_max = std::numeric_limits<float>::min();\r\n\r\n        int ranked = 0;\r\n        int max_rankings = USER_JSON[\"MONTH_COUNTER\"][month1 - 1];\r\n        while (ranked < max_rankings)\r\n        {\r\n            curr_max = std::numeric_limits<float>::min();\r\n            for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)\r\n            {\r\n\r\n                if ((*it)[\"Amount\"] >= curr_max && (*it)[\"Amount\"] < static_max && ((*it)[\"Date->Month\"] == month1) && ((*it)[\"Date->Year\"] == year1) && (*it)[\"Ranked\"] != true)\r\n                {\r\n                    RANKS_JSON[A_O_R] = (*it);\r\n                    curr_max = (*it)[\"Amount\"];\r\n                }\r\n            }\r\n            static_max = curr_max;\r\n            RANKS_JSON[A_O_R][\"Ranked\"] = true;\r\n            A_O_R = RANKS_JSON.size();\r\n            ranked++;\r\n        } // end while\r\n        /*\r\n        for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)\r\n        {\r\n            std::cout << (*it)[\"THIS->STRING: \"] << std::endl;\r\n        } */\r\n    }\r\n\r\n    void establishTop()\r\n    {\r\n        TOP_JSON.clear();\r\n        T_O_A_T = 0;\r\n        float static_max = std::numeric_limits<float>::max();\r\n        float curr_max = std::numeric_limits<float>::min();\r\n\r\n        int ranked = 0;\r\n        // int max_rankings = USER_JSON[\"MONTH_COUNTER\"][month1 - 1];\r\n\r\n        int max_rankings = (TRANSACTIONS_JSON.size() < 10) ? TRANSACTIONS_JSON.size() : 10;\r\n        // std::cout << \"TOP ALL TIME AMOUNT \" << max_rankings << std::endl;\r\n        while (ranked < max_rankings)\r\n        {\r\n            curr_max = std::numeric_limits<float>::min();\r\n            for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)\r\n            {\r\n\r\n                if ((*it)[\"Amount\"] >= curr_max && (*it)[\"Amount\"] < static_max && (*it)[\"T_Ranked\"] != true)\r\n                {\r\n                    TOP_JSON[T_O_A_T] = (*it);\r\n                    curr_max = (*it)[\"Amount\"];\r\n                }\r\n            }\r\n            static_max = curr_max;\r\n            TOP_JSON[T_O_A_T][\"T_Ranked\"] = true;\r\n            T_O_A_T = TOP_JSON.size();\r\n            ranked++;\r\n        } // end while\r\n        /*\r\n        for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)\r\n        {\r\n            std::cout << (*it)[\"THIS->STRING: \"] << std::endl;\r\n        } */\r\n    }\r\n    std::string deleteTrans(int id)\r\n    {\r\n\r\n        int mtr, ytr;\r\n        bool change = false;\r\n        for (json::iterator it = TRANSACTIONS_JSON.begin(); it != TRANSACTIONS_JSON.end(); ++it)\r\n        {\r\n            if ((*it)[\"ID\"] == id)\r\n            {\r\n\r\n                mtr = (*it)[\"Date->Month\"];\r\n                // int y = USER_JSON[\"MONTH_COUNTER\"][mtr - 1];\r\n                // USER_JSON[\"MONTH_COUNTER\"][mtr - 1] = (y-1);\r\n                (MONTH_COUNT[mtr - 1])--;\r\n                ytr = (*it)[\"Date->Month\"];\r\n                int t = USER_JSON[\"A_O_T\"];\r\n                USER_JSON[\"A_O_T\"] = (t - 1);\r\n                change = true;\r\n                float uy = USER_JSON[\"Balance\"];\r\n                float ui = (*it)[\"Amount\"];\r\n                USER_JSON[\"Balance\"] = uy + ui;\r\n                for (int i = 0; i < 12; i++)\r\n                {\r\n                    USER_JSON[\"MONTH_COUNTER\"][i] = MONTH_COUNT[i];\r\n                }\r\n                TRANSACTIONS_JSON.erase(it);\r\n                recordDebits();\r\n\r\n                break;\r\n            }\r\n        }\r\n        if (change == true)\r\n        {\r\n            establishRanks(mtr, ytr);\r\n        }\r\n        establishTop();\r\n        return TRANSACTIONS_JSON.dump();\r\n    }\r\n\r\n}\r\n\r\nusing namespace GLOBAL_VARS;\r\n\r\nclass Date\r\n\r\n{\r\npublic:\r\n    Date()\r\n    {\r\n        this->month = 0;\r\n        this->day = 0;\r\n        this->year = 0;\r\n    }\r\n\r\n    Date(int month, int day, int year)\r\n    {\r\n        this->month = month;\r\n        this->day = day;\r\n        this->year = year;\r\n    }\r\n\r\n    std::string getMonthString(int i) { return months[i - 1]; }\r\n\r\n    void setDate(int month, int day, int year)\r\n    {\r\n        this->month = month;\r\n        this->day = day;\r\n        this->year = year;\r\n    }\r\n\r\n    int getMonth() { return this->month; }\r\n    int getDay() { return this->day; }\r\n    int getYear() { return this->year; }\r\n\r\n    Date getDate() { return *(this); }\r\n\r\n    std::string getDateString()\r\n    {\r\n\r\n        std::ostringstream os;\r\n        os << months[this->getMonth() - 1].substr(0, 3);\r\n        os << \" \";\r\n        os << this->getDay();\r\n        os << \", \";\r\n        os << this->getYear();\r\n        return os.str();\r\n    }\r\n\r\n    ~Date() {}\r\n\r\nprivate:\r\n    int month, day, year;\r\n    std::string dateString;\r\n};\r\n// end of DATE\r\n\r\nclass TRANS_HANDLE\r\n{\r\npublic:\r\n    TRANS_HANDLE(std::string name, Date *date, float amount)\r\n    {\r\n        this->name = name;\r\n        this->date = date;\r\n        this->amount = amount;\r\n        this->recorded = false;\r\n        this->ranked = false;\r\n    }\r\n\r\n    std::string getTransString()\r\n    {\r\n        std::ostringstream os;\r\n        os << \"ID: \";\r\n        os << this->id;\r\n        os << \" | Name: \";\r\n        os << this->name;\r\n        os << \" | Date: \";\r\n        os << this->date->getDateString();\r\n        os << \" | Amount: \";\r\n        os << this->amount;\r\n\r\n        return os.str();\r\n    }\r\n\r\n    // parm = text read by java from transactions.json\r\n    // returns a the json variable dumped\r\n    std::string addTrans(std::string t)\r\n    {\r\n        TRANSACTIONS_JSON = json::parse(t);\r\n        A_O_T = TRANSACTIONS_JSON.size();\r\n        TRANSACTIONS_JSON[A_O_T][\"Name\"] = this->name;\r\n        TRANSACTIONS_JSON[A_O_T][\"Date\"] = this->date->getDateString();\r\n        TRANSACTIONS_JSON[A_O_T][\"Date->Month\"] = this->date->getMonth();\r\n        this->id = (A_O_T + 1);\r\n        TRANSACTIONS_JSON[A_O_T][\"ID\"] = this->id;\r\n        // std::cout<<std::endl << months[this->date->getMonth() - 1] << \" -- \" << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;\r\n        (MONTH_COUNT[this->date->getMonth() - 1])++;\r\n        // std::cout<<std::endl << months[this->date->getMonth() - 1] << \" -- \" << MONTH_COUNT[this->date->getMonth() - 1] << std::endl;\r\n        TRANSACTIONS_JSON[A_O_T][\"Date->Day\"] = this->date->getDay();\r\n        TRANSACTIONS_JSON[A_O_T][\"Date->Year\"] = this->date->getYear();\r\n        TRANSACTIONS_JSON[A_O_T][\"Amount\"] = this->amount;\r\n        TRANSACTIONS_JSON[A_O_T][\"ATTRIBUTE->RECORDED_BOOL\"] = false;\r\n        TRANSACTIONS_JSON[A_O_T][\"T_Ranked\"] = false;\r\n        TRANSACTIONS_JSON[A_O_T][\"Ranked\"] = false;\r\n        TRANSACTIONS_JSON[A_O_T][\"THIS->STRING\"] = this->getTransString();\r\n        float temp_bal = USER_JSON[\"Balance\"];\r\n        USER_JSON[\"Balance\"] = temp_bal - this->amount;\r\n        USER_JSON[\"A_O_T\"] = TRANSACTIONS_JSON.size();\r\n        recordDebits();\r\n        // establishRanks();\r\n\r\n        for (int i = 0; i < 12; i++)\r\n        {\r\n            USER_JSON[\"MONTH_COUNTER\"][i] = MONTH_COUNT[i];\r\n            // std::cout << MONTH_COUNT[i] << std::endl;\r\n        }\r\n        establishTop();\r\n        return TRANSACTIONS_JSON.dump();\r\n    }\r\n\r\n    ~TRANS_HANDLE() {}\r\n\r\nprivate:\r\n    std::string name;\r\n    Date *date;\r\n    float amount;\r\n    bool recorded;\r\n    bool ranked;\r\n    int id;\r\n};\r\n\r\nclass USER_HANDLE\r\n{\r\npublic:\r\n    // java should open the user.json regardless, ift its empty it should return \"\"\r\n    USER_HANDLE(std::string CON_PARM_USER, std::string CON_PARM_TRANS)\r\n    {\r\n        srand((unsigned int)time(NULL));\r\n\r\n        if (CON_PARM_USER.compare(\"\") == 0)\r\n        {\r\n            USER_JSON = {{\"MONTH_COUNTER\", {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, {\"Name\", \"FirstName LastName\"}, {\"Username\", \"name\"}, {\"Password\", \"\"}, {\"A_O_T\", 0}, {\"Budgets\", {}}, {\"Balance\", 0}, {\"Scores\", {}}, {\"SumDebits\", 0}};\r\n        }\r\n        else\r\n        {\r\n            USER_JSON = json::parse(CON_PARM_USER);\r\n            for (int i = 0; i < 11; i++)\r\n            {\r\n                MONTH_COUNT[i] = USER_JSON[\"MONTH_COUNTER\"][i];\r\n            }\r\n        }\r\n        if (!(CON_PARM_USER.compare(\"\") == 0))\r\n        {\r\n            TRANSACTIONS_JSON = json::parse(CON_PARM_TRANS);\r\n        }\r\n    } // end of constructor\r\n\r\n    void addBudget(float amount)\r\n    {\r\n        A_O_B = (USER_JSON[\"Budgets\"] != NULL) ? USER_JSON[\"Budgets\"].size() : 0;\r\n        // std::cout << A_O_B << std::endl;\r\n        USER_JSON[\"Budgets\"][A_O_B] = amount;\r\n        recordDebits();\r\n        float temp = USER_JSON[\"SumDebits\"];\r\n        A_O_B = USER_JSON[\"Budgets\"].size();\r\n        for (int i = 0; i < A_O_B; i++)\r\n        {\r\n            float currBud = USER_JSON[\"Budgets\"][i];\r\n            USER_JSON[\"Scores\"][i] = (((currBud - temp) / currBud) * 10 < 0) ? 0 : ((currBud - temp) / currBud) * 10;\r\n        }\r\n        USER_JSON[\"Balance\"] = correctBalance(amount);\r\n    }\r\n\r\n    // std::string recordDebits(std::string trans_parm, std::string user_parm)\r\n\r\n    std::string getUSER_FIELD(std::string s)\r\n    {\r\n        if (s.compare(\"Budget\") == 0)\r\n        {\r\n            int a = USER_JSON[\"Budgets\"].size() - 1;\r\n            return to_string(USER_JSON[\"Budgets\"][a]);\r\n        }\r\n\r\n        if (s.compare(\"Score\") == 0)\r\n        {\r\n            int a = USER_JSON[\"Scores\"].size() - 1;\r\n            return to_string(USER_JSON[\"Scores\"][a]);\r\n        }\r\n        return to_string(USER_JSON[s]);\r\n    }\r\n\r\n    void setName(std::string name) { USER_JSON[\"Name\"] = name; }\r\n    void setUsername(std::string name) { USER_JSON[\"Username\"] = name; }\r\n    void setPassword(std::string pswd)\r\n    {\r\n        std::string temp = pswd;\r\n        for (int i = 0; i < pswd.length(); i++)\r\n        {\r\n            temp[i] = (pswd[i] + 1);\r\n        }\r\n        USER_JSON[\"Password\"] = temp;\r\n    }\r\n\r\n    std::string USERDUMP()\r\n    {\r\n        std::ostringstream os;\r\n        os << std::setw(4) << USER_JSON;\r\n        return os.str();\r\n    }\r\n    json getTRANS()\r\n    {\r\n        return TRANSACTIONS_JSON;\r\n    }\r\n\r\n    bool checkPass(std::string check)\r\n    {\r\n        std::string temp = USER_JSON[\"Password\"];\r\n        std::string b_check = check;\r\n        for (int i = 0; i < check.length(); i++)\r\n        {\r\n            b_check[i] = (check[i] + 1);\r\n        }\r\n        bool b = (b_check.compare(temp) == 0) ? true : false;\r\n        return b;\r\n    }\r\n\r\n    bool checkUsername(std::string check)\r\n    {\r\n        std::string temp = USER_JSON[\"Username\"];\r\n        bool b = (check.compare(temp) == 0) ? true : false;\r\n        return b;\r\n    }\r\n\r\n    std::string TRANSDUMP()\r\n    {\r\n        std::ostringstream os;\r\n        os << std::setw(4) << TRANSACTIONS_JSON;\r\n        return os.str();\r\n    }\r\n\r\n    std::string RANKSDUMP()\r\n    {\r\n        std::ostringstream os;\r\n        os << std::setw(4) << RANKS_JSON;\r\n        return os.str();\r\n    }\r\n\r\n    std::string TOPDUMP()\r\n    {\r\n        std::ostringstream os;\r\n        os << std::setw(4) << TOP_JSON;\r\n        return os.str();\r\n    }\r\n\r\n    ~USER_HANDLE() {}\r\n\r\nprivate:\r\n}; // end of class\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/cpp/headers/components.hpp b/app/src/main/cpp/headers/components.hpp
+--- a/app/src/main/cpp/headers/components.hpp	(revision 26650527ba8ef284a53b13817b74999bd79ff1e8)
++++ b/app/src/main/cpp/headers/components.hpp	(date 1651536501947)
+@@ -28,7 +28,7 @@
+     int A_O_T, A_O_B, A_O_R = 0, T_O_A_T = 0;
+     float global_debit_bal;
+     int MONTH_COUNT[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+-
++    std::string reportString = "";
+     std::string recordDebits()
+     {
+         global_debit_bal = 0.0;
+@@ -73,6 +73,9 @@
+ 
+     void establishRanks(int month1, int year1)
+     {
++        std::ostringstream os;
++        os << months[month1] << "/" << year1;
++        reportString = os.str();
+         RANKS_JSON.clear();
+         A_O_R = 0;
+         float static_max = std::numeric_limits<float>::max();
+@@ -387,6 +390,22 @@
+         os << std::setw(4) << USER_JSON;
+         return os.str();
+     }
++
++    std::string TOP_STRING_DUMP() {
++        std::ostringstream os;
++
++        for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
++        {
++            os << (*it)["THIS->STRING "] << "\n";
++        }
++        return os.str();
++    }
++
++    std::string getReportString() {
++        return reportString;
++    }
++
++
+     json getTRANS()
+     {
+         return TRANSACTIONS_JSON;
+Index: app/src/main/res/layout/activity_report_result.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"fill_parent\"\r\n    android:layout_height=\"fill_parent\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    tools:context=\".ReportResult\"\r\n    android:orientation=\"vertical\">\r\n\r\n\r\n\r\n    <!-- First box, boxbg.xml -->\r\n    <LinearLayout\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_margin=\"10dp\"\r\n        android:background=\"@drawable/boxbg\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"5dp\" >\r\n\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"User:\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"20sp\" />\r\n    </LinearLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"300dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_margin=\"10dp\"\r\n        android:background=\"@drawable/boxbg\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"5dp\" >\r\n\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Date:\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"20sp\" />\r\n    </LinearLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"450dp\"\r\n        android:layout_margin=\"10dp\"\r\n        android:background=\"@drawable/boxbg\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"5dp\">\r\n\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Transaction Sample\"\r\n            android:textColor=\"#000\"\r\n            android:textSize=\"25sp\" />\r\n        <!-- Second box, box2bg.xml -->\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"80dp\"\r\n        android:layout_margin=\"10dp\"\r\n        android:background=\"@drawable/box2bg\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"7dp\">\r\n\r\n        <TextView\r\n            android:layout_width=\"fill_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Score\"\r\n            android:textColor=\"#FFF\"\r\n            android:textSize=\"20sp\" />\r\n    </LinearLayout>\r\n\r\n</LinearLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_report_result.xml b/app/src/main/res/layout/activity_report_result.xml
+--- a/app/src/main/res/layout/activity_report_result.xml	(revision 26650527ba8ef284a53b13817b74999bd79ff1e8)
++++ b/app/src/main/res/layout/activity_report_result.xml	(date 1651535113638)
+@@ -18,6 +18,7 @@
+         android:padding="5dp" >
+ 
+         <TextView
++            android:id="@+id/rname"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="User:"
+@@ -33,9 +34,10 @@
+         android:padding="5dp" >
+ 
+         <TextView
++            android:id="@+id/rdate"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+-            android:text="Date:"
++            android:text="Month/Year:"
+             android:textColor="#000"
+             android:textSize="20sp" />
+     </LinearLayout>
+@@ -48,77 +50,13 @@
+         android:padding="5dp">
+ 
+         <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
++            android:id="@+id/ranks"
+             android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
+-            android:text="Transaction Sample"
+-            android:textColor="#000"
+-            android:textSize="25sp" />
+-        <TextView
+-            android:layout_width="fill_parent"
+-            android:layout_height="wrap_content"
++            android:layout_height="433dp"
+             android:text="Transaction Sample"
+             android:textColor="#000"
+             android:textSize="25sp" />
++
+         <!-- Second box, box2bg.xml -->
+     </LinearLayout>
+ 
+Index: app/src/main/cpp/native-lib.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <jni.h>\r\n#include <string>\r\n#include \"headers/components.hpp\"\r\n\r\n#include <cstdlib>\r\n#include <ctime>\r\n\r\nTRANS_HANDLE *t;\r\nUSER_HANDLE *u;\r\n/*\r\nextern \"C\" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(\r\n        JNIEnv* env,\r\n        jobject  this ) {\r\n    std::string hello = \"Hello from C++\";\r\n    return env->NewStringUTF(hello.c_str());\r\n}\r\n*/\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_addTrans(JNIEnv *env, jobject, jstring name, int day, int month, int year, float amount, jstring TRANS_JSON_PARM)\r\n{\r\n    std::string ret = (new TRANS_HANDLE(env->GetStringUTFChars(name, nullptr), new Date(month, day, year), amount))->addTrans(env->GetStringUTFChars(TRANS_JSON_PARM, nullptr));\r\n    return env->NewStringUTF(ret.c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getUSERSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_AddExpense_getTRANSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->TRANSDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_SignupPage_getUSERSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_SignupPage_getTRANSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->TRANSDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_NewUserFunds_getUSERSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)\r\n{\r\n    return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_VerifyLogin_userLogIn(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)\r\n{\r\n    u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_loginPage_userLogIn(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)\r\n{\r\n    u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_userLogIn(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)\r\n{\r\n    u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_SignupPage_userSignUp(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)\r\n{\r\n    // u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));\r\n    u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), \"[]\");\r\n\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_SignupPage_addBudget(JNIEnv *env, jobject, float amount)\r\n{\r\n    u->addBudget(amount);\r\n}\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_SignupPage_setName(JNIEnv *env, jobject, jstring name)\r\n{\r\n    u->setName(env->GetStringUTFChars(name, nullptr));\r\n}\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_SignupPage_setUsername(JNIEnv *env, jobject, jstring name)\r\n{\r\n    u->setUsername(env->GetStringUTFChars(name, nullptr));\r\n}\r\n\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_SignupPage_setPassword(JNIEnv *env, jobject, jstring name)\r\n{\r\n    u->setPassword(env->GetStringUTFChars(name, nullptr));\r\n}\r\n\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_NewUserFunds_addBudget(JNIEnv *env, jobject, float amount)\r\n{\r\n    u->addBudget(amount);\r\n}\r\n\r\nextern \"C\" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_PersonalInformation_setName(JNIEnv *env, jobject, jstring name)\r\n{\r\n    u->setName(env->GetStringUTFChars(name, nullptr));\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_PersonalInformation_getUSERSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_getUSERSJSON(JNIEnv *env, jobject)\r\n{\r\n    return env->NewStringUTF(u->USERDUMP().c_str());\r\n}\r\n\r\n///////////////////////////////////////////////////////////////////////////////////////////\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)\r\n{\r\n    //  establishRanks(day1, month1, year1, day2, month2, year2);\r\n    // establishRanks(env->GetStringUTFChars(month, nullptr));\r\n    // J31, F28, M31, A30, M31, J30, J31, A31, S30, O31, N30, D31\r\n\r\n    establishRanks(month1, y1);\r\n\r\n    std::ostringstream os;\r\n\r\n    for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)\r\n    {\r\n        os << (*it)[\"THIS->STRING \"] << \"\\n\";\r\n    }\r\n    return env->NewStringUTF(os.str().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_showTop(JNIEnv *env, jobject)\r\n{\r\n    //  establishRanks(day1, month1, year1, day2, month2, year2);\r\n    // establishRanks(env->GetStringUTFChars(month, nullptr));\r\n    // J31, F28, M31, A30, M31, J30, J31, A31, S30, O31, N30, D31\r\n\r\n    establishTop();\r\n\r\n    std::ostringstream os;\r\n\r\n    for (json::iterator it = TOP_JSON.begin(); it != TOP_JSON.end(); ++it)\r\n    {\r\n        os << (*it)[\"THIS->STRING\"] << \"\\n\";\r\n    }\r\n    return env->NewStringUTF(os.str().c_str());\r\n}\r\n\r\nextern \"C\" JNIEXPORT jboolean JNICALL Java_com_kyeou_expensetracker_loginPage_checkPassword(JNIEnv *env, jobject thiz, jstring pass)\r\n{\r\n    return u->checkPass(env->GetStringUTFChars(pass, nullptr));\r\n}\r\nextern \"C\" JNIEXPORT jboolean JNICALL Java_com_kyeou_expensetracker_loginPage_checkUsername(JNIEnv *env, jobject thiz, jstring pass)\r\n{\r\n    return u->checkUsername(env->GetStringUTFChars(pass, nullptr));\r\n}\r\nextern \"C\" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i)\r\n{\r\n    return env->NewStringUTF(deleteTrans(i).c_str());\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/cpp/native-lib.cpp b/app/src/main/cpp/native-lib.cpp
+--- a/app/src/main/cpp/native-lib.cpp	(revision 26650527ba8ef284a53b13817b74999bd79ff1e8)
++++ b/app/src/main/cpp/native-lib.cpp	(date 1651536501957)
+@@ -7,6 +7,7 @@
+ 
+ TRANS_HANDLE *t;
+ USER_HANDLE *u;
++
+ /*
+ extern "C" jstring Java_com_kyeou_expensetracker_MainActivity_stringFromJNI(
+         JNIEnv* env,
+@@ -51,6 +52,11 @@
+     return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());
+ }
+ 
++extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_ReportResult_getUSERINFO(JNIEnv *env, jobject, jstring stringCALL)
++{
++    return env->NewStringUTF(u->getUSER_FIELD(env->GetStringUTFChars(stringCALL, nullptr)).c_str());
++}
++
+ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_VerifyLogin_userLogIn(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)
+ {
+     u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
+@@ -113,7 +119,7 @@
+ }
+ 
+ ///////////////////////////////////////////////////////////////////////////////////////////
+-extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
++extern "C" JNIEXPORT void JNICALL Java_com_kyeou_expensetracker_Reports_genReport(JNIEnv *env, jobject, int month1, int y1)
+ {
+     //  establishRanks(day1, month1, year1, day2, month2, year2);
+     // establishRanks(env->GetStringUTFChars(month, nullptr));
+@@ -121,14 +127,19 @@
+ 
+     establishRanks(month1, y1);
+ 
+-    std::ostringstream os;
++
++    //std::ostringstream os;
+ 
+-    for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
+-    {
+-        os << (*it)["THIS->STRING "] << "\n";
+-    }
+-    return env->NewStringUTF(os.str().c_str());
++    //for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
++   // {
++     //   os << (*it)["THIS->STRING "] << "\n";
++   // }
++    //return env->NewStringUTF(os.str().c_str());
+ }
++
++
++
++
+ 
+ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_MainActivity_showTop(JNIEnv *env, jobject)
+ {
+@@ -158,4 +169,20 @@
+ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_deleteExpensePage_deleteTrans(JNIEnv *env, jobject thiz, int i)
+ {
+     return env->NewStringUTF(deleteTrans(i).c_str());
++}
++
++
++extern "C"
++JNIEXPORT jstring JNICALL
++Java_com_kyeou_expensetracker_ReportResult_getRankList(JNIEnv *env, jobject thiz) {
++
++    return env->NewStringUTF(u->TOP_STRING_DUMP().c_str());
++}
++
++
++extern "C"
++JNIEXPORT jstring JNICALL
++Java_com_kyeou_expensetracker_ReportResult_getRankDate(JNIEnv *env, jobject thiz) {
++
++    return env->NewStringUTF(u->getReportString().c_str());
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/kyeou/expensetracker/ReportResult.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.kyeou.expensetracker;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.ArrayAdapter;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class ReportResult extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_report_result);\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/kyeou/expensetracker/ReportResult.java b/app/src/main/java/com/kyeou/expensetracker/ReportResult.java
+--- a/app/src/main/java/com/kyeou/expensetracker/ReportResult.java	(revision 26650527ba8ef284a53b13817b74999bd79ff1e8)
++++ b/app/src/main/java/com/kyeou/expensetracker/ReportResult.java	(date 1651536619969)
+@@ -3,16 +3,43 @@
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import android.os.Bundle;
++import android.util.Log;
+ import android.widget.ArrayAdapter;
++import android.widget.TextView;
+ 
+ import java.util.ArrayList;
+ 
+ public class ReportResult extends AppCompatActivity {
+-
++    static {
++        System.loadLibrary("expensetracker");
++    }
++TextView rankText, userText, dateText ;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_report_result);
+-    }
++
++
++        rankText = findViewById(R.id.ranks);
++        userText = findViewById(R.id.rname);
++        dateText = findViewById(R.id.rdate);
++
++
++
++        String user_name = getUSERINFO("Name");
++        String report_date = getRankDate();
++        String rt = getRankList();
++
++        userText.setText("Name: " + user_name.substring(1, user_name.length()-1));
++        rankText.setText(rt);
++        dateText.setText("Date: " + report_date);
++
++     }
+ 
++
++
++
++public native String getRankList();
++    public native String getRankDate();
++public native String getUSERINFO(String stringCALL);
+ }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BuildAttributionWarningsFilter\">\r\n    <option name=\"noGCSettingWarning\" value=\"true\" />\r\n  </component>\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml\" value=\"0.3875\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_main.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_personal_information.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_reports.xml\" value=\"0.358695652173913\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_signup_page.xml\" value=\"0.358695652173913\" />\r\n        <entry key=\"..\\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_user_profile.xml\" value=\"0.3875\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box1.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box2.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box2bg.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/boxbg.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/boxbg2.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/custom_input.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/gfgimage.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_account_avatar.xml\" value=\"0.164\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_bank.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_card.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_date.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_description.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_hamburger_menu.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_money.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_notifications.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_report.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_settings.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_user_info.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/list_simple.xml\" value=\"0.127\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/report_layout.xml\" value=\"0.164\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_apipdftest_main.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_personal_information.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_report_result.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_reports.xml\" value=\"0.17617753623188406\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml\" value=\"0.5510416666666667\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_trans_string.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml\" value=\"0.5138888888888888\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_user_profile.xml\" value=\"0.5138888888888888\" />\r\n        <entry key=\"..\\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/addexpense.xml\" value=\"0.5510416666666667\" />\r\n        <entry key=\"app/src/main/res/drawable/custom_input.xml\" value=\"0.299\" />\r\n        <entry key=\"app/src/main/res/layout/activity_add_expense.xml\" value=\"0.3049526712168818\" />\r\n        <entry key=\"app/src/main/res/layout/activity_delete_expense_page.xml\" value=\"0.20923913043478262\" />\r\n        <entry key=\"app/src/main/res/layout/activity_display_message.xml\" value=\"0.20425724637681159\" />\r\n        <entry key=\"app/src/main/res/layout/activity_login_page.xml\" value=\"0.35260416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.3541666666666667\" />\r\n        <entry key=\"app/src/main/res/layout/activity_new_user_funds.xml\" value=\"0.3098958333333333\" />\r\n        <entry key=\"app/src/main/res/layout/activity_personal_information.xml\" value=\"0.35260416666666666\" />\r\n        <entry key=\"app/src/main/res/layout/activity_report_result.xml\" value=\"0.35520833333333335\" />\r\n        <entry key=\"app/src/main/res/layout/activity_reports.xml\" value=\"0.3013153076171875\" />\r\n        <entry key=\"app/src/main/res/layout/activity_signup_page.xml\" value=\"0.20923913043478262\" />\r\n        <entry key=\"app/src/main/res/layout/activity_user_profile.xml\" value=\"0.3098958333333333\" />\r\n        <entry key=\"app/src/main/res/layout/addexpense.xml\" value=\"0.3541666666666667\" />\r\n        <entry key=\"app/src/main/res/layout/fragment_first.xml\" value=\"0.35520833333333335\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 26650527ba8ef284a53b13817b74999bd79ff1e8)
++++ b/.idea/misc.xml	(date 1651533192070)
+@@ -14,44 +14,13 @@
+         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_reports.xml" value="0.358695652173913" />
+         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_signup_page.xml" value="0.358695652173913" />
+         <entry key="..\:/Android Studio Projects/ExpenseTracker/app/src/main/res/layout/activity_user_profile.xml" value="0.3875" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box1.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box2.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/box2bg.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/boxbg.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/boxbg2.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/custom_input.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/gfgimage.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_account_avatar.xml" value="0.164" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_bank.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_card.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_date.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_description.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_hamburger_menu.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_money.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_notifications.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_report.xml" value="0.1" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/ic_user_info.xml" value="0.1" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/list_simple.xml" value="0.127" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/drawable/report_layout.xml" value="0.164" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_apipdftest_main.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_personal_information.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_report_result.xml" value="0.17617753623188406" />
+-        <entry key="..\:/Users/Student/StudioProjects/ExpenseTracker/app/src/main/res/layout/activity_reports.xml" value="0.17617753623188406" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_add_expense.xml" value="0.5510416666666667" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_message.xml" value="0.33" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_display_trans_string.xml" value="0.33" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_login_page.xml" value="0.33" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_main.xml" value="0.33" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_new_user_funds.xml" value="0.5138888888888888" />
++        <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_report_result.xml" value="0.9" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/activity_user_profile.xml" value="0.5138888888888888" />
+         <entry key="..\:/Users/kyeou/AndroidStudioProjects/ExpenseTracker/app/src/main/res/layout/addexpense.xml" value="0.5510416666666667" />
+         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.299" />
+@@ -62,12 +31,10 @@
+         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3541666666666667" />
+         <entry key="app/src/main/res/layout/activity_new_user_funds.xml" value="0.3098958333333333" />
+         <entry key="app/src/main/res/layout/activity_personal_information.xml" value="0.35260416666666666" />
+-        <entry key="app/src/main/res/layout/activity_report_result.xml" value="0.35520833333333335" />
+         <entry key="app/src/main/res/layout/activity_reports.xml" value="0.3013153076171875" />
+         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.20923913043478262" />
+         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.3098958333333333" />
+         <entry key="app/src/main/res/layout/addexpense.xml" value="0.3541666666666667" />
+-        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.35520833333333335" />
+       </map>
+     </option>
+   </component>
