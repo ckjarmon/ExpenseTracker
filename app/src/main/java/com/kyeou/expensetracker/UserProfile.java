@@ -35,4 +35,12 @@ public class UserProfile extends AppCompatActivity {
         Intent intent = new Intent(this, loginPage.class);
         startActivity(intent);
     }
+
+    public void DeleteAccount(View view) throws IOException{
+        new WriteReadHandle().WriteHandle("transactions.json", "");
+        new WriteReadHandle().WriteHandle("user.json", "");
+        Intent intent = new Intent(this, loginPage.class);
+        startActivity(intent);
+    }
+
 }
