@@ -1,4 +1,6 @@
+/*
 package com.kyeou.expensetracker;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,8 +19,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.api.client.extensions.android.http.AndroidHttp;
-//import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
@@ -35,22 +39,23 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // requestSignIn();
+          requestSignIn();
 
     }
-/*
+
     private void requestSignIn() {
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
                 .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
+                .requestEmail()
                 .build();
 
         GoogleSignInClient client = GoogleSignIn.getClient(this,signInOptions);
+        findViewById(R.id.backupToDriveButton).setOnClickListener(this::uploadPdfFile);
 
         //noinspection deprecation
         startActivityForResult(client.getSignInIntent(),400);
-    }//requestSignIn */
-/*
+    }//requestSignIn
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -62,14 +67,14 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
                 }
                 break;
         }
-    }//onActivityResult */
-/*
+    }//onActivityResult
+
     private void handleSignInIntent(Intent data) {
         GoogleSignIn.getSignedInAccountFromIntent(data)
                 .addOnSuccessListener(new OnSuccessListener<GoogleSignInAccount>() {
                     @Override
                     public void onSuccess(GoogleSignInAccount googleSignInAccount) {
-                        GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(MainActivity.this, Collections.singleton(DriveScopes.DRIVE_FILE));
+                        GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(GoogleDriveAPIforPDF.this, Collections.singleton(DriveScopes.DRIVE_FILE));
 
                         credential.setSelectedAccount(googleSignInAccount.getAccount());
 
@@ -89,15 +94,15 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
 
                     }
                 });
-    }//handleSignInIntent */
-/*
+    }//handleSignInIntent
+
     public void uploadPdfFile(View v){
-        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(GoogleDriveAPIforPDF.this);
         progressDialog.setTitle("Uploading to Google Drive");
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
-        String filePath = "/storage/emulated/0/PDFFile.pdf";
+        String filePath = "/data/data/com.kyeou.expensetracker/files/";
         driveServiceHelper.createFilePDF(filePath).addOnSuccessListener(new OnSuccessListener<String>() {
             @Override
             public void onSuccess(String s) {
@@ -115,6 +120,7 @@ public class GoogleDriveAPIforPDF extends AppCompatActivity {
                 });
 
     }//UploadPdfFile
-*/
+
 
 }//public class Main Activity
+*/

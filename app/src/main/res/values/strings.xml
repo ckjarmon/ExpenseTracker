@@ -57,5 +57,5 @@
     </string-array>
 
     <!-- add the client ID to test-->
-    <string name="server_client_id"></string>
+    <string name="server_client_id">735767199414-26o0pvaj0mp4jsrgq39optt1pkkh7q0j.apps.googleusercontent.com</string>
 </resources>
