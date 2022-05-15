@@ -45,6 +45,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_SignupPage_ge
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_kyeou_expensetracker_SignupPage_userSignUp(JNIEnv *env, jobject, jstring user_info_json, jstring trans_info_json)
 {
+    // u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), env->GetStringUTFChars(trans_info_json, nullptr));
     u = new USER_HANDLE(env->GetStringUTFChars(user_info_json, nullptr), "[]");
     return env->NewStringUTF(u->USERDUMP().c_str());
 }
