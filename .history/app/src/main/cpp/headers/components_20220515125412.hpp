@@ -409,6 +409,8 @@ public:
         return reportString;
     }
 
+
+
     bool checkPass(std::string check)
     {
         std::string temp = USER_JSON["Password"];

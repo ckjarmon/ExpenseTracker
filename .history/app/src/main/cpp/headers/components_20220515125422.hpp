@@ -409,6 +409,11 @@ public:
         return reportString;
     }
 
+    json getTRANS()
+    {
+        return TRANSACTIONS_JSON;
+    }
+
     bool checkPass(std::string check)
     {
         std::string temp = USER_JSON["Password"];
