@@ -395,6 +395,7 @@ public:
     std::string RANK_STRING_DUMP()
     {
         std::ostringstream os;
+
         for (json::iterator it = RANKS_JSON.begin(); it != RANKS_JSON.end(); ++it)
         {
             os << (*it)["THIS->STRING"] << "\n";
