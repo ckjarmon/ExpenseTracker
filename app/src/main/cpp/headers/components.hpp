@@ -174,7 +174,7 @@ namespace GLOBAL_VARS
                 break;
             }
         }
-        if (change == true)
+        if (change)
         {
             establishRanks(mtr, ytr);
         }
