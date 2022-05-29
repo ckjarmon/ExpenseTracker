@@ -5,7 +5,7 @@ package com.kyeou.expensetracker;//package main.cpp.headers;
 import java.io.*;
 
 public class WriteReadHandle{//} extends AppCompatActivity {
-   
+
 
 
 public void createFiles(String filename) throws IOException {
@@ -24,7 +24,7 @@ public void createFiles(String filename) throws IOException {
 
 
 
-  
+
    public void WriteHandle(String filename, String ttw) throws IOException {
 
 
@@ -64,7 +64,7 @@ public void createFiles(String filename) throws IOException {
 
 
 
-  
+
    public static void main(String[] args) throws IOException {
       new WriteReadHandle().WriteHandle("transactionsJSON.json", "[{\"Name\": \"FirstName LastName\",  \"A_O_T\": 0,  \"Budgets\": [1,2,3],\"Income\": 0,\"Scores\": [],\"SumDebits\": 0 }]");
       //WriteReadHandle test = new WriteReadHandle();
@@ -72,7 +72,7 @@ public void createFiles(String filename) throws IOException {
       System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
       //new WriteReadHandle().WriteHandle("transactionsJSON.json", "ASDGHLD");
       System.out.println(new WriteReadHandle().ReadHandle("transactionsJSON.json"));
-   }//end main 
+   }//end main
 
 
 }
@@ -80,17 +80,17 @@ public void createFiles(String filename) throws IOException {
 /*
  * import java.io.*;
  * public class CopyFile {
- * 
+ *
  * public static void main(String args[]) throws IOException {
  * File file = new File("wtf_is_this.txt");
  * file.createNewFile();
  * FileReader in = null;
  * FileWriter out = null;
- * 
+ *
  * try {
  * in = new FileReader("wtf_is_this.txt");
  * out = new FileWriter("wtf_is_this.txt");
- * 
+ *
  * out.write("kjblkjb");
  * }finally {
  * if (in != null) {

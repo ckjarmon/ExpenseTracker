@@ -117,7 +117,7 @@ public class Reports extends AppCompatActivity implements View.OnClickListener{
         Intent signInIntent = client.getSignInIntent();
         startActivityForResult(signInIntent,9001);
     }
-    
+
 /*
     private void requestSignIn() {
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
