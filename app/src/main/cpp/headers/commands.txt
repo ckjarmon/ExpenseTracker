@@ -1,5 +1,0 @@
-javac -h . headers_jni_test_file.java
-
-g++ -c -I%JAVA_HOME%\include -I%JAVA_HOME%\include\win32 headers_jni_test_file.cpp -o headers_jni_test_file.o
-
-g++ -shared -o native.dll headers_jni_test_file.o -W
